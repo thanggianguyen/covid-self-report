@@ -1,4 +1,4 @@
-package com.example.profile;
+package com.example.profileresources;
 
 import java.io.*;
 

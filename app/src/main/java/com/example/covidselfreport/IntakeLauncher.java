@@ -20,7 +20,7 @@ import java.util.Locale;
 import java.util.List;
 
 import com.example.intakesurvey.*;
-import com.example.profile.Survey;
+import com.example.profileresources.Survey;
 
 
 /**

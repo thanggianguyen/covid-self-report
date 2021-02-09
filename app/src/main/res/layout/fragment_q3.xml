@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.profile.Q3Fragment">
+    tools:context="com.example.profileresources.Q3Fragment">
 
     <RadioGroup
         android:id="@+id/preference_q3_responses_radiogroup"

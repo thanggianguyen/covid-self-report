@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
 
-import com.example.profile.*;
+import com.example.profileresources.*;
 
 
 /**

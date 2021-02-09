@@ -1,4 +1,4 @@
-package com.example.profile;
+package com.example.profileresources;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

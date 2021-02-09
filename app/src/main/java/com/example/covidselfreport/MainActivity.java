@@ -3,7 +3,6 @@ package com.example.covidselfreport;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import com.example.profile.*;
+import com.example.profileresources.*;
 import com.google.gson.*;
 
 
@@ -250,6 +249,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+
+    public static Profile getProfile() {
+        return profile;
     }
 
 }
