@@ -3,6 +3,7 @@ package com.example.covidselfreport;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -108,18 +109,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //File preference = new File(getFilesDir(), PREFERENCE_SURVEY_FILE_NAME);
-        //preference.delete();
+        File preference = new File(getFilesDir(), PREFERENCE_SURVEY_FILE_NAME);
+        preference.delete();
 
-        //File profileFile = new File(getFilesDir(), PROFILE_FILE_NAME);
-        //profileFile.delete();
+        File profileFile = new File(getFilesDir(), PROFILE_FILE_NAME);
+        profileFile.delete();
 
-        String intakeJsonFileName = IntakeLauncher.getIntakeFileNameToday();
-        File intakeToday = new File(getFilesDir(), intakeJsonFileName);
-        if (intakeToday.delete())
-            ((TextView)findViewById(R.id.main_textview)).setText(intakeToday.getName() + " was deleted.");
-        else
-            ((TextView)findViewById(R.id.main_textview)).setText("No files to delete.");
+//        String intakeJsonFileName = IntakeLauncher.getIntakeFileNameToday();
+//        File intakeToday = new File(getFilesDir(), intakeJsonFileName);
+//        if (intakeToday.delete())
+//            ((TextView)findViewById(R.id.main_textview)).setText(intakeToday.getName() + " was deleted.");
+//        else
+//            ((TextView)findViewById(R.id.main_textview)).setText("No files to delete.");
     }*/
 
 
@@ -255,5 +256,6 @@ public class MainActivity extends AppCompatActivity {
     public static Profile getProfile() {
         return profile;
     }
+
 
 }

@@ -7,6 +7,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="apply_changes">Apply Changes</string>
+
     <string name="intake_title_textview_text">Daily Intake Survey</string>
     <string name="intake_next_button_text">Next Question</string>
 
@@ -61,6 +63,7 @@
     <string name="preference_q4_cb8_text">Hiking</string>
 
     <string name="profile_title_textview_text">Create Your Profile</string>
+    <string name="profile_title_textview_text_alternate">Change Your Profile</string>
     <string name="profile_first_name_textview_text">First Name:</string>
     <string name="profile_invalid_first_name_textview_text">You must enter a valid first name.</string>
     <string name="profile_last_nae_textview_text">Last Name:</string>
