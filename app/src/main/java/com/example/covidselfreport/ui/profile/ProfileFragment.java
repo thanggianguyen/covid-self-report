@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.covidselfreport.MainActivity;
 import com.example.covidselfreport.ProfileModifier;
 import com.example.covidselfreport.R;
+import com.example.covidselfreport.SurveyModifier;
 import com.example.profileresources.Profile;
 
 
@@ -38,6 +39,7 @@ public class ProfileFragment extends Fragment {
     private ImageView changePreferencesOpenIcon;
     private ImageView sharePreferencesOpenIcon;
     private Button changeProfileButton;
+    private Button changePreferencesButton;
 
 
     /**
@@ -91,6 +93,16 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent toProfileModifier = new Intent(requireActivity(), ProfileModifier.class);
                 startActivityForResult(toProfileModifier, 789);
+            }
+        });
+
+        //Set OnClickListener for the change preferences button:
+        changePreferencesButton = view.findViewById(R.id.profilefragment_change_preferences_button);
+        changePreferencesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toPreferenceModifier = new Intent(requireActivity(), SurveyModifier.class);
+                startActivity(toPreferenceModifier);
             }
         });
     }

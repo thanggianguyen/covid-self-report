@@ -44,11 +44,11 @@
     <string name="preference_q2_rb4_text">High\nRisk</string>
 
     <string name="preference_q3_question_text">How comfortable are you with socializing?</string>
-    <string name="preference_q3_rb0_text">Not\ncomfortable</string>
-    <string name="preference_q3_rb1_text">\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020</string>
-    <string name="preference_q3_rb2_text">\u0020\u0020\u0020\u0020\u0020\u0020So-so\u0020\u0020\u0020\u0020\u0020\u0020</string>
-    <string name="preference_q3_rb3_text">\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020</string>
-    <string name="preference_q3_rb4_text">Very\ncomfortable</string>
+    <string name="preference_q3_rb0_text">Not\nat all</string>
+    <string name="preference_q3_rb1_text"> </string>
+    <string name="preference_q3_rb2_text">So-so</string>
+    <string name="preference_q3_rb3_text"> </string>
+    <string name="preference_q3_rb4_text">Very</string>
 
     <string name="preference_q4_question_text">If you are making plans, where are you comfortable going?</string>
     <string name="preference_q4_clarification_text">(Check all that apply)</string>

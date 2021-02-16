@@ -67,6 +67,14 @@ public class ProfileCreatorFragment extends Fragment {
     private TextWatcher lastNameFormatter;
 
 
+    /**
+     * Called when the fragment is being created.
+     * Inflates the fragment.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +83,9 @@ public class ProfileCreatorFragment extends Fragment {
 
 
     /**
-     * Called once the fragment is created.
+     * Called once the fragment has been created.
+     * Instantiate all Views/Widgets from the fragment's R field
+     * Give all Views/Widgets their functionality.
      * @param view
      * @param savedInstanceState
      */
