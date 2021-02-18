@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.profileresources.SurveyFormFragment"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profilemodifier_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context = "com.example.profileresources.SurveyFormFragment"
+        >
+
+
+
+        <!-- QUESTION 1 VIEWS -->
+        <TextView
+            android:id="@+id/preferencemodifier_q1_text_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/preference_q1_question_text"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/preferencemodifier_q1_clarification_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/preference_q1_clarification_text"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q1_text_textview" />
+
+        <RadioGroup
+            android:id="@+id/preferencemodifier_q1_responses_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preferencemodifier_q1_clarification_textview">
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q1_rb0_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q1_rb0_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q1_rb1_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q1_rb2_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q1_rb2_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q1_rb3_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q1_rb4_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q1_rb4_text" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/preferencemodifier_q1_optionalresponsetext_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="@string/preference_q1_optionalresponse_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q1_responses_radiogroup" />
+
+        <EditText
+            android:id="@+id/preferencemodifier_q1_optionalresponse_edittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q1_optionalresponsetext_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+
+
+
+
+
+        <!-- QUESTION 2 VIEWS -->
+        <TextView
+            android:id="@+id/preferencemodifier_q2_text_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/preference_q2_question_text"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q1_optionalresponse_edittext" />
+
+        <TextView
+            android:id="@+id/preferencemodifier_q2_clarification_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/preference_q2_clarification_text"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q2_text_textview" />
+
+        <RadioGroup
+            android:id="@+id/preferencemodifier_q2_responses_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preferencemodifier_q2_clarification_textview">
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q2_rb0_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q2_rb0_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q2_rb1_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q2_rb2_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q2_rb2_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q2_rb3_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q2_rb4_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q2_rb4_text" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/preferencemodifier_q2_optionalresponsetext_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/preference_q2_optionalresponse_text"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q2_responses_radiogroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/preferencemodifier_q2_optionalresponse_edittext"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q2_optionalresponsetext_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+
+
+
+
+
+        <!-- QUESTION 3 VIEWS -->
+        <TextView
+            android:id="@+id/preferencemodifier_q3_text_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="@string/preference_q3_question_text"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q2_optionalresponse_edittext" />
+
+        <RadioGroup
+            android:id="@+id/preferencemodifier_q3_responses_radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q3_text_textview">
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q3_rb0_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q3_rb0_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q3_rb1_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q3_rb1_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q3_rb2_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q3_rb2_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q3_rb3_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q3_rb3_text" />
+
+            <RadioButton
+                android:id="@+id/preferencemodifier_q3_rb4_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_radio"
+                android:gravity="center"
+                android:text="@string/preference_q3_rb4_text" />
+        </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        <!-- QUESTION 4 VIEWS -->
+        <TextView
+            android:id="@+id/preferencemodifier_q4_text_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="@string/preference_q4_question_text"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q3_responses_radiogroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/preferencemodifier_q4_clarification_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/preference_q4_clarification_text"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/preferencemodifier_q4_text_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb0_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/preference_q4_cb0_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_clarification_textview" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb1_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb1_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb0_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb2_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb2_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb1_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb3_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb3_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb2_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb4_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb4_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb3_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb5_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb5_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb4_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb6_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb6_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb5_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb7_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb7_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb6_checkbox" />
+
+        <CheckBox
+            android:id="@+id/preferencemodifier_q4_cb8_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/preference_q4_cb8_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb7_checkbox" />
+
+
+
+
+
+
+
+
+
+        <!-- BUTTONS -->
+        <Button
+            android:id="@+id/preferencemodifier_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Back"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb8_checkbox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/preferencemodifier_update_button"
+            />
+
+        <Button
+            android:id="@+id/preferencemodifier_update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Update"
+            app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb8_checkbox"
+            app:layout_constraintStart_toEndOf="@+id/preferencemodifier_back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

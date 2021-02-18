@@ -258,4 +258,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public static Survey getPreferenceSurvey() {
+        return preferenceSurvey;
+    }
+
+
 }
