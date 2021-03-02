@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -206,20 +207,24 @@ public class SurveyFormFragment extends Fragment {
      */
     private void updateButtonHandler(View view) {
         //Set the response for q1 (index 0) to the selected radiobutton index of q1Responses:
+        preferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q1_text_textview)).getText().toString());
         preferences.setResponse(0, Integer.toString(q1Responses.indexOfChild(requireView().findViewById(
                 q1Responses.getCheckedRadioButtonId()))));
         preferences.setTextboxResponse(0, q1TextResponse.getText().toString());
 
         //Set the response for q2 (index 1) to the selected radiobutton index of q2Responses:
+        preferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q2_text_textview)).getText().toString());
         preferences.setResponse(1, Integer.toString(q2Responses.indexOfChild(requireView().findViewById(
                 q2Responses.getCheckedRadioButtonId()))));
         preferences.setTextboxResponse(1, q2TextResponse.getText().toString());
 
         //Set the response for q3 (index 2) to the selected radiobutton index of q3Responses:
+        preferences.setQuestion(2, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q3_text_textview)).getText().toString());
         preferences.setResponse(2, Integer.toString(q3Responses.indexOfChild(requireView().findViewById(
                 q3Responses.getCheckedRadioButtonId()))));
 
         //Set the response for q4 (index 3) to the selected CheckBoxs' text fields:
+        preferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q4_text_textview)).getText().toString());
         String q4Response = "";
         for (CheckBox current : q4Responses) {
             if (current.isChecked())

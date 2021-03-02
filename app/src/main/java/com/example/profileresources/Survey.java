@@ -155,4 +155,16 @@ public class Survey
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < numQuestions; i++) {
+            str += questions[i] + "\n" + responses[i] + "\n";
+            if (textboxResponses[i] != null && !textboxResponses[i].isEmpty())
+                str += textboxResponses[i] + "\n";
+        }
+        return str;
+    }
 }

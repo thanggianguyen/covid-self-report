@@ -11,15 +11,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.covidselfreport.MainActivity;
+import com.example.covidselfreport.MainScreen;
 import com.example.covidselfreport.ProfileModifier;
 import com.example.covidselfreport.R;
 import com.example.covidselfreport.SurveyModifier;
 import com.example.profileresources.Profile;
+import com.example.profileresources.Survey;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -40,6 +48,7 @@ public class ProfileFragment extends Fragment {
     private ImageView sharePreferencesOpenIcon;
     private Button changeProfileButton;
     private Button changePreferencesButton;
+    private Button shareProfileButton;
 
 
     /**
@@ -96,13 +105,23 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        //Set OnClickListener for the change preferences button:
+        //Set the OnClickListener for the change preferences button:
         changePreferencesButton = view.findViewById(R.id.profilefragment_change_preferences_button);
         changePreferencesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent toPreferenceModifier = new Intent(requireActivity(), SurveyModifier.class);
                 startActivity(toPreferenceModifier);
+            }
+        });
+
+        //Set the OnClickListener for the Share Profile button:
+        shareProfileButton = view.findViewById(R.id.profilefragment_share_profile_button);
+        shareProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment message = new ShareOptionsDialog();
+                message.show(requireActivity().getSupportFragmentManager(), "share");
             }
         });
     }
@@ -154,4 +173,96 @@ public class ProfileFragment extends Fragment {
             phoneNumber = "Your phone number here";
         phoneNumberText.setText(phoneNumber);
     }
+
+
+    public static String getProfileText(boolean includeIntakes) {
+        Survey preferences = MainActivity.getPreferenceSurvey();
+        Profile profile = MainActivity.getProfile();
+        Date today = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd", Locale.getDefault());
+
+        String profileText = profile.getFirstName() + " " + profile.getLastName() + "'s Health Report" +
+                "\nReport generated on " + today + "\n\nPreferences:" + "\n";// + preferences.toString();
+
+        for (int i = 0; i < MainActivity.PREFERENCE_QUESTION_COUNT; i++) {
+            profileText += preferences.getQuestion(i) + "\n";
+            if (i == MainActivity.PREFERENCE_QUESTION_COUNT - 1)
+                profileText += preferences.getResponse(i) + "\n";
+            else
+                profileText += preferenceNumberToText(i, Integer.parseInt(preferences.getResponse(i))) + "\n";
+            if (preferences.getTextboxResponse(i) != null && !preferences.getTextboxResponse(i).isEmpty())
+                profileText += "Condition(s): " + preferences.getTextboxResponse(i) + "\n";
+        }
+
+        if (includeIntakes) {
+            Survey[] intakes = MainScreen.getIntakeSurveys();
+            profileText += "\n\nIntakes:" + "\n";
+            for (int i = 0; i < intakes.length; i++) {
+                if (i == 0)
+                    profileText += "Today:\n";
+                else if (i == 1)
+                    profileText += "1 day ago:\n";
+                else
+                    profileText += i + " days ago:\n";
+                if (intakes[i] == null)
+                    profileText += "No intake survey was taken on this day.\n\n";
+                else {
+                    profileText += intakes[i].getQuestion(0) + "\n";
+                    profileText += intakeNumberToText(Integer.parseInt(intakes[i].getResponse(0))) + "\n";
+                    profileText += intakes[i].getQuestion(1) + "\n";
+                    profileText += intakes[i].getResponse(1) + "\n";
+                    if (intakes[i].getTextboxResponse(1) != null) {
+                        String tbResponse = intakes[i].getTextboxResponse(1);
+                        int whoIndex = tbResponse.indexOf("With whom");
+                        if (whoIndex == -1)
+                            profileText += tbResponse + "\n\n";
+                        else
+                            profileText += tbResponse.substring(0, whoIndex) + "\n" + tbResponse.substring(whoIndex) + "\n\n";
+                    }
+                }
+            }
+        }
+        return profileText;
+    }
+
+
+    private static String preferenceNumberToText(int questionNum, int num) {
+        String str = "";
+        if (questionNum == 0 || questionNum == 1) {
+            switch (num) {
+                case 0: str = "No Risk"; break;
+                case 1: str = "Nearly No Risk"; break;
+                case 2: str = "Low Risk"; break;
+                case 3: str = "Medium Risk"; break;
+                case 4: str = "High Risk"; break;
+                default: str = Integer.toString(num); break;
+            }
+        }
+        else if (questionNum == 2) {
+            switch (num) {
+                case 0: str = "Not At All Comfortable"; break;
+                case 1: str = "Not Comfortable"; break;
+                case 2: str = "Somewhat Comfortable"; break;
+                case 3: str = "Comfortable"; break;
+                case 4: str = "Very Comfortable"; break;
+                default: str = Integer.toString(num); break;
+            }
+        }
+        return str;
+    }
+
+
+    private static String intakeNumberToText(int num) {
+        String str = "";
+        switch (num) {
+            case 0: str = "Many Symptoms"; break;
+            case 1: str = "Some Symptoms"; break;
+            case 2: str = "One Symptom"; break;
+            case 3: str = "Relatively Well"; break;
+            case 4: str = "Peak of Health"; break;
+            default: str = Integer.toString(num); break;
+        }
+        return str;
+    }
+
 }

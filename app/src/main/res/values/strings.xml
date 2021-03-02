@@ -8,9 +8,28 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="apply_changes">Apply Changes</string>
+    <string name="back">Back</string>
 
-    <string name="intake_title_textview_text">Daily Intake Survey</string>
+    <string name="calendar_day0_title_textview_text">Today -</string>
+    <string name="calendar_day1_title_textview_text">Yesterday -</string>
+    <string name="calendar_day2_title_textview_text">2 days ago -</string>
+    <string name="calendar_day3_title_textview_text">3 days ago -</string>
+    <string name="calendar_day4_title_textview_text">4 days ago -</string>
+    <string name="calendar_day5_title_textview_text">5 days ago -</string>
+    <string name="calendar_day6_title_textview_text">6 days ago -</string>
+    <string name="calendar_day0_title_textview_textcalendar_day7_title_textview_text">7 days ago -</string>
+    <string name="calendar_day8_title_textview_text">8 days ago -</string>
+    <string name="calendar_day9_title_textview_text">9 days ago -</string>
+    <string name="calendar_day10_title_textview_text">10 days ago -</string>
+    <string name="calendar_day11_title_textview_text">11 days ago -</string>
+    <string name="calendar_day12_title_textview_text">12 days ago -</string>
+    <string name="calendar_day13_title_textview_text">13 days ago -</string>
+    <string name="calendar_day14_title_textview_text">14 days ago -</string>
+
+    <string name="finish">Finish</string>
+
     <string name="intake_next_button_text">Next Question</string>
+    <string name="intake_title_textview_text">Daily Intake Survey</string>
 
     <string name="intake_q1_text_textview_text">How do you feel today? Any symptoms?</string>
     <string name="intake_q1_clarification_textview_text">Symptoms being: fever, dry cough, loss of taste/smell, shortness of breath, etc.</string>
@@ -28,6 +47,9 @@
     <string name="intake_q2a_whoinstructions_textview_text">Enter the people you\'ve seen below.\n(Use commas to separate multiple people)</string>
     <string name="intake_q2a_rb0_radiobutton_text">Yes</string>
     <string name="intake_q2a_rb1_radiobutton_text">No</string>
+
+    <string name="preference_title_textview_text">Preferences Survey</string>
+    <string name="preference_next_button_text">Next Question</string>
 
     <string name="preference_q1_question_text">How at risk are you for COVID-19?</string>
     <string name="preference_q1_clarification_text">Clarification: Are there any pre-existing conditions you have that put you at a higher risk for surviving COVID-19?</string>
@@ -72,28 +94,11 @@
     <string name="profile_invalid_phone_number_textview_text">You must enter a valid phone number.</string>
     <string name="profile_create_button_text">Create Profile</string>
 
-    <string name="preference_title_textview_text">Preferences Survey</string>
-    <string name="preference_next_button_text">Next Question</string>
-
+    <string name="share_options">Share Options</string>
     <string name="title_intake">Intake</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_profile">Profile</string>
-    <string name="finish">Finish</string>
-    <string name="calendar_day0_title_textview_text">Today -</string>
-    <string name="calendar_day1_title_textview_text">Yesterday -</string>
-    <string name="calendar_day2_title_textview_text">2 days ago -</string>
-    <string name="calendar_day3_title_textview_text">3 days ago -</string>
-    <string name="calendar_day4_title_textview_text">4 days ago -</string>
-    <string name="calendar_day5_title_textview_text">5 days ago -</string>
-    <string name="calendar_day6_title_textview_text">6 days ago -</string>
-    <string name="calendar_day0_title_textview_textcalendar_day7_title_textview_text">7 days ago -</string>
-    <string name="calendar_day8_title_textview_text">8 days ago -</string>
-    <string name="calendar_day9_title_textview_text">9 days ago -</string>
-    <string name="calendar_day10_title_textview_text">10 days ago -</string>
-    <string name="calendar_day11_title_textview_text">11 days ago -</string>
-    <string name="calendar_day12_title_textview_text">12 days ago -</string>
-    <string name="calendar_day13_title_textview_text">13 days ago -</string>
-    <string name="calendar_day14_title_textview_text">14 days ago -</string>
+    <string name="update">Update</string>
 
 
 </resources>
