@@ -16,11 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.covidselfreport.MainActivity;
-import com.example.covidselfreport.MainScreen;
-import com.example.covidselfreport.ProfileModifier;
-import com.example.covidselfreport.R;
-import com.example.covidselfreport.SurveyModifier;
+import com.example.covidselfreport.*;
 import com.example.profileresources.Profile;
 import com.example.profileresources.Survey;
 

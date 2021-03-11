@@ -11,6 +11,8 @@ import com.example.profileresources.ProfileCreatorFragment;
 
 /**
  * The activity used to create a user profile.
+ * It first displays a disclaimer (DisclaimerFragment) for the user to read.
+ * After the user continues, it displays the ProfileCreatorFragment.
  * Prompts the user to enter their first and last names, and phone number.
  * Uses the ProfileCreatorFragment for the UI and user input.
  */
@@ -19,12 +21,14 @@ public class ProfileCreator extends AppCompatActivity {
     /** The fragment manager for this activity */
     private FragmentManager fm;
     /** The only fragment that will be displayed by this activity */
-    private Fragment mainFragment;
+    private Fragment firstFragment;
 
 
     /**
      * Called upon Activity creation.
-     * Displays the ProfileCreatorFragment (where the user is prompted to enter their info)
+     * Displays the DiclaimerFragment (where the user reads a disclaimer)
+     * ProfileCreatorFragment (where the user is prompted to enter their info) is displayed once the user clicks the "Continue" button on DisclaimerFragment.
+     * **The fragment transition logic mentioned above is handled by DisclaimerFragment.
      * @param savedInstanceState
      */
     @Override
@@ -33,8 +37,8 @@ public class ProfileCreator extends AppCompatActivity {
         setContentView(R.layout.activity_profile_creator);
 
         fm = getSupportFragmentManager();
-        mainFragment = new ProfileCreatorFragment();
-        fm.beginTransaction().replace(R.id.profilecreator_content_container, mainFragment).commit();
+        firstFragment = new DisclaimerFragment();
+        fm.beginTransaction().replace(R.id.profilecreator_content_container, firstFragment).commit();
     }
 
 }
