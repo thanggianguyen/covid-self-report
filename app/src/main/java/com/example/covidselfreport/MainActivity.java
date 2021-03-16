@@ -1,6 +1,9 @@
 package com.example.covidselfreport;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         else if (requestCode == 321 && resultCode == Activity.RESULT_OK) {
             preferenceSurvey.saveToJson(getFilesDir().toString(), PREFERENCE_SURVEY_FILE_NAME);
             profile.saveToJson(getFilesDir().toString(), PROFILE_FILE_NAME);
+            startAlarmBroadcastReceiver(MainActivity.this); //Start the daily notificaions to fill out intake survey
             Intent toMainScreen = new Intent(this, MainScreen.class);
             startActivity(toMainScreen);
         }
@@ -260,6 +264,21 @@ public class MainActivity extends AppCompatActivity {
 
     public static Survey getPreferenceSurvey() {
         return preferenceSurvey;
+    }
+
+
+    public static void startAlarmBroadcastReceiver(Context context) {
+        Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 35);
+        calendar.set(Calendar.SECOND, 0);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
 
