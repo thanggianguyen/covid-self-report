@@ -134,10 +134,15 @@ public class CalendarFragment extends Fragment {
         super.onResume();
 
         File intakeTodayFile = new File(requireActivity().getFilesDir(), IntakeLauncher.getIntakeFileNameToday());
+        File intakeYesterdayFile = new File(requireActivity().getFilesDir(), IntakeLauncher.getIntakeFileNameYesterday());
 
         if (intakeSurveys[0] == null && intakeTodayFile.exists()) {
-            /*intakeSurveys[0] = */MainScreen.addNewIntake();
+            /*intakeSurveys[0] = */MainScreen.addNewIntakeToday();
             infoBoxes[0].setText(Html.fromHtml(generateIntakeInfoString(0)));
+        }
+        if (intakeSurveys[1] == null && intakeYesterdayFile.exists() ) {
+            MainScreen.addNewIntakeYesterday();
+            infoBoxes[1].setText(Html.fromHtml(generateIntakeInfoString(1)));
         }
     }
 

@@ -102,6 +102,9 @@
     <string name="disclaimer_title_textview_text">Disclaimer</string>
     <string name="disclaimer_text_textview_text">This app is in no way affiliated with any health and/or governmental organization. This app is merely a convenient way for users to track their own activity, preferences, and levels of comfortability regarding the COVID-19 Pandemic. Users are able to share their profiles with other people, however this is completely optional and up to the individual user.</string>
     <string name="continue_text">Continue</string>
+    <string name="preference_q5_rb0_text">Yes, fully vaccinated</string>
+    <string name="preference_q5_rb1_text">Yes, partially vaccinated</string>
+    <string name="preference_q5_rb2_text">No, not vaccinated</string>
 
 
 </resources>

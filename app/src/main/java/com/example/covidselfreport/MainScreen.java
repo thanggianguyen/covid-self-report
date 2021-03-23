@@ -137,13 +137,57 @@ public class MainScreen extends AppCompatActivity {
      * section for day 0.
      * @return The survey if successfully added to the calendar, null if unsuccessfully added.
      */
-    public static Survey addNewIntake() {
-        File intakeTodayFile = new File(mainObj.getFilesDir(), IntakeLauncher.getIntakeFileNameToday());
+    public static Survey addNewIntakeToday() {
 
-        if (intakeTodayFile.exists()) {
+        return addNewIntake(0);
+        /*if (intakeTodayFile.exists()) {
             Gson gson = new Gson();
             try {
                 FileReader reader = new FileReader(intakeTodayFile);
+                String jsonStr = "";
+                int charIndex;
+
+                while ((charIndex = reader.read()) != -1)
+                    jsonStr += (char) charIndex;
+
+                intakeSurveys[0] = gson.fromJson(jsonStr, Survey.class);
+                return intakeSurveys[0];
+            }
+            catch (FileNotFoundException e) { return null; }
+            catch (IOException e) { return null; }
+        }
+        return null;*/
+
+    }
+
+
+    /**
+     * Adds the new intake survey file (that was presumably just filled out) to the calendar
+     * section for day 1.
+     * @return The survey if successfully added to the calendar, null if unsuccessfully added.
+     */
+    public static Survey addNewIntakeYesterday() {
+        return addNewIntake(1);
+    }
+
+
+    /**
+     * Adds the new intake survey file (that was presumably just filled out) to the calendar
+     * section for the specified day number (0-14, 0 being today, 14 being 14 days ago).
+     * @return The survey if successfully added to the calendar, null if unsuccessfully added.
+     */
+    private static Survey addNewIntake(int index) {
+        if (index < 0 || index > 14)
+            throw new IllegalArgumentException("The index must be between 0 and 14 (within the last 14 days)");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, (-1*index));
+        Date date = cal.getTime();
+        File intakeFile = new File(mainObj.getFilesDir(), IntakeLauncher.getIntakeFileNameByDate(date));
+
+        if (intakeFile.exists()) {
+            Gson gson = new Gson();
+            try {
+                FileReader reader = new FileReader(intakeFile);
                 String jsonStr = "";
                 int charIndex;
 

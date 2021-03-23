@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.example.covidselfreport.*;
 import com.example.covidselfreport.R;
@@ -29,8 +31,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class IntakeFragment extends Fragment {
 
     private IntakeViewModel intakeViewModel;
-    /** The button the user can click to take them to the intake survey */
+    /** The button the user can click to take them to today's intake survey */
     Button intakeButton;
+    /** The button the user can click to take them to yesterday's intake survey */
+    Button intakeYesterdayButton;
     /** The button the user can click to allow them to view their responses */
     Button responsesButton;
     /** The image displayed to inform the user whether they took today's intake or not */
@@ -41,6 +45,8 @@ public class IntakeFragment extends Fragment {
     TextView intakeInfoText;
     /** The name of today's intake survey file */
     String intakeJsonFileName;
+    /** The name of yesterday's intake survey file */
+    String intakeJsonFileNameYesterday;
 
 
     /**
@@ -53,6 +59,7 @@ public class IntakeFragment extends Fragment {
      */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         intakeJsonFileName = IntakeLauncher.getIntakeFileNameToday();
+        intakeJsonFileNameYesterday = IntakeLauncher.getIntakeFileNameYesterday();
         return inflater.inflate(R.layout.fragment_intake, container, false);
     }
 
@@ -71,6 +78,18 @@ public class IntakeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent toIntake = new Intent(getActivity(), IntakeLauncher.class);
+                toIntake.putExtra("FILENAME", intakeJsonFileName);
+                requireActivity().startActivity(toIntake);
+            }
+        });
+
+        intakeYesterdayButton = (Button)(view.findViewById(R.id.intake_take_yesterday_survey_button));
+        //Set the onClick method for intakeYesterdayButton to take the user to the IntakeLauncher activity.
+        intakeYesterdayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toIntake = new Intent(getActivity(), IntakeLauncher.class);
+                toIntake.putExtra("FILENAME", intakeJsonFileNameYesterday);
                 requireActivity().startActivity(toIntake);
             }
         });
@@ -111,6 +130,11 @@ public class IntakeFragment extends Fragment {
             intakeTitleText.setText("Survey ready to take");
             intakeInfoText.setText("Today's intake survey is available to take!\nTap the button to start.");
         }
+
+        if (intakeTakenYesterday())
+            intakeYesterdayButton.setVisibility(View.INVISIBLE);
+        else
+            intakeYesterdayButton.setVisibility(View.VISIBLE);
     }
 
 
@@ -120,6 +144,16 @@ public class IntakeFragment extends Fragment {
      */
     private boolean intakeTakenToday() {
         File intakeJsonFile = new File(requireActivity().getFilesDir(), intakeJsonFileName);
+        return intakeJsonFile.exists();
+    }
+
+
+    /**
+     * Tells whether the intake survey was taken yesterday or not.
+     * @return True if the intake was taken yesterday, false if it was not taken yesterday.
+     */
+    private boolean intakeTakenYesterday() {
+        File intakeJsonFile = new File(requireActivity().getFilesDir(), intakeJsonFileNameYesterday);
         return intakeJsonFile.exists();
     }
 

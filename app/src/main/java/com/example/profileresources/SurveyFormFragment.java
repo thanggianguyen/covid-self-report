@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class SurveyFormFragment extends Fragment {
     private RadioGroup q3Responses;
     /** The group of CheckBoxes for the fourth question */
     private CheckBox[] q4Responses;
+    /** The group of RadioButton choices for the fifth question */
+    private RadioGroup q5Responses;
     /** The textbox for the optional text response for the first question */
     private EditText q1TextResponse;
     /** The textbox for the optional text response for the second question */
@@ -88,6 +91,7 @@ public class SurveyFormFragment extends Fragment {
         q2Responses = view.findViewById(R.id.preferencemodifier_q2_responses_radiogroup);
         q2TextResponse = view.findViewById(R.id.preferencemodifier_q2_optionalresponse_edittext);
         q3Responses = view.findViewById(R.id.preferencemodifier_q3_responses_radiogroup);
+        q5Responses = view.findViewById(R.id.preferencemodifier_q5_responses_radiogroup);
         backButton = view.findViewById(R.id.preferencemodifier_back_button);
         updateButton = view.findViewById(R.id.preferencemodifier_update_button);
 
@@ -185,6 +189,21 @@ public class SurveyFormFragment extends Fragment {
                 q4Responses[i].setChecked(true);
         }
 
+        //Set the selected RadioButton of RadioGroup q5Responses:
+        int selectedIndexQ5;
+        String selectedResponseQ5 = preferences.getResponse(4);
+        /*switch (selectedIndexQ5) {
+            case 0: q5Responses.check(R.id.preferencemodifier_q5_rb0_radiobutton); break;
+            case 1: q5Responses.check(R.id.preferencemodifier_q5_rb1_radiobutton); break;
+            case 2: q5Responses.check(R.id.preferencemodifier_q5_rb2_radiobutton); break;
+        }*/
+        if (selectedResponseQ5.equals(getResources().getString(R.string.preference_q5_rb2_text)))
+            q5Responses.check(R.id.preferencemodifier_q5_rb2_radiobutton);
+        else if (selectedResponseQ5.equals(getResources().getString(R.string.preference_q5_rb1_text)))
+            q5Responses.check(R.id.preferencemodifier_q5_rb1_radiobutton);
+        else
+            q5Responses.check(R.id.preferencemodifier_q5_rb0_radiobutton);
+
         //Set the onClick action for the back button:
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,24 +225,24 @@ public class SurveyFormFragment extends Fragment {
      * @param view The update button
      */
     private void updateButtonHandler(View view) {
-        //Set the response for q1 (index 0) to the selected radiobutton index of q1Responses:
+        //Set the response for q1 (index 0 of the preferenceSurvey questions arrays) to the selected radiobutton index of q1Responses:
         preferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q1_text_textview)).getText().toString());
         preferences.setResponse(0, Integer.toString(q1Responses.indexOfChild(requireView().findViewById(
                 q1Responses.getCheckedRadioButtonId()))));
         preferences.setTextboxResponse(0, q1TextResponse.getText().toString());
 
-        //Set the response for q2 (index 1) to the selected radiobutton index of q2Responses:
+        //Set the response for q2 (index 1 of the preferenceSurvey questions arrays) to the selected radiobutton index of q2Responses:
         preferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q2_text_textview)).getText().toString());
         preferences.setResponse(1, Integer.toString(q2Responses.indexOfChild(requireView().findViewById(
                 q2Responses.getCheckedRadioButtonId()))));
         preferences.setTextboxResponse(1, q2TextResponse.getText().toString());
 
-        //Set the response for q3 (index 2) to the selected radiobutton index of q3Responses:
+        //Set the response for q3 (index 2 of the preferenceSurvey questions arrays) to the selected radiobutton index of q3Responses:
         preferences.setQuestion(2, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q3_text_textview)).getText().toString());
         preferences.setResponse(2, Integer.toString(q3Responses.indexOfChild(requireView().findViewById(
                 q3Responses.getCheckedRadioButtonId()))));
 
-        //Set the response for q4 (index 3) to the selected CheckBoxs' text fields:
+        //Set the response for q4 (index 3 of the preferenceSurvey questions arrays) to the selected CheckBoxs' text fields:
         preferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q4_text_textview)).getText().toString());
         String q4Response = "";
         for (CheckBox current : q4Responses) {
@@ -231,6 +250,12 @@ public class SurveyFormFragment extends Fragment {
                 q4Response += current.getText().toString() + ", ";
         }
         preferences.setResponse(3, q4Response.substring(0, q4Response.length() - 2));
+
+        //Set the response for q5 (index 4 of the preferenceSurvey questions arrays) to the selected CheckBoxs' text fields:
+        preferences.setQuestion(4, ((TextView)requireActivity().findViewById(R.id.preferencemodifier_q5_text_textview)).getText().toString());
+        preferences.setResponse(4, ((RadioButton)(requireView().findViewById(q5Responses.getCheckedRadioButtonId()))).getText().toString());
+        //int selectedId = q5Responses
+
 
         //Save responses and quit the activity
         preferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.PREFERENCE_SURVEY_FILE_NAME);

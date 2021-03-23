@@ -34,7 +34,7 @@ import com.google.gson.*;
 public class MainActivity extends AppCompatActivity {
 
     /** Number of questions in the preference survey */
-    public static final int PREFERENCE_QUESTION_COUNT = 4;
+    public static final int PREFERENCE_QUESTION_COUNT = 5;
     /** The name of the preference survey JSON file stored in the app */
     public static final String PREFERENCE_SURVEY_FILE_NAME = "preference_survey.json";
     /** The name of the profile JSON file stored in the app */
@@ -121,8 +121,14 @@ public class MainActivity extends AppCompatActivity {
 
 //        String intakeJsonFileName = IntakeLauncher.getIntakeFileNameToday();
 //        File intakeToday = new File(getFilesDir(), intakeJsonFileName);
+//        String intakeJsonFileNameYesterday = IntakeLauncher.getIntakeFileNameYesterday();
+//        File intakeYesterday = new File(getFilesDir(), intakeJsonFileNameYesterday);
 //        if (intakeToday.delete())
 //            ((TextView)findViewById(R.id.main_textview)).setText(intakeToday.getName() + " was deleted.");
+//        else
+//            ((TextView)findViewById(R.id.main_textview)).setText("No files to delete.");
+//        if (intakeYesterday.delete())
+//            ((TextView)findViewById(R.id.main_textview)).setText(intakeYesterday.getName() + " was deleted.");
 //        else
 //            ((TextView)findViewById(R.id.main_textview)).setText("No files to delete.");
     }*/

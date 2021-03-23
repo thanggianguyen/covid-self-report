@@ -44,9 +44,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Take Survey"
+        android:text="Take Today's Survey"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/intake_today_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/intake_take_yesterday_survey_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Take Yesterday's Survey"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/intake_take_survey_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
