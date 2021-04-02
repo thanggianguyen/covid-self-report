@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.Date;
 
 import com.example.covidselfreport.*;
 import com.example.covidselfreport.R;

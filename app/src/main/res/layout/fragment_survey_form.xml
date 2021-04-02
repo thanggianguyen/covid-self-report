@@ -468,7 +468,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Are you vaccinated?"
+            android:text="@string/preference_q5_question_text"
             android:layout_marginTop="50dp"
             android:textSize="24sp"
             app:layout_constraintTop_toBottomOf="@+id/preferencemodifier_q4_cb8_checkbox"

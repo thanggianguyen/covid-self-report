@@ -4,10 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="apply_changes">Apply Changes</string>
+
     <string name="back">Back</string>
 
     <string name="calendar_day0_title_textview_text">Today -</string>
@@ -26,54 +24,62 @@
     <string name="calendar_day13_title_textview_text">13 days ago -</string>
     <string name="calendar_day14_title_textview_text">14 days ago -</string>
 
+    <string name="continue_text">Continue</string>
+
+    <string name="disclaimer_title_textview_text">Disclaimer</string>
+    <string name="disclaimer_text_textview_text">This app is in no way affiliated with any health and/or governmental organization. This app is merely a convenient way for users to track their own activity, preferences, and levels of comfortability regarding the COVID-19 Pandemic. Users are able to share their profiles with other people, however this is completely optional and up to the individual user.</string>
+    <string name="done">Done</string>
+
     <string name="finish">Finish</string>
 
     <string name="intake_next_button_text">Next Question</string>
     <string name="intake_title_textview_text">Daily Intake Survey</string>
 
-    <string name="intake_q1_text_textview_text">How do you feel today? Any symptoms?</string>
     <string name="intake_q1_clarification_textview_text">Symptoms being: fever, dry cough, loss of taste/smell, shortness of breath, etc.</string>
     <string name="intake_q1_rb0_radiobutton_text">Many symptoms</string>
     <string name="intake_q1_rb1_radiobutton_text">Symptoms</string>
     <string name="intake_q1_rb2_radiobutton_text">Ok (one symptom)</string>
     <string name="intake_q1_rb3_radiobutton_text">Good, no symptoms</string>
     <string name="intake_q1_rb4_radiobutton_text">Peak of health</string>
+    <string name="intake_q1_question_text">How do you feel today? Any symptoms?</string>
 
-    <string name="intake_q2_whereinstructions_textview_text">Enter the places you\'ve been today below\n(Use commas to separate multiple places.)</string>
-    <string name="intake_q2_text_textview_text">Have you gone out today? If so, where?</string>
     <string name="intake_q2_rb0_radiobutton_text">Yes</string>
     <string name="intake_q2_rb1_radiobutton_text">No</string>
-    <string name="intake_q2a_text_textview_text">Were you in close contact with anyone you don\'t live with? If so, who?</string>
-    <string name="intake_q2a_whoinstructions_textview_text">Enter the people you\'ve seen below.\n(Use commas to separate multiple people)</string>
+    <string name="intake_q2_question_text">Have you gone out today? If so, where?</string>
+    <string name="intake_q2_whereinstructions_textview_text">Enter the places you\'ve been today below\n(Use commas to separate multiple places.)</string>
     <string name="intake_q2a_rb0_radiobutton_text">Yes</string>
     <string name="intake_q2a_rb1_radiobutton_text">No</string>
+    <string name="intake_q2a_text_textview_text">Were you in close contact with anyone you don\'t live with? If so, who?</string>
+    <string name="intake_q2a_whoinstructions_textview_text">Enter the people you\'ve seen below.\n(Use commas to separate multiple people)</string>
 
-    <string name="preference_title_textview_text">Preferences Survey</string>
+    <string name="intake_start_survey_today">Take Today\'s Survey</string>
+    <string name="intake_start_survey_yesterday">Take Yesterday\'s Survey</string>
+    <string name="intake_view_responses">View Responses</string>
+
     <string name="preference_next_button_text">Next Question</string>
+    <string name="preference_title_textview_text">Preferences Survey</string>
 
-    <string name="preference_q1_question_text">How at risk are you for COVID-19?</string>
     <string name="preference_q1_clarification_text">Clarification: Are there any pre-existing conditions you have that put you at a higher risk for surviving COVID-19?</string>
-    <string name="preference_q1_optionalresponse_text">If you are comfortable sharing, please disclose what puts you at a higher risk (for multiple conditions, separate using commas):</string>
     <string name="preference_q1_rb0_text">No\nRisk</string>
     <string name="preference_q1_rb2_text">Low\nRisk</string>
     <string name="preference_q1_rb4_text">High\nRisk</string>
+    <string name="preference_q1_optionalresponse_text">If you are comfortable sharing, please disclose what puts you at a higher risk (for multiple conditions, separate using commas):</string>
+    <string name="preference_q1_question_text">How at risk are you for COVID-19?</string>
 
-    <string name="preference_q2_question_text">How at risk are those you reside with?</string>
     <string name="preference_q2_clarification_text">(In terms of their pre-existing health conditions)</string>
-    <string name="preference_q2_optionalresponse_text">If you are comfortable sharing, please disclose what puts them at a higher risk (for multiple conditions, separate using commas):</string>
     <string name="preference_q2_rb0_text">No\nRisk</string>
     <string name="preference_q2_rb2_text">Low\nRisk</string>
     <string name="preference_q2_rb4_text">High\nRisk</string>
+    <string name="preference_q2_optionalresponse_text">If you are comfortable sharing, please disclose what puts them at a higher risk (for multiple conditions, separate using commas):</string>
+    <string name="preference_q2_question_text">How at risk are those you reside with?</string>
 
-    <string name="preference_q3_question_text">How comfortable are you with socializing?</string>
     <string name="preference_q3_rb0_text">Not\nat all</string>
     <string name="preference_q3_rb1_text"> </string>
     <string name="preference_q3_rb2_text">So-so</string>
     <string name="preference_q3_rb3_text"> </string>
     <string name="preference_q3_rb4_text">Very</string>
+    <string name="preference_q3_question_text">How comfortable are you with socializing?</string>
 
-    <string name="preference_q4_question_text">If you are making plans, where are you comfortable going?</string>
-    <string name="preference_q4_clarification_text">(Check all that apply)</string>
     <string name="preference_q4_cb0_text">Park</string>
     <string name="preference_q4_cb1_text">Beach (Weekday)</string>
     <string name="preference_q4_cb2_text">Beach (Weekend)</string>
@@ -83,28 +89,34 @@
     <string name="preference_q4_cb6_text">Outdoor shopping center</string>
     <string name="preference_q4_cb7_text">Grocery shopping</string>
     <string name="preference_q4_cb8_text">Hiking</string>
+    <string name="preference_q4_clarification_text">(Check all that apply)</string>
+    <string name="preference_q4_question_text">If you are making plans, where are you comfortable going?</string>
 
-    <string name="profile_title_textview_text">Create Your Profile</string>
-    <string name="profile_title_textview_text_alternate">Change Your Profile</string>
+    <string name="preference_q5_rb0_text">Yes, fully vaccinated</string>
+    <string name="preference_q5_rb1_text">Yes, partially vaccinated</string>
+    <string name="preference_q5_rb2_text">No, not vaccinated</string>
+    <string name="preference_q5_question_text">Are you vaccinated?</string>
+
+    <string name="profile_change_preferences_button_text">Change Preferences</string>
+    <string name="profile_change_button_text">Change</string>
+    <string name="profile_create_button_text">Create Profile</string>
+    <string name="profile_edit_profile_button_text">Edit Profile</string>
     <string name="profile_first_name_textview_text">First Name:</string>
     <string name="profile_invalid_first_name_textview_text">You must enter a valid first name.</string>
-    <string name="profile_last_nae_textview_text">Last Name:</string>
     <string name="profile_invalid_last_name_textview_text">You must enter a valid last name.</string>
-    <string name="profile_phone_number_textview_text">Phone Number:</string>
     <string name="profile_invalid_phone_number_textview_text">You must enter a valid phone number.</string>
-    <string name="profile_create_button_text">Create Profile</string>
+    <string name="profile_last_name_textview_text">Last Name:</string>
+    <string name="profile_notifications_button_text">Notifications</string>
+    <string name="profile_phone_number_textview_text">Phone Number:</string>
+    <string name="profile_share_profile_button_text">Share Profile</string>
+    <string name="profile_title_textview_text">Create Your Profile</string>
+    <string name="profile_title_textview_text_alternate">Change Your Profile</string>
 
     <string name="share_options">Share Options</string>
     <string name="title_intake">Intake</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_profile">Profile</string>
     <string name="update">Update</string>
-    <string name="disclaimer_title_textview_text">Disclaimer</string>
-    <string name="disclaimer_text_textview_text">This app is in no way affiliated with any health and/or governmental organization. This app is merely a convenient way for users to track their own activity, preferences, and levels of comfortability regarding the COVID-19 Pandemic. Users are able to share their profiles with other people, however this is completely optional and up to the individual user.</string>
-    <string name="continue_text">Continue</string>
-    <string name="preference_q5_rb0_text">Yes, fully vaccinated</string>
-    <string name="preference_q5_rb1_text">Yes, partially vaccinated</string>
-    <string name="preference_q5_rb2_text">No, not vaccinated</string>
 
 
 </resources>

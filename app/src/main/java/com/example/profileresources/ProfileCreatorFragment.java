@@ -138,7 +138,7 @@ public class ProfileCreatorFragment extends Fragment {
         else { //else, make the change buttons visible and set their OnClickListeners:
             ((TextView)(view.findViewById(R.id.profile_title_textview))).setText(R.string.profile_title_textview_text_alternate);
 
-            createButton.setText(R.string.apply_changes);
+            createButton.setText(R.string.done);
             createButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -169,6 +169,13 @@ public class ProfileCreatorFragment extends Fragment {
                     changePhoneNumberButtonHandler(v);
                 }
             });
+
+            Profile profile = MainActivity.getProfile();
+            if (profile != null) {
+                firstNameET.setText(profile.getFirstName());
+                lastNameET.setText(profile.getLastName());
+                phoneNumberET.setText(profile.getPhoneNumber());
+            }
         }
     }
 

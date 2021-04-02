@@ -21,12 +21,20 @@ public class Profile
     private String phoneNumber;
     /** The user's preference survey responses */
     private Survey preferences;
+    /** The hour of day that the app will notify the user to fill out the daily intake survey (uses 24 hour time format) */
+    private int notificationHour;
+    /** The minute of the hour that the app will notify the user to fill out the daily intake survey */
+    private int notificationMinute;
 
 
     /**
      * Zero argument constructor (All fields initialized to null)
      */
-    public Profile() {}
+    public Profile() {
+        //The user's default daily notification time is 19:00 (7:00 pm):
+        notificationHour = 19;
+        notificationMinute = 0;
+    }
 
 
     /**
@@ -44,6 +52,9 @@ public class Profile
             this.phoneNumber = phoneNumber;
         else
             this.phoneNumber = null;
+        //The user's default daily notification time is 19:00 (7:00 pm):
+        notificationHour = 19;
+        notificationMinute = 0;
     }
 
 
@@ -63,6 +74,9 @@ public class Profile
             this.phoneNumber = phoneNumber;
         else
             this.phoneNumber = null;
+        //The user's default daily notification time is 19:00 (7:00 pm):
+        notificationHour = 19;
+        notificationMinute = 0;
     }
 
 
@@ -91,6 +105,19 @@ public class Profile
     }
 
 
+    public void setNotificationTime(int hour, int minute) {
+        //if the hour is invalid (not between 0 and 23), set the hour to the default hour of 19:00.
+        if ((hour >= 24 || hour < 0) || (minute < 0 || minute >= 60) ) {
+            this.notificationHour = 19;
+            this.notificationMinute = 0;
+        }
+        else {
+            this.notificationHour = hour;
+            this.notificationMinute = minute;
+        }
+    }
+
+
     public String getFirstName()
     {
         return firstName;
@@ -112,6 +139,16 @@ public class Profile
     public Survey getPreferences()
     {
         return preferences;
+    }
+
+
+    public int getNotificationHour() {
+        return notificationHour;
+    }
+
+
+    public int getNotificationMinute() {
+        return notificationMinute;
     }
 
 

@@ -1,5 +1,9 @@
 package com.example.covidselfreport.ui.profile;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,17 +38,21 @@ import java.util.Locale;
  */
 public class ProfileFragment extends Fragment {
 
+    private Context thisContext;
     private TextView initialsText;
     private TextView nameText;
     private TextView phoneNumberText;
     private ImageView changeProfileIcon;
     private ImageView changePreferencesIcon;
+    private ImageView notificationsIcon;
     private ImageView shareProfileIcon;
     private ImageView changeProfileOpenIcon;
     private ImageView changePreferencesOpenIcon;
+    private ImageView notificationsOpenIcon;
     private ImageView sharePreferencesOpenIcon;
     private Button changeProfileButton;
     private Button changePreferencesButton;
+    private Button notificationsButton;
     private Button shareProfileButton;
 
 
@@ -56,6 +65,7 @@ public class ProfileFragment extends Fragment {
      */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        thisContext = container.getContext();
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -75,9 +85,11 @@ public class ProfileFragment extends Fragment {
         phoneNumberText = view.findViewById(R.id.profilefragment_phonenumber_textview);
         changeProfileIcon = view.findViewById(R.id.profilefragment_change_profile_imageview);
         changePreferencesIcon = view.findViewById(R.id.profilefragment_change_preferences_imageview);
+        notificationsIcon = view.findViewById(R.id.profilefragment_notifications_imageview);
         shareProfileIcon = view.findViewById(R.id.profilefragment_share_profile_imageview);
         changeProfileOpenIcon = view.findViewById(R.id.profilefragment_change_profile_open_imageview);
         changePreferencesOpenIcon = view.findViewById(R.id.profilefragment_change_preferences_open_imageview);
+        notificationsOpenIcon = view.findViewById(R.id.profilefragment_notifications_open_imageview);
         sharePreferencesOpenIcon = view.findViewById(R.id.profilefragment_share_profile_open_imageview);
 
         //Display the initials, first name, last name, and phone number, taken from the user profile:
@@ -86,9 +98,11 @@ public class ProfileFragment extends Fragment {
         //Set the image resources:
         changeProfileIcon.setImageResource(R.drawable.ic_profilefragment_person);
         changePreferencesIcon.setImageResource(R.drawable.ic_profilefragment_settings);
+        notificationsIcon.setImageResource(R.drawable.ic_profilefragment_notification);
         shareProfileIcon.setImageResource(R.drawable.ic_profilefragment_share);
         changeProfileOpenIcon.setImageResource(R.drawable.ic_open_in_new);
         changePreferencesOpenIcon.setImageResource(R.drawable.ic_open_in_new);
+        notificationsOpenIcon.setImageResource(R.drawable.ic_open_in_new);
         sharePreferencesOpenIcon.setImageResource(R.drawable.ic_open_in_new);
 
         //Set the OnClickListener for the change profile button:
@@ -108,6 +122,25 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent toPreferenceModifier = new Intent(requireActivity(), SurveyModifier.class);
                 startActivity(toPreferenceModifier);
+            }
+        });
+
+        //Set the OnClickListener for the notifications button:
+        notificationsButton = view.findViewById(R.id.profilefragment_notifications_button);
+        notificationsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePicker = new TimePickerDialog(thisContext, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        MainActivity.getProfile().setNotificationTime(hourOfDay, minute);
+                        MainActivity.getProfile().saveToJson(requireActivity().getFilesDir().toString(), MainActivity.PROFILE_FILE_NAME);
+                        MainActivity.cancelAlarmBroadcastReceiver(getContext());
+                        MainActivity.startAlarmBroadcastReceiver(getContext(), hourOfDay, minute);
+                    }
+                },
+                MainActivity.getProfile().getNotificationHour(), MainActivity.getProfile().getNotificationMinute(), false);
+                timePicker.show();
             }
         });
 
