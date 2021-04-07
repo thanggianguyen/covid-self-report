@@ -5,6 +5,11 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.*;
+import android.graphics.pdf.PdfDocument.PageInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -25,6 +31,10 @@ import com.example.covidselfreport.*;
 import com.example.profileresources.Profile;
 import com.example.profileresources.Survey;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +49,7 @@ import java.util.Locale;
 public class ProfileFragment extends Fragment {
 
     private Context thisContext;
+    private static FragmentActivity thisActivity;
     private TextView initialsText;
     private TextView nameText;
     private TextView phoneNumberText;
@@ -66,6 +77,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         thisContext = container.getContext();
+        thisActivity = requireActivity();
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -204,18 +216,24 @@ public class ProfileFragment extends Fragment {
     }
 
 
+    /**
+     * Generates a String-based report of the user's profile.
+     * The String includes the user's name, the date the report was generated, and the user's preference survey responses.
+     * The report could possibly include the user's daily intake responses (of the last 14 days) depending on the value of the boolean parameter.
+     * @param includeIntakes Whether to include the user's daily intake responses in the report
+     * @return The String report on the user's profile
+     */
     public static String getProfileText(boolean includeIntakes) {
         Survey preferences = MainActivity.getPreferenceSurvey();
         Profile profile = MainActivity.getProfile();
         Date today = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd", Locale.getDefault());
 
         String profileText = profile.getFirstName() + " " + profile.getLastName() + "'s Health Report" +
                 "\nReport generated on " + today + "\n\nPreferences:" + "\n";// + preferences.toString();
 
         for (int i = 0; i < MainActivity.PREFERENCE_QUESTION_COUNT; i++) {
             profileText += preferences.getQuestion(i) + "\n";
-            if (i == MainActivity.PREFERENCE_QUESTION_COUNT - 1)
+            if (i >= 3)
                 profileText += preferences.getResponse(i) + "\n";
             else
                 profileText += preferenceNumberToText(i, Integer.parseInt(preferences.getResponse(i))) + "\n";
@@ -252,6 +270,157 @@ public class ProfileFragment extends Fragment {
             }
         }
         return profileText;
+    }
+
+
+    /**
+     * Generates a PDF representation of the user's profile.
+     * The PDF includes the user's name, the date the report was generated, and the user's preference survey responses.
+     * The report could possibly include the user's daily intake responses (of the last 14 days) depending on the value of the boolean parameter.
+     * The PDF report is stored in the app's data files. It is not returned by this method.
+     * @param includeIntakes Whether to include the user's daily intake responses in the report
+     * @return null if the PDF is successfully generated, or a text based report (using getProfileText() ) if the PDF is not successfully generated.
+     */
+    public static String generatePDF(boolean includeIntakes) {
+        //If the OS version is KitKat or above, attempt PDF generation:
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            //Basic variable declarations and initializations:
+            Profile profile = MainActivity.getProfile();
+            Survey preferences = MainActivity.getPreferenceSurvey();
+            PdfDocument pdf = new PdfDocument();
+            Paint title = new Paint();
+            PageInfo pageInfo = new PageInfo.Builder(792, 1500, 1).create();
+            PdfDocument.Page page = pdf.startPage(pageInfo);
+            Canvas canvas = page.getCanvas();
+            int yPos = 30; //Keeps track fo the next available y position to write the report's text to
+
+            //Write the report title:
+            title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+            title.setTextSize(24);
+            canvas.drawText(profile.getFirstName() + " " + profile.getLastName() + "'s Health Report", 30, yPos, title);
+            yPos += 20;
+
+            //Write the date the report was generated on:
+            title.setTextSize(12);
+            Date today = Calendar.getInstance().getTime();
+            canvas.drawText("Report generated on " + today.toString(), 32, yPos, title);
+            yPos += 30;
+
+            //Write the "Preference Survey" header:
+            title.setTextSize(20);
+            canvas.drawText("Preference Survey Responses:", 32, yPos, title);
+            yPos += 30;
+
+            //Go through the preferences Survey object and write each question/response pair to the PDF:
+            title.setTextSize(12);
+            for (int i = 0; i < MainActivity.PREFERENCE_QUESTION_COUNT; i++) {
+                //Write the question, in bold:
+                title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                canvas.drawText(preferences.getQuestion(i) + "\n", 32, yPos, title);
+                yPos += 15;
+
+                //Write the answers:
+                title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                if (i >= 3) {
+                    canvas.drawText(preferences.getResponse(i) + "\n", 32, yPos, title);
+                    yPos += 15;
+                }
+                else {
+                    canvas.drawText(preferenceNumberToText(i, Integer.parseInt(preferences.getResponse(i))) + "\n", 32, yPos, title);
+                    yPos += 15;
+                }
+
+                //If there is a text response, write it to the PDF:
+                if (preferences.getTextboxResponse(i) != null && !preferences.getTextboxResponse(i).isEmpty()) {
+                    canvas.drawText("Condition(s): " + preferences.getTextboxResponse(i) + "\n", 32, yPos, title);
+                    yPos += 15;
+                }
+            }
+
+            //If the user elects to include their intake responses (of the last 14 days), they are written to the PDF:
+            if (includeIntakes) {
+                Survey[] intakes = MainScreen.getIntakeSurveys();
+
+                //Write the "Daily Intake" header:
+                yPos += 30;
+                title.setTextSize(20);
+                canvas.drawText("Daily Intake Responses:", 32, yPos, title);
+                yPos += 30;
+
+                //Loop through each intake day (0-14 days ago) and print the questions and responses:
+                title.setTextSize(12);
+                for (int i = 0; i < intakes.length; i++) {
+                    //Print the day header ("Today", "1 day ago", or "x days ago"):
+                    title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    if (i == 0)
+                        canvas.drawText("Today:", 32, yPos, title);
+                    else if (i == 1)
+                        canvas.drawText("1 day ago:", 32, yPos, title);
+                    else
+                        canvas.drawText(i + " days ago:", 32, yPos, title);
+                    yPos += 15;
+
+                    //If the intake of this day was not taken, write that to the PDF:
+                    if (intakes[i] == null) {
+                        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        canvas.drawText("No intake survey was taken on this day.", 32, yPos, title);
+                    }
+                    //If the intake of this day was taken, write its question/response pairs to the PDF:
+                    else {
+                        //Write question 1 text:
+                        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+                        canvas.drawText(intakes[i].getQuestion(0), 32, yPos, title);
+                        yPos += 15;
+
+                        //Write question 1 response:
+                        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        canvas.drawText(intakeNumberToText(Integer.parseInt(intakes[i].getResponse(0))), 32, yPos, title);
+                        yPos += 15;
+
+                        //Write question 2 text:
+                        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+                        canvas.drawText(intakes[i].getQuestion(1), 32, yPos, title);
+                        yPos += 15;
+
+                        //Write question 2 response:
+                        title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                        canvas.drawText(intakes[i].getResponse(1), 32, yPos, title);
+                        yPos += 15;
+
+                        //If the user put info in the who and/or where text boxes (text-based response), write them to the PDF:
+                        if (intakes[i].getTextboxResponse(1) != null) {
+                            String tbResponse = intakes[i].getTextboxResponse(1);
+                            int whoIndex = tbResponse.indexOf("With whom");
+                            if (whoIndex == -1)
+                                canvas.drawText(tbResponse, 32, yPos, title);
+                            else {
+                                canvas.drawText(tbResponse.substring(0, whoIndex), 32, yPos, title);
+                                yPos += 15;
+                                canvas.drawText(tbResponse.substring(whoIndex), 32, yPos, title);
+                            }
+                        }
+                    }
+                    yPos += 30;
+                }
+            }
+
+            //Finalize the PDF and write it to file (profilereport.pdf) stored in the app's data folder
+            pdf.finishPage(page);
+            File pdfFile = new File(thisActivity.getFilesDir().toString(), "profilereport.pdf");
+            if (pdfFile.exists())
+                pdfFile.delete();
+            try {
+                pdf.writeTo(new FileOutputStream(pdfFile));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            pdf.close();
+            return null;
+        } //If the OS version is below KitKat, return a text-based report:
+        else
+            return getProfileText(includeIntakes);
     }
 
 
