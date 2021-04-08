@@ -56,14 +56,12 @@ public class IntakeLauncher extends AppCompatActivity {
         setContentView(R.layout.activity_intake_launcher);
 
         //Find the intake's date and generate the intake file name ("intake_yyyy_MM_dd.json"):
+        //Intake name will be provided in the "FILENAME" tag if the user is taking yesterday's intake, otherwise it is generated using getIntakeFileNameToday().
         Bundle bundle = getIntent().getExtras();
         intakeJsonFileName = bundle != null ? bundle.getString("FILENAME") : getIntakeFileNameToday();
-        //intakeJsonFileName = getIntakeFileNameToday();
 
         //If the intake survey was already taken today, end the activity.
         if (intakeTakenToday()) {
-            //Intent toCompleted = new Intent(this, IntakeCompleted.class);
-            //startActivity(toCompleted);
             finish();
         }
 
@@ -94,9 +92,6 @@ public class IntakeLauncher extends AppCompatActivity {
 
         if (nextFragment == null) {
             dailyIntake.saveToJson(getFilesDir().toString(), intakeJsonFileName);
-            //Intent toCompletedScreen = new Intent(this, IntakeCompleted.class);
-            //startActivity(toCompletedScreen);
-
             finish();
         } else {
             currentQuestion++;

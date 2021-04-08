@@ -1,9 +1,6 @@
 package com.example.covidselfreport;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -194,8 +191,8 @@ public class MainScreen extends AppCompatActivity {
                 while ((charIndex = reader.read()) != -1)
                     jsonStr += (char) charIndex;
 
-                intakeSurveys[0] = gson.fromJson(jsonStr, Survey.class);
-                return intakeSurveys[0];
+                intakeSurveys[index] = gson.fromJson(jsonStr, Survey.class);
+                return intakeSurveys[index];
             }
             catch (FileNotFoundException e) { return null; }
             catch (IOException e) { return null; }

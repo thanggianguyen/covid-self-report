@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
@@ -73,7 +72,7 @@ public class ShareOptionsDialog extends DialogFragment {
 
 
     /**
-     * Generates an app chooser that allows the user to share the PDF report
+     * Generates an app chooser that allows the user to share the PDF report on their profile
      * Grants other Android apps permission to access the PDF file stored by this app
      * A PDF will be generated as long as android is up-to-date enough (version is greater than or equal to KitKat)
      */

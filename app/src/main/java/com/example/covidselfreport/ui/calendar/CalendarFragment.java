@@ -137,7 +137,7 @@ public class CalendarFragment extends Fragment {
         File intakeYesterdayFile = new File(requireActivity().getFilesDir(), IntakeLauncher.getIntakeFileNameYesterday());
 
         if (intakeSurveys[0] == null && intakeTodayFile.exists()) {
-            /*intakeSurveys[0] = */MainScreen.addNewIntakeToday();
+            MainScreen.addNewIntakeToday();
             infoBoxes[0].setText(Html.fromHtml(generateIntakeInfoString(0)));
         }
         if (intakeSurveys[1] == null && intakeYesterdayFile.exists() ) {
