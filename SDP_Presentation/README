@@ -9,6 +9,18 @@ Project Title: COVID-19 Self Report Android Application
 
 Full Presentation: https://www.youtube.com/watch?v=SKAwVBRbEK0
 
+The Covid Self Report app is deployed through an APK (Android Package) file. APKs are used to distribute and install mobile apps and software on the Android platform. 
+
+  Below are the steps to deploying an app to Android through an APK file:
+  1.	Download the APK file to the Android device, or copy it from an SD card.
+  2.	Open the settings app on the device.
+  3.	Open the applications menu in settings
+  4.	Make sure the box next to “Unknown Services” is checked
+  5.	Navigate to the APK file’s location in storage.
+  6.	Go to the APK file to open it.
+  7.	Tap the “install” button to install the application.
+
+
 
 
 
