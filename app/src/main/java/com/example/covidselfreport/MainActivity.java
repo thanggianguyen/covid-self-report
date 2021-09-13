@@ -54,11 +54,14 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Necessary Android method calls within onCreate():
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Delete all intake survey files that are older than 14 days:
         updateDirectory();
 
+        //Initialize local variables gson (JSON file reader), toProfileCreator (takes user to the ProfileCreator activity), and profileJsonStr (String of the user's profile, saved as a JSON file):
         Gson gson = new Gson();
         Intent toProfileCreator = new Intent(this, ProfileCreator.class);
         String profileJsonStr = checkForFile(PROFILE_FILE_NAME);
@@ -77,10 +80,11 @@ public class MainActivity extends AppCompatActivity {
             checkForPreferenceSurvey();
         }
 
-        //If there are no timed notifications set, start the timed daily notificaiotns:
+        //If there are no timed notifications set, start the timed daily notifications:
         if (PendingIntent.getBroadcast(MainActivity.this, 0, new Intent(MainActivity.this, AlarmBroadcastReceiver.class), PendingIntent.FLAG_NO_CREATE) == null)
-            startAlarmBroadcastReceiver(MainActivity.this, profile.getNotificationHour(), profile.getNotificationMinute()); //Start the daily notificaions to fill out intake survey
+            startAlarmBroadcastReceiver(MainActivity.this, profile.getNotificationHour(), profile.getNotificationMinute()); //Start the daily notifications to fill out intake survey
     }
+
 
     /**
      * Automatically called when an activity finishes that was started using StartActivityForResult().
@@ -134,42 +138,6 @@ public class MainActivity extends AppCompatActivity {
 //            ((TextView)findViewById(R.id.main_textview)).setText(intakeYesterday.getName() + " was deleted.");
 //        else
 //            ((TextView)findViewById(R.id.main_textview)).setText("No files to delete.");
-    }*/
-
-
-    //FOR DISPLAYING JSON FILE CONTENTS ONLY
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //Get current date and name the file "intake_currentDate.json":
-        String intakeJsonFileName = IntakeLauncher.getIntakeFileNameToday();
-
-        Gson gson = new Gson();
-        String intakeTodayStr = checkForFile(intakeJsonFileName);
-        ((TextView)findViewById(R.id.main_textview)).setText(intakeJsonFileName + ":\n" + intakeTodayStr);
-    }*/
-
-    /*protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        File f = new File(getFilesDir(), "intake_2021_01_01");
-        File f1 = new File(getFilesDir(), "intake_2020_12_29");
-        File f2 = new File(getFilesDir(), "intake_2021_01_22");
-        File f3 = new File(getFilesDir(), "intake_2021_01_14");
-        File f4 = new File(getFilesDir(), "intake_2021_01_13");
-        File f5 = new File(getFilesDir(), "intake_2021_01_15");
-        try {
-            f.createNewFile();
-            f1.createNewFile();
-            f2.createNewFile();
-            f3.createNewFile();
-            f4.createNewFile();
-            f5.createNewFile();
-        } catch(IOException e) {}
     }*/
 
 

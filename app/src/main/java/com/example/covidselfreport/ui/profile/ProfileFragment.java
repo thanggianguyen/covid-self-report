@@ -282,7 +282,7 @@ public class ProfileFragment extends Fragment {
             Survey preferences = MainActivity.getPreferenceSurvey();
             PdfDocument pdf = new PdfDocument();
             Paint title = new Paint();
-            PageInfo pageInfo = new PageInfo.Builder(792, 1500, 1).create();
+            PageInfo pageInfo = new PageInfo.Builder(1000, 2000, 1).create();
             PdfDocument.Page page = pdf.startPage(pageInfo);
             Canvas canvas = page.getCanvas();
             int yPos = 30; //Keeps track fo the next available y position to write the report's text to
