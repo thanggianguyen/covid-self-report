@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consent Survey"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/SubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What is okay for you on a date?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout-constraintTop_toBottomOf="@+id/Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+
+    <CheckBox
+        android:id="@+id/PhyTouYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="Yes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
+
+    <CheckBox
+        android:id="@+id/PayYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        app:layout_constraintStart_toStartOf="@+id/PayTitle"
+        app:layout_constraintTop_toBottomOf="@+id/PayTitle" />
+
+    <CheckBox
+        android:id="@+id/SexYes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        app:layout_constraintStart_toStartOf="@+id/SexTitle"
+        app:layout_constraintTop_toBottomOf="@+id/SexTitle" />
+
+    <CheckBox
+        android:id="@+id/PhyTouNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:text="No"
+        app:layout_constraintStart_toEndOf="@+id/PhyTouYes"
+        app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
+
+    <CheckBox
+        android:id="@+id/PayNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:text="No"
+        app:layout_constraintStart_toEndOf="@+id/PayYes"
+        app:layout_constraintTop_toBottomOf="@+id/PayTitle" />
+
+    <CheckBox
+        android:id="@+id/SexNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="1dp"
+        android:text="No"
+        app:layout_constraintStart_toEndOf="@+id/SexYes"
+        app:layout_constraintTop_toBottomOf="@+id/SexTitle" />
+
+    <EditText
+        android:id="@+id/PhyTouWhere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Where if applicable"
+        app:layout_constraintStart_toStartOf="@+id/PhyTouYes"
+        app:layout_constraintTop_toBottomOf="@+id/PhyTouYes" />
+
+    <TextView
+        android:id="@+id/PhyTouTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="1) Physical Touch"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toTopOf="@+id/PhyTouYes"
+        app:layout_constraintEnd_toEndOf="@+id/PhyTouYes"
+        app:layout_constraintStart_toEndOf="@+id/PhyTouYes"
+        app:layout_constraintTop_toBottomOf="@+id/SubTitle" />
+
+    <TextView
+        android:id="@+id/PayTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="2) Willing to pay for the date?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PhyTouWhere" />
+
+    <TextView
+        android:id="@+id/DateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="3) Where are you comfortable going on a date?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PayYes" />
+
+    <TextView
+        android:id="@+id/DateSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="(choose that applies)"
+        app:layout_constraintStart_toStartOf="@+id/DateTitle"
+        app:layout_constraintTop_toBottomOf="@+id/DateTitle" />
+
+    <CheckBox
+        android:id="@+id/Date1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant"
+        app:layout_constraintStart_toStartOf="@+id/DateTitle"
+        app:layout_constraintTop_toBottomOf="@+id/DateSubtitle" />
+
+    <CheckBox
+        android:id="@+id/Date6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Museum"
+        app:layout_constraintStart_toStartOf="@+id/Date4"
+        app:layout_constraintTop_toBottomOf="@+id/Date3" />
+
+    <CheckBox
+        android:id="@+id/Date5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movies"
+        app:layout_constraintEnd_toEndOf="@+id/Date3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Date3"
+        app:layout_constraintTop_toBottomOf="@+id/Date3" />
+
+    <CheckBox
+        android:id="@+id/Date4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Coffee Shop"
+        app:layout_constraintBottom_toBottomOf="@+id/Date6"
+        app:layout_constraintStart_toStartOf="@+id/Date2"
+        app:layout_constraintTop_toBottomOf="@+id/Date1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <CheckBox
+        android:id="@+id/Date3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beach"
+        app:layout_constraintStart_toStartOf="@+id/Date1"
+        app:layout_constraintTop_toBottomOf="@+id/Date1" />
+
+    <CheckBox
+        android:id="@+id/Date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:text="Park"
+        app:layout_constraintBottom_toTopOf="@+id/Date4"
+        app:layout_constraintStart_toEndOf="@+id/Date1"
+        app:layout_constraintTop_toBottomOf="@+id/DateSubtitle"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/DateOther"
+        android:layout_width="379dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="List any other dates that are not above"
+        app:layout_constraintStart_toStartOf="@+id/Date5"
+        app:layout_constraintTop_toBottomOf="@+id/Date5" />
+
+    <TextView
+        android:id="@+id/SexTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="4) Are you comfortable with sex on a date?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="@+id/DateOther"
+        app:layout_constraintTop_toBottomOf="@+id/DateOther" />
+
+    <TextView
+        android:id="@+id/PhyTouWarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:text="*Please Check a Box"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toEndOf="@+id/PhyTouTitle"
+        app:layout_constraintTop_toTopOf="@+id/PhyTouTitle"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/DateWarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:text="*Please Check a Box"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toEndOf="@+id/DateSubtitle"
+        app:layout_constraintTop_toTopOf="@+id/DateSubtitle"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/SexWarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:text="*Please Check a Box"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toEndOf="@+id/SexNo"
+        app:layout_constraintTop_toTopOf="@+id/SexNo"
+        tools:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/PayWarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:text="*Please Check a Box"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintStart_toEndOf="@+id/PayTitle"
+        app:layout_constraintTop_toTopOf="@+id/PayTitle"
+        tools:visibility="invisible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
