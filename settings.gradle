@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Covid Self Report"
+rootProject.name = "Dating Consent"
