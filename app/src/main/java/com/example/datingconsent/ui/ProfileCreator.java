@@ -16,6 +16,7 @@ import com.example.datingconsent.profileresources.ProfileCreatorFragment;
  * After the user continues, it displays the ProfileCreatorFragment.
  * Prompts the user to enter their first and last names, and phone number.
  * Uses the ProfileCreatorFragment for the UI and user input.
+ * elias is here
  */
 public class ProfileCreator extends AppCompatActivity {
 
