@@ -2,16 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
+    tools:context=".surveyresources.SurveyDatingFragment">
 
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Consent Survey"
+        android:text="Dating Consent"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -24,7 +23,6 @@
         android:layout_height="wrap_content"
         android:text="What is okay for you on a date?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout-constraintTop_toBottomOf="@+id/Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +33,7 @@
         android:id="@+id/PhyTouYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="Yes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
@@ -60,7 +58,7 @@
         android:id="@+id/PhyTouNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:text="No"
         app:layout_constraintStart_toEndOf="@+id/PhyTouYes"
         app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
@@ -69,7 +67,7 @@
         android:id="@+id/PayNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:text="No"
         app:layout_constraintStart_toEndOf="@+id/PayYes"
         app:layout_constraintTop_toBottomOf="@+id/PayTitle" />
@@ -78,7 +76,7 @@
         android:id="@+id/SexNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="1dp"
         android:text="No"
         app:layout_constraintStart_toEndOf="@+id/SexYes"
@@ -111,7 +109,7 @@
         android:id="@+id/PayTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="2) Willing to pay for the date?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -122,7 +120,7 @@
         android:id="@+id/DateTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="3) Where are you comfortable going on a date?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -133,7 +131,7 @@
         android:id="@+id/DateSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="(choose that applies)"
         app:layout_constraintStart_toStartOf="@+id/DateTitle"
         app:layout_constraintTop_toBottomOf="@+id/DateTitle" />
@@ -187,7 +185,7 @@
         android:id="@+id/Date2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
         android:text="Park"
         app:layout_constraintBottom_toTopOf="@+id/Date4"
         app:layout_constraintStart_toEndOf="@+id/Date1"
@@ -218,44 +216,50 @@
         android:id="@+id/PhyTouWarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintStart_toEndOf="@+id/PhyTouTitle"
-        app:layout_constraintTop_toTopOf="@+id/PhyTouTitle"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="@+id/PhyTouTitle" />
 
     <TextView
         android:id="@+id/DateWarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintStart_toEndOf="@+id/DateSubtitle"
-        app:layout_constraintTop_toTopOf="@+id/DateSubtitle"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="@+id/DateSubtitle" />
 
     <TextView
         android:id="@+id/SexWarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintStart_toEndOf="@+id/SexNo"
-        app:layout_constraintTop_toTopOf="@+id/SexNo"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="@+id/SexNo" />
 
     <TextView
         android:id="@+id/PayWarn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintStart_toEndOf="@+id/PayTitle"
-        app:layout_constraintTop_toTopOf="@+id/PayTitle"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="@+id/PayTitle" />
+
+    <Button
+        android:id="@+id/DatingSurveyDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SexNo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

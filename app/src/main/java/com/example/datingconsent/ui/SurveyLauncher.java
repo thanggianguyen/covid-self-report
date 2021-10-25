@@ -1,4 +1,4 @@
-package com.example.covidselfreport;
+package com.example.datingconsent.ui;
 
 import android.os.Bundle;
 
@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.profileresources.*;
+import com.example.datingconsent.R;
+import com.example.datingconsent.surveyresources.SurveyDatingFragment;
 
 
 /**
@@ -34,7 +35,7 @@ public class SurveyLauncher extends AppCompatActivity {
         setContentView(R.layout.activity_survey_launcher);
 
         fm = getSupportFragmentManager();
-        mainFragment = new SurveyFormFragment();
+        mainFragment = new SurveyDatingFragment();
         fm.beginTransaction().replace(R.id.survey_content_container, mainFragment).commit();
     }
 }

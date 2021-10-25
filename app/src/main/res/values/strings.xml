@@ -14,4 +14,6 @@
     <string name="profile_share_profile_button_text">Share Profile</string>
     <string name="profile_title_textview_text">Create Your Profile</string>
     <string name="profile_title_textview_text_alternate">Change Your Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

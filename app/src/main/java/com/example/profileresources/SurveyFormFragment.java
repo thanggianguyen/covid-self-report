@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.covidselfreport.MainActivity;
 import com.example.covidselfreport.R;
+import com.example.datingconsent.ui.SurveyLauncher;
 
 
 /**
@@ -259,7 +260,7 @@ public class SurveyFormFragment extends Fragment {
 
         //Save responses and quit the activity
         preferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.PREFERENCE_SURVEY_FILE_NAME);
-        if (requireActivity() instanceof com.example.covidselfreport.SurveyLauncher) {
+        if (requireActivity() instanceof SurveyLauncher) {
             Intent returnIntent = new Intent();
             requireActivity().setResult(Activity.RESULT_OK, returnIntent);
         }

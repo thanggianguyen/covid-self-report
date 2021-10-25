@@ -3,9 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_dating_consent_survey.xml" value="0.25" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_intake_launcher.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_main_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_profile_creator.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_profile_modifier.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_survey_launcher.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/activity_survey_modifier.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_calendar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_disclaimer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_intake.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_intake_q1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_profile_creator.xml" value="0.2046875" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_q1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_q2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_q3.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_q4.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_survey_dating.xml" value="0.33" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_survey_form.xml" value="0.2544271774485002" />
+        <entry key="..\:/Users/ejbla/Documents/GitHub/dating_consent/app/src/main/res/layout/fragment_survey_sex.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
