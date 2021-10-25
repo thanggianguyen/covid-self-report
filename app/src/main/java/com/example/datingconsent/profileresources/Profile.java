@@ -14,10 +14,7 @@ import com.google.gson.Gson;
  */
 public class Profile
 {
-    /** First name of the user */
-    private String firstName;
-    /** Last name of the user */
-    private String lastName;
+    private String name;
     /** Phone number of the user */
     private String phoneNumber;
     /**Gender of the user */
@@ -53,8 +50,7 @@ public class Profile
 
         /**
          * Constructor for all public fields except preferences
-         * @param firstName
-         * @param lastName
+         * @param name
          * @param phoneNumber
          * @param gender
          * @param sexOrientation
@@ -68,12 +64,11 @@ public class Profile
          * @param booster
          * @param boosterDate
          */
-    public Profile(String firstName, String lastName, String phoneNumber,
+    public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns,
         int age, String religion, String politicalView, String looking,
         boolean vaccinated, Date vaccinationDate,boolean booster, Date boosterDate) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.sexOrientation = sexOrientation;
@@ -97,8 +92,7 @@ public class Profile
 
         /**
          * Constructor for all public fields.
-         * @param firstName
-         * @param lastName
+         * @param name
          * @param phoneNumber
          * @param gender
          * @param sexOrientation
@@ -113,12 +107,11 @@ public class Profile
          * @param boosterDate
          * @param preferences
          */
-    public Profile(String firstName, String lastName, String phoneNumber,
+    public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns, int age, String religion, String politicalView, String looking,
         boolean vaccinated, Date vaccinationDate,boolean booster, Date boosterDate, Survey
         preferences) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.sexOrientation = sexOrientation;
@@ -141,15 +134,9 @@ public class Profile
     //endregion
 
     //region Setter Methods
-    public void setFirstName(String firstName)
+    public void setName(String name)
     {
-        this.firstName = firstName;
-    }
-
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
+        this.name = name;
     }
 
 
@@ -212,15 +199,10 @@ public class Profile
     //endregion
 
     //region Getter Methods
-    public String getFirstName()
-    {
-        return firstName;
-    }
 
-
-    public String getLastName()
+    public String getName()
     {
-        return lastName;
+        return name;
     }
 
 
