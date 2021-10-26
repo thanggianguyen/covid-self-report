@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Sexual Consent"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:text="What is okay for you during sex?"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +46,7 @@
             android:layout_marginTop="8dp"
             android:onClick="KissingClicked"
             android:text="Kissing"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SubTitle" />
 
@@ -64,6 +67,7 @@
             android:layout_marginTop="8dp"
             android:onClick="BirthControlClicked"
             android:text="Birth Control"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/KissingCheck"
             app:layout_constraintTop_toBottomOf="@+id/KissingCheck" />
 
@@ -216,6 +220,7 @@
             android:layout_marginTop="8dp"
             android:onClick="AnalClicked"
             android:text="Anal Penetration"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/VaginalCheck"
             app:layout_constraintTop_toBottomOf="@+id/VaginalCheck" />
 
@@ -255,6 +260,7 @@
             android:layout_marginTop="8dp"
             android:onClick="OralClicked"
             android:text="Oral Penetration"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/AnalGiving"
             app:layout_constraintTop_toBottomOf="@+id/AnalGiving" />
 
@@ -293,6 +299,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Done"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
