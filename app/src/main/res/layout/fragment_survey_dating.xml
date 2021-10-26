@@ -89,7 +89,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Where if applicable"
+        android:text="Where?"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/PhyTouYes"
         app:layout_constraintTop_toBottomOf="@+id/PhyTouYes" />
 
@@ -219,6 +220,7 @@
         android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/PhyTouTitle"
         app:layout_constraintTop_toTopOf="@+id/PhyTouTitle" />
 
@@ -229,6 +231,7 @@
         android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/DateSubtitle"
         app:layout_constraintTop_toTopOf="@+id/DateSubtitle" />
 
@@ -239,6 +242,7 @@
         android:layout_marginStart="32dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/SexNo"
         app:layout_constraintTop_toTopOf="@+id/SexNo" />
 
@@ -249,6 +253,7 @@
         android:layout_marginStart="12dp"
         android:text="*Please Check a Box"
         android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/PayTitle"
         app:layout_constraintTop_toTopOf="@+id/PayTitle" />
 
