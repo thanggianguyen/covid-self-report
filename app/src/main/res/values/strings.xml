@@ -4,16 +4,20 @@
     <string name="profile_change_button_text">Change</string>
     <string name="profile_create_button_text">Create Profile</string>
     <string name="profile_edit_profile_button_text">Edit Profile</string>
-    <string name="profile_first_name_textview_text">First Name:</string>
-    <string name="profile_invalid_first_name_textview_text">You must enter a valid first name.</string>
-    <string name="profile_invalid_last_name_textview_text">You must enter a valid last name.</string>
+    <string name="profile_name_text">Name</string>
+    <string name="profile_invalid_name_textview_text">You must enter a valid name.</string>
     <string name="profile_invalid_phone_number_textview_text">You must enter a valid phone number.</string>
-    <string name="profile_last_name_textview_text">Last Name:</string>
     <string name="profile_notifications_button_text">Notifications</string>
-    <string name="profile_phone_number_textview_text">Phone Number:</string>
+    <string name="profile_phone_number_text">Phone Number</string>
     <string name="profile_share_profile_button_text">Share Profile</string>
     <string name="profile_title_textview_text">Create Your Profile</string>
     <string name="profile_title_textview_text_alternate">Change Your Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_gender_spinner_hint">Gender</string>
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non-Binary</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

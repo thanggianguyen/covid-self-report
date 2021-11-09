@@ -10,9 +10,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,43 +35,72 @@ import com.example.datingconsent.R;
  */
 public class ProfileCreatorFragment extends Fragment {
 
-    /** The textbox the user enters their first name in */
+    /**
+     * The textbox the user enters their first name in
+     */
     private EditText firstNameEdt;
-    /** The textbox the user enters their last name in */
+    /**
+     * The textbox the user enters their last name in
+     */
     private EditText lastNameEdt;
-    /** The textbox the user enters their phone number in */
+    /**
+     * The textbox the user enters their phone number in
+     */
     private EditText phoneNumberEdt;
-    /** The button the user clicks to create their profile */
+    /**
+     * The button the user clicks to create their profile
+     */
     private Button createButton;
-    /** The TextView that informs the user the first name entered is invalid */
+    /**
+     * The TextView that informs the user the first name entered is invalid
+     */
     private TextView invalidFirstNameTV;
-    /** The TextView that informs the user the last name entered is invalid */
+    /**
+     * The TextView that informs the user the last name entered is invalid
+     */
     private TextView invalidLastNameTV;
-    /** The TextView that informs the user the phone number entered is invalid */
+    /**
+     * The TextView that informs the user the phone number entered is invalid
+     */
     private TextView invalidPhoneNumberTV;
-    /** Button for changing the first name attribute (not used if parent is ProfileCreator) */
-    private Button changeFirstNameButton;
-    /** Button for changing the last name attribute (not used if parent is ProfileCreator) */
-    private Button changeLastNameButton;
-    /** Button for changing the phone number attribute (not used if parent is ProfileCreator) */
+    /**
+     * Button for changing the name attribute (not used if parent is ProfileCreator)
+     */
+    private Button changeNameButton;
+    /**
+     * Button for changing the phone number attribute (not used if parent is ProfileCreator)
+     */
     private Button changePhoneNumberButton;
-    /** ImageView for successful first name change (not used if parent is ProfileCreator) */
+    /**
+     * ImageView for successful first name change (not used if parent is ProfileCreator)
+     */
     private ImageView firstNameCheckMark;
-    /** ImageView for successful last name change (not used if parent is ProfileCreator) */
+    /**
+     * ImageView for successful last name change (not used if parent is ProfileCreator)
+     */
     private ImageView lastNameCheckMark;
-    /** ImageView for successful phone number change (not used if parent is ProfileCreator) */
+    /**
+     * ImageView for successful phone number change (not used if parent is ProfileCreator)
+     */
     private ImageView phoneNumberCheckMark;
-    /** Tracks and is activated upon any text input evetns for phoneNumberET */
+    /**
+     * Tracks and is activated upon any text input evetns for phoneNumberET
+     */
     private PhoneNumberFormattingTextWatcher phoneNumberFormatter;
-    /** Tracks and is activated upon any text input evetns for firstNameET */
+    /**
+     * Tracks and is activated upon any text input evetns for firstNameET
+     */
     private TextWatcher firstNameFormatter;
-    /** Tracks and is activated upon any text input evetns for lastNameET */
+    /**
+     * Tracks and is activated upon any text input evetns for lastNameET
+     */
     private TextWatcher lastNameFormatter;
 
 
     /**
      * Called when the fragment is being created.
      * Inflates the fragment.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -86,15 +117,25 @@ public class ProfileCreatorFragment extends Fragment {
      * Called once the fragment has been created.
      * Instantiate all Views/Widgets from the fragment's R field
      * Give all Views/Widgets their functionality.
+     *
      * @param view
      * @param savedInstanceState
      */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Spinner gender_spinner = (Spinner) view.findViewById(R.id.gender_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),
+                R.array.gender_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        gender_spinner.setAdapter(adapter);
+    }
 
         //Instantiate the first name text box and build its formatter (enhanced TextWatcher)
-        firstNameEdt = view.findViewById(R.id.profile_first_name_edittext);
+        /*firstNameEdt = view.findViewById(R.id.profile_first_name_edittext);
         buildInputFormatter(firstNameEdt);
         firstNameEdt.addTextChangedListener(firstNameFormatter);
         invalidFirstNameTV = view.findViewById(R.id.profile_invalid_first_name_textview);
@@ -123,7 +164,7 @@ public class ProfileCreatorFragment extends Fragment {
         lastNameCheckMark = view.findViewById(R.id.profile_checkmark_last_name_imageview);
         lastNameCheckMark.setImageResource(R.drawable.ic_check);
         phoneNumberCheckMark = view.findViewById(R.id.profile_checkmark_phone_number_imageview);
-        phoneNumberCheckMark.setImageResource(R.drawable.ic_check);
+        phoneNumberCheckMark.setImageResource(R.drawable.ic_check);*//*
 
         //***SET ONCLICK METHODS FOR THE BUTTONS***
         //If this fragment is used by ProfileCreator:
@@ -180,14 +221,14 @@ public class ProfileCreatorFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Only used if the parent activity is ProfileCreator.
      * Handles any click event for the "Create Profile" button (profile_create_button).
      * If the EditText entries are valid, they get assigned to their respective MainActivity.profile
      * fields and the activity finishes.
      * If any EditText entry is not valid, an error message will appear under that EditText.
      * @param view The button being clicked.
-     */
+     *//*
     private void createButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
         String lastName = lastNameET.getText().toString();
@@ -215,14 +256,14 @@ public class ProfileCreatorFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Only used if the parent activity is NOT ProfileCreator
      * Handles any click event for the "change first name" button.
      * If the EditText entry for first name is valid, profile first name is changed and a check mark
      * is displayed.
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
-     */
+     *//*
     private void changeFirstNameButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
 
@@ -238,14 +279,14 @@ public class ProfileCreatorFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Only used if the parent activity is NOT ProfileCreator
      * Handles any click event for the "change last name" button.
      * If the EditText entry for first name is valid, profile last name is changed and a check mark
      * is displayed.
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
-     */
+     *//*
     private void changeLastNameButtonHandler(View view) {
         String lastName = lastNameET.getText().toString();
 
@@ -261,14 +302,14 @@ public class ProfileCreatorFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Only used if the parent activity is NOT ProfileCreator
      * Handles any click event for the "change phone number" button.
      * If the EditText entry for first name is valid, profile phone number is changed and a check mark
      * is displayed.
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
-     */
+     *//*
     private void changePhoneNumberButtonHandler(View view) {
         String phoneNumber = phoneNumberET.getText().toString();
 
@@ -284,11 +325,11 @@ public class ProfileCreatorFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Builds field phoneNumberFormatter, of type PhoneNumberFormattingTextWatcher.
      * Ensures that the phone number entered into the EditText instance phoneNumberEt is
      * valid.
-     */
+     *//*
     private void buildPhoneNumberFormatter() {
         phoneNumberFormatter = new PhoneNumberFormattingTextWatcher() {
             private boolean backspaceFlag; //Set to true if the user is erasing a character.
@@ -354,7 +395,7 @@ public class ProfileCreatorFragment extends Fragment {
                     editedFlag = false;
             }
         };
-    }
+    }*/
 
 
 /*    *//**
