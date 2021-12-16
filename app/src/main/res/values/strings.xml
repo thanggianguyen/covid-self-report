@@ -12,6 +12,8 @@
     <string name="profile_share_profile_button_text">Share Profile</string>
     <string name="profile_title_textview_text">Create Your Profile</string>
     <string name="profile_title_textview_text_alternate">Change Your Profile</string>
+    <string name="preference_next_button_text">Next Question</string>
+    <string name="preference_title_textview_text">Survey</string>
 
     <string name="share_options">Share Options</string>
     <string name="title_intake">Intake</string>
