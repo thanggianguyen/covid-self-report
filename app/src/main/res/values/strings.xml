@@ -12,6 +12,12 @@
     <string name="profile_share_profile_button_text">Share Profile</string>
     <string name="profile_title_textview_text">Create Your Profile</string>
     <string name="profile_title_textview_text_alternate">Change Your Profile</string>
+
+    <string name="share_options">Share Options</string>
+    <string name="title_intake">Intake</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_profile">Profile</string>
+    <string name="update">Update</string>
     <string name="profile_gender_spinner_hint">Gender</string>
     <string-array name="gender_array">
         <item>Male</item>

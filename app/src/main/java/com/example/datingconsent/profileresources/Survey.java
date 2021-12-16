@@ -1,10 +1,11 @@
-package com.example.datingconsent.surveyresources;
+package com.example.datingconsent.profileresources;
 
-import java.io.*;
+import com.google.gson.Gson;
 
-import com.google.gson.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-//Todo: edit Survey Class
 /** Represents a survey.
  */
 public class Survey

@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import com.example.datingconsent.R;
 import com.example.datingconsent.profileresources.Profile;
-import com.example.datingconsent.surveyresources.Survey;
+import com.example.datingconsent.profileresources.Survey;
 import com.google.gson.Gson;
 
 //Todo: change question count
