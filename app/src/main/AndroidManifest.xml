@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DatingConsent">
         <activity android:name=".ui.ProfileCreator" />
+        <activity android:name=".ui.SurveyLauncher" />
         <activity android:name=".ui.MainActivity">
 
             <intent-filter>

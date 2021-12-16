@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.datingconsent.R;
-import com.example.datingconsent.surveyresources.SurveyDatingFragment;
+import com.example.datingconsent.surveyresources.*;
 
 
 /**
@@ -35,7 +35,7 @@ public class SurveyLauncher extends AppCompatActivity {
         setContentView(R.layout.activity_survey_launcher);
 
         fm = getSupportFragmentManager();
-        mainFragment = new SurveyDatingFragment();
+        mainFragment = new SurveySexFragment();
         fm.beginTransaction().replace(R.id.survey_content_container, mainFragment).commit();
     }
 }
