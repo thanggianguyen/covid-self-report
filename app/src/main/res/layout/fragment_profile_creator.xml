@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="80dp">
+        tools:layout_editor_absoluteY="-55dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             <EditText
                 android:id="@+id/profile_name_edittext"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/profile_name_text"
@@ -50,6 +50,88 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_title_textview" />
+
+            <EditText
+                android:id="@+id/profile_religion_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/profile_religion_edittext"
+                android:maxLength="40"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_gender_other_edittext" />
+
+            <EditText
+                android:id="@+id/profile_political_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/profile_political_edittext"
+                android:maxLength="40"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_religion_edittext" />
+
+            <EditText
+                android:id="@+id/profile_gender_other_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/profile_gender_other_edittext"
+                android:inputType="text"
+                android:maxLength="40"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
+
+            <EditText
+                android:id="@+id/profile_looking_for_other_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/profile_gender_other_edittext"
+                android:inputType="text"
+                android:maxLength="40"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/looking_for_spinner" />
+
+            <EditText
+                android:id="@+id/profile_sexual_orientation_other_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/profile_gender_other_edittext"
+                android:inputType="text"
+                android:maxLength="40"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sexual_orientation_spinner" />
 
             <ImageView
                 android:id="@+id/profile_checkmark_name_imageview"
@@ -81,10 +163,70 @@
                 app:layout_constraintStart_toEndOf="@+id/profile_name_edittext"
                 app:layout_constraintTop_toTopOf="@+id/profile_name_edittext" />
 
+            <Button
+                android:id="@+id/profile_change_looking_for_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/looking_for_spinner"
+                app:layout_constraintStart_toEndOf="@+id/looking_for_spinner"
+                app:layout_constraintTop_toTopOf="@+id/looking_for_spinner" />
+
+            <Button
+                android:id="@+id/profile_change_sexual_orientation_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/sexual_orientation_spinner"
+                app:layout_constraintStart_toEndOf="@+id/sexual_orientation_spinner"
+                app:layout_constraintTop_toTopOf="@+id/sexual_orientation_spinner" />
+
+            <Button
+                android:id="@+id/profile_change_political_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_political_edittext"
+                app:layout_constraintStart_toEndOf="@+id/profile_political_edittext"
+                app:layout_constraintTop_toTopOf="@+id/profile_political_edittext" />
+
+            <Button
+                android:id="@+id/profile_change_religion_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_religion_edittext"
+                app:layout_constraintStart_toEndOf="@+id/profile_religion_edittext"
+                app:layout_constraintTop_toTopOf="@+id/profile_religion_edittext" />
+
+            <Button
+                android:id="@+id/profile_change_pronouns_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_pronouns_edittext"
+                app:layout_constraintStart_toEndOf="@+id/profile_pronouns_edittext"
+                app:layout_constraintTop_toTopOf="@+id/profile_pronouns_edittext" />
+
+            <Button
+                android:id="@+id/profile_change_age_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_change_button_text"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_age_edittext"
+                app:layout_constraintStart_toEndOf="@+id/profile_age_edittext"
+                app:layout_constraintTop_toTopOf="@+id/profile_age_edittext" />
+
             <EditText
                 android:id="@+id/profile_phone_number_edittext"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="Phone Number"
@@ -93,8 +235,41 @@
                 android:padding="5dp"
                 android:singleLine="true"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/profile_name_edittext"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_pronouns_edittext" />
+
+            <EditText
+                android:id="@+id/profile_age_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Age"
+                android:inputType="phone"
+                android:maxLength="20"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_name_edittext" />
+
+            <EditText
+                android:id="@+id/profile_pronouns_edittext"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Pronouns"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext" />
 
             <ImageView
                 android:id="@+id/profile_checkmark_phone_number_imageview"
@@ -116,6 +291,17 @@
                 app:layout_constraintStart_toStartOf="@+id/profile_phone_number_edittext"
                 app:layout_constraintTop_toBottomOf="@+id/profile_phone_number_edittext" />
 
+            <TextView
+                android:id="@+id/profile_invalid_age_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_invalid_age_textview_text"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="11sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/profile_age_edittext"
+                app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext" />
+
             <Button
                 android:id="@+id/profile_change_phone_number_button"
                 android:layout_width="wrap_content"
@@ -129,12 +315,34 @@
             <Spinner
                 android:id="@+id/gender_spinner"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="40dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_phone_number_edittext" />
+
+            <Spinner
+                android:id="@+id/sexual_orientation_spinner"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_political_edittext" />
+
+            <Spinner
+                android:id="@+id/looking_for_spinner"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_sexual_orientation_other_edittext" />
 
             <Button
                 android:id="@+id/profile_change_gender_button"
@@ -151,13 +359,12 @@
                 android:id="@+id/profile_create_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/profile_create_button_text"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gender_spinner" />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
