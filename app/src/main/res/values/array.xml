@@ -4,4 +4,11 @@
         <item>Preferences Only</item>
         <item>Preferences and Intake Activity</item>
     </string-array>
+    <string-array name="gender_array">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non-Binary</item>
+        <item>Other</item>
+    </string-array>
 </resources>
