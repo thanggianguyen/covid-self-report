@@ -7,10 +7,10 @@
     tools:context=".surveyresources.SurveyDatingFragment">
 
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/sex_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dating Consent"
+        android:text="@string/dating_title_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -18,253 +18,255 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/SubTitle"
+        android:id="@+id/sex_SubTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is okay for you on a date?"
+        android:text="@string/dating_SubTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Title" />
+        app:layout_constraintTop_toBottomOf="@+id/sex_title_text" />
 
 
     <CheckBox
-        android:id="@+id/PhyTouYes"
+        android:id="@+id/dating_PhyTouYes_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Yes"
+        android:text="@string/dating_Yes_checkbox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouTitle_text" />
 
     <CheckBox
-        android:id="@+id/PayYes"
+        android:id="@+id/dating_PayYes_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yes"
-        app:layout_constraintStart_toStartOf="@+id/PayTitle"
-        app:layout_constraintTop_toBottomOf="@+id/PayTitle" />
+        android:text="@string/dating_Yes_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_PayTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PayTitle_text" />
 
     <CheckBox
-        android:id="@+id/SexYes"
+        android:id="@+id/dating_SexYes_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yes"
-        app:layout_constraintStart_toStartOf="@+id/SexTitle"
-        app:layout_constraintTop_toBottomOf="@+id/SexTitle" />
+        android:text="@string/dating_Yes_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_SexTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text" />
 
     <CheckBox
-        android:id="@+id/PhyTouNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="No"
-        app:layout_constraintStart_toEndOf="@+id/PhyTouYes"
-        app:layout_constraintTop_toBottomOf="@+id/PhyTouTitle" />
-
-    <CheckBox
-        android:id="@+id/PayNo"
+        android:id="@+id/dating_PhyTouNo_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="No"
-        app:layout_constraintStart_toEndOf="@+id/PayYes"
-        app:layout_constraintTop_toBottomOf="@+id/PayTitle" />
+        android:text="@string/dating_No_checkbox"
+        app:layout_constraintStart_toEndOf="@+id/dating_PhyTouYes_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouTitle_text" />
 
     <CheckBox
-        android:id="@+id/SexNo"
+        android:id="@+id/dating_PayNo_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/dating_No_checkbox"
+        app:layout_constraintStart_toEndOf="@+id/dating_PayYes_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PayTitle_text" />
+
+    <CheckBox
+        android:id="@+id/dating_SexNo_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="1dp"
-        android:text="No"
-        app:layout_constraintStart_toEndOf="@+id/SexYes"
-        app:layout_constraintTop_toBottomOf="@+id/SexTitle" />
+        android:text="@string/dating_No_checkbox"
+        app:layout_constraintStart_toEndOf="@+id/dating_SexYes_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text" />
 
     <EditText
         android:id="@+id/PhyTouWhere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Where?"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Where?"
+        android:textColorHint="#000000"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/PhyTouYes"
-        app:layout_constraintTop_toBottomOf="@+id/PhyTouYes" />
+        app:layout_constraintStart_toStartOf="@+id/dating_PhyTouYes_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouYes_checkbox" />
 
     <TextView
-        android:id="@+id/PhyTouTitle"
+        android:id="@+id/dating_PhyTouTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="1) Physical Touch"
+        android:text="@string/dating_PhyTouTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toTopOf="@+id/PhyTouYes"
-        app:layout_constraintEnd_toEndOf="@+id/PhyTouYes"
-        app:layout_constraintStart_toEndOf="@+id/PhyTouYes"
-        app:layout_constraintTop_toBottomOf="@+id/SubTitle" />
+        app:layout_constraintBottom_toTopOf="@+id/dating_PhyTouYes_checkbox"
+        app:layout_constraintEnd_toEndOf="@+id/dating_PhyTouYes_checkbox"
+        app:layout_constraintStart_toEndOf="@+id/dating_PhyTouYes_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text" />
 
     <TextView
-        android:id="@+id/PayTitle"
+        android:id="@+id/dating_PayTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="2) Willing to pay for the date?"
+        android:text="@string/dating_PayTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PhyTouWhere" />
 
     <TextView
-        android:id="@+id/DateTitle"
+        android:id="@+id/dating_DateTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="3) Where are you comfortable going on a date?"
+        android:text="@string/dating_DateTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PayYes" />
+        app:layout_constraintTop_toBottomOf="@+id/dating_PayYes_checkbox" />
 
     <TextView
-        android:id="@+id/DateSubtitle"
+        android:id="@+id/dating_DateSubtitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="(choose that applies)"
-        app:layout_constraintStart_toStartOf="@+id/DateTitle"
-        app:layout_constraintTop_toBottomOf="@+id/DateTitle" />
+        android:text="@string/dating_DateSubtitle_text"
+        app:layout_constraintStart_toStartOf="@+id/dating_DateTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_DateTitle_text" />
 
     <CheckBox
-        android:id="@+id/Date1"
+        android:id="@+id/dating_Date1_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Restaurant"
-        app:layout_constraintStart_toStartOf="@+id/DateTitle"
-        app:layout_constraintTop_toBottomOf="@+id/DateSubtitle" />
+        android:text="@string/dating_Date1_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_DateTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_DateSubtitle_text" />
 
     <CheckBox
-        android:id="@+id/Date6"
+        android:id="@+id/dating_Date6_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Museum"
-        app:layout_constraintStart_toStartOf="@+id/Date4"
-        app:layout_constraintTop_toBottomOf="@+id/Date3" />
+        android:text="@string/dating_Date6_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_Date4_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Date3_checkbox" />
 
     <CheckBox
-        android:id="@+id/Date5"
+        android:id="@+id/dating_Date5_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movies"
-        app:layout_constraintEnd_toEndOf="@+id/Date3"
+        android:text="@string/dating_Date5_checkbox"
+        app:layout_constraintEnd_toEndOf="@+id/dating_Date3_checkbox"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Date3"
-        app:layout_constraintTop_toBottomOf="@+id/Date3" />
+        app:layout_constraintStart_toStartOf="@+id/dating_Date3_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Date3_checkbox" />
 
     <CheckBox
-        android:id="@+id/Date4"
+        android:id="@+id/dating_Date4_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="Coffee Shop"
-        app:layout_constraintBottom_toBottomOf="@+id/Date6"
-        app:layout_constraintStart_toStartOf="@+id/Date2"
-        app:layout_constraintTop_toBottomOf="@+id/Date1"
+        android:text="@string/dating_Date4_checkbox"
+        app:layout_constraintBottom_toBottomOf="@+id/dating_Date6_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_Date2_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Date1_checkbox"
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/Date3"
+        android:id="@+id/dating_Date3_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Beach"
-        app:layout_constraintStart_toStartOf="@+id/Date1"
-        app:layout_constraintTop_toBottomOf="@+id/Date1" />
+        android:text="@string/dating_Date3_checkbox"
+        app:layout_constraintStart_toStartOf="@+id/dating_Date1_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Date1_checkbox" />
 
     <CheckBox
-        android:id="@+id/Date2"
+        android:id="@+id/dating_Date2_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:text="Park"
-        app:layout_constraintBottom_toTopOf="@+id/Date4"
-        app:layout_constraintStart_toEndOf="@+id/Date1"
-        app:layout_constraintTop_toBottomOf="@+id/DateSubtitle"
+        android:text="@string/dating_Date2_checkbox"
+        app:layout_constraintBottom_toTopOf="@+id/dating_Date4_checkbox"
+        app:layout_constraintStart_toEndOf="@+id/dating_Date1_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_DateSubtitle_text"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/DateOther"
+        android:id="@+id/dating_DateOther_edittext"
         android:layout_width="379dp"
         android:layout_height="48dp"
         android:ems="10"
+        android:hint="List any other dates that are not above"
         android:inputType="textPersonName"
-        android:text="List any other dates that are not above"
-        app:layout_constraintStart_toStartOf="@+id/Date5"
-        app:layout_constraintTop_toBottomOf="@+id/Date5" />
+        android:textColorHint="#000000"
+        app:layout_constraintStart_toStartOf="@+id/dating_Date5_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Date5_checkbox" />
 
     <TextView
-        android:id="@+id/SexTitle"
+        android:id="@+id/dating_SexTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="4) Are you comfortable with sex on a date?"
+        android:text="@string/dating_SexTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="@+id/DateOther"
-        app:layout_constraintTop_toBottomOf="@+id/DateOther" />
+        app:layout_constraintStart_toStartOf="@+id/dating_DateOther_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/dating_DateOther_edittext" />
 
     <TextView
-        android:id="@+id/PhyTouWarn"
+        android:id="@+id/dating_PhyTouWarn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="*Please Check a Box"
+        android:text="@string/dating_Warn_text"
         android:textColor="@android:color/holo_red_light"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/PhyTouTitle"
-        app:layout_constraintTop_toTopOf="@+id/PhyTouTitle" />
+        app:layout_constraintStart_toEndOf="@+id/dating_PhyTouTitle_text"
+        app:layout_constraintTop_toTopOf="@+id/dating_PhyTouTitle_text" />
 
     <TextView
-        android:id="@+id/DateWarn"
+        android:id="@+id/dating_DateWarn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="*Please Check a Box"
+        android:text="@string/dating_Warn_text"
         android:textColor="@android:color/holo_red_light"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/DateSubtitle"
-        app:layout_constraintTop_toTopOf="@+id/DateSubtitle" />
+        app:layout_constraintStart_toEndOf="@+id/dating_DateSubtitle_text"
+        app:layout_constraintTop_toTopOf="@+id/dating_DateSubtitle_text" />
 
     <TextView
-        android:id="@+id/SexWarn"
+        android:id="@+id/dating_SexWarn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="*Please Check a Box"
+        android:text="@string/dating_Warn_text"
         android:textColor="@android:color/holo_red_light"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/SexNo"
-        app:layout_constraintTop_toTopOf="@+id/SexNo" />
+        app:layout_constraintStart_toEndOf="@+id/dating_SexNo_checkbox"
+        app:layout_constraintTop_toTopOf="@+id/dating_SexNo_checkbox" />
 
     <TextView
-        android:id="@+id/PayWarn"
+        android:id="@+id/dating_PayWarn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="*Please Check a Box"
+        android:text="@string/dating_Warn_text"
         android:textColor="@android:color/holo_red_light"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/PayTitle"
-        app:layout_constraintTop_toTopOf="@+id/PayTitle" />
+        app:layout_constraintStart_toEndOf="@+id/dating_PayTitle_text"
+        app:layout_constraintTop_toTopOf="@+id/dating_PayTitle_text" />
 
     <Button
-        android:id="@+id/DatingSurveyDone"
+        android:id="@+id/dating_DatingSurveyDone_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Done"
+        android:text="@string/dating_DatingSurveyDone_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SexNo" />
+        app:layout_constraintTop_toBottomOf="@+id/dating_SexNo_checkbox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

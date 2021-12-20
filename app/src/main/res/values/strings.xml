@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Dating Consent</string>
+
     <string name="profile_change_preferences_button_text">Change Preferences</string>
     <string name="profile_change_button_text">Change</string>
     <string name="profile_create_button_text">Create Profile</string>
@@ -19,11 +20,30 @@
     <string name="profile_religion_edittext">Religion</string>
     <string name="profile_political_edittext">Political View</string>
 
+    <string name="dating_Yes_checkbox">Yes</string>
+    <string name="dating_No_checkbox">No</string>
+    <string name="dating_title_text">Dating Consent</string>
+    <string name="dating_SubTitle_text">What is okay for you on a date?</string>
+    <string name="dating_PhyTouTitle_text">1) Physical Touch</string>
+    <string name="dating_PayTitle_text">2) Willing to pay for the date?</string>
+    <string name="dating_DateTitle_text">3) Where are you comfortable going on a date?</string>
+    <string name="dating_DateSubtitle_text">(choose that applies)</string>
+    <string name="dating_SexTitle_text">4) Are you comfortable with sex on a date?</string>
+    <string name="dating_Warn_text">*Please Check a Box</string>
+    <string name="dating_Date1_checkbox">Restaurant</string>
+    <string name="dating_Date2_checkbox">Park</string>
+    <string name="dating_Date3_checkbox">Beach</string>
+    <string name="dating_Date4_checkbox">Coffee Shop</string>
+    <string name="dating_Date5_checkbox">Movies</string>
+    <string name="dating_Date6_checkbox">Museum</string>
+    <string name="dating_DatingSurveyDone_button">Done</string>
+
     <string name="share_options">Share Options</string>
     <string name="title_intake">Intake</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_profile">Profile</string>
     <string name="update">Update</string>
+
     <string name="profile_gender_spinner_hint">Gender</string>
     <string-array name="gender_array">
         <item>Male</item>
