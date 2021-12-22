@@ -4,11 +4,26 @@
         <item>Preferences Only</item>
         <item>Preferences and Intake Activity</item>
     </string-array>
+
     <string-array name="gender_array">
         <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
         <item>Non-Binary</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="sexual_orientation_array">
+        <item>Straight</item>
+        <item>Gay/Lesbian</item>
+        <item>Bisexual</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="looking_for_array">
+        <item>Open</item>
+        <item>Casual Date</item>
+        <item>Relationship</item>
         <item>Other</item>
     </string-array>
 </resources>

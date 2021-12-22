@@ -18,7 +18,7 @@
             android:id="@+id/sex_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sexual Consent"
+            android:text="@string/sex_title_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
             android:id="@+id/sex_SubTitle_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What is okay for you during sex?"
+            android:text="@string/sex_SubTitle_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,269 +39,266 @@
             app:layout_constraintTop_toBottomOf="@+id/sex_title_text" />
 
         <CheckBox
-            android:id="@+id/KissingCheck"
+            android:id="@+id/sex_KissingCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Kissing"
+            android:text="@string/sex_KissingCheck_checkbox"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text" />
 
         <CheckBox
-            android:id="@+id/TongueCheck"
+            android:id="@+id/sex_TongueCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:text="With Tongue"
+            android:text="@string/sex_TongueCheck_checkbox"
             android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@+id/KissingCheck"
-            app:layout_constraintTop_toTopOf="@+id/KissingCheck" />
+            app:layout_constraintStart_toEndOf="@+id/sex_KissingCheck_checkbox"
+            app:layout_constraintTop_toTopOf="@+id/sex_KissingCheck_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControlCheck"
+            android:id="@+id/sex_BirthControlCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Birth Control"
+            android:text="@string/sex_BirthControlCheck_checkbox"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/KissingCheck"
-            app:layout_constraintTop_toBottomOf="@+id/KissingCheck" />
+            app:layout_constraintStart_toStartOf="@+id/sex_KissingCheck_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_KissingCheck_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl1"
+            android:id="@+id/sex_BirthControl1_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tubal Block or Vasectomy"
+            android:text="@string/sex_BirthControl1_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControlCheck"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControlCheck" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControlCheck_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControlCheck_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl2"
+            android:id="@+id/sex_BirthControl2_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
-            android:text="IUD"
+            android:text="@string/sex_BirthControl2_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/BirthControl1"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControlCheck" />
+            app:layout_constraintStart_toEndOf="@+id/sex_BirthControl1_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControlCheck_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl3"
+            android:id="@+id/sex_BirthControl3_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Implant"
+            android:text="@string/sex_BirthControl3_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl1"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl1" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl1_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl1_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl4"
+            android:id="@+id/sex_BirthControl4_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shot"
+            android:text="@string/sex_BirthControl4_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl2"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl2" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl2_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl2_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl5"
+            android:id="@+id/sex_BirthControl5_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vaginal Ring"
+            android:text="@string/sex_BirthControl5_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl3"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl3" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl3_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl3_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl6"
+            android:id="@+id/sex_BirthControl6_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Patch"
+            android:text="@string/sex_BirthControl6_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl4"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl4" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl4_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl4_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl7"
+            android:id="@+id/sex_BirthControl7_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Withdrawal/Pull-out Method"
+            android:text="@string/sex_BirthControl7_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl5"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl5" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl5_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl5_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl8"
+            android:id="@+id/sex_BirthControl8_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Condom"
+            android:text="@string/sex_BirthControl8_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl6"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl6" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl6_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl6_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl9"
+            android:id="@+id/sex_BirthControl9_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Emergency Contraception"
+            android:text="@string/sex_BirthControl9_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl7"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl7" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl7_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl7_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl10"
+            android:id="@+id/sex_BirthControl10_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spermicide"
+            android:text="@string/sex_BirthControl10_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl8"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl8" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl8_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl8_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl11"
+            android:id="@+id/sex_BirthControl11_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fertility Awareness"
+            android:text="@string/sex_BirthControl11_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl9"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl9" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl9_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl9_checkbox" />
 
         <CheckBox
-            android:id="@+id/BirthControl12"
+            android:id="@+id/sex_BirthControl12_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pill"
+            android:text="@string/sex_BirthControl12_checkbox"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl10"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl10" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl10_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl10_checkbox" />
 
         <TextView
-            android:id="@+id/BirthControlNote"
+            android:id="@+id/sex_BirthControlNote_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Check the birth control that YOU use."
+            android:text="@string/sex_BirthControlNote_text"
             android:textSize="12sp"
             android:visibility="invisible"
-            app:layout_constraintStart_toEndOf="@+id/BirthControlCheck"
-            app:layout_constraintTop_toTopOf="@+id/BirthControlCheck" />
+            app:layout_constraintStart_toEndOf="@+id/sex_BirthControlCheck_checkbox"
+            app:layout_constraintTop_toTopOf="@+id/sex_BirthControlCheck_checkbox" />
 
         <TextView
-            android:id="@+id/BirthControlSubnote"
+            android:id="@+id/sex_BirthControlSubnote_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(This will be viewed by partners you have matched with)"
+            android:text="@string/sex_BirthControlSubnote_text"
             android:textSize="11sp"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/BirthControlNote"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControlNote" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControlNote_text"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControlNote_text" />
 
         <CheckBox
-            android:id="@+id/VaginalCheck"
+            android:id="@+id/sex_VaginalCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:onClick="VaginalClicked"
-            android:text="Vaginal Penetration"
+            android:text="@string/sex_VaginalCheck_checkbox"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/BirthControl11"
-            app:layout_constraintTop_toBottomOf="@+id/BirthControl11" />
+            app:layout_constraintStart_toStartOf="@+id/sex_BirthControl11_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_BirthControl11_checkbox" />
 
         <CheckBox
-            android:id="@+id/AnalCheck"
+            android:id="@+id/sex_AnalCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:onClick="AnalClicked"
-            android:text="Anal Penetration"
+            android:text="@string/sex_AnalCheck_checkbox"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/VaginalCheck"
-            app:layout_constraintTop_toBottomOf="@+id/VaginalCheck" />
+            app:layout_constraintStart_toStartOf="@+id/sex_VaginalCheck_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_VaginalCheck_checkbox" />
 
         <RadioButton
-            android:id="@+id/AnalGiving"
+            android:id="@+id/sex_AnalGiving_radiobtn"
             android:layout_width="110dp"
             android:layout_height="48dp"
-            android:text="Giving"
+            android:text="@string/sex_Giving_radiobtn"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/AnalCheck"
-            app:layout_constraintTop_toBottomOf="@+id/AnalCheck" />
+            app:layout_constraintStart_toStartOf="@+id/sex_AnalCheck_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_AnalCheck_checkbox" />
 
         <RadioButton
-            android:id="@+id/AnalReceiving"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="Receiving"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/AnalGiving"
-            app:layout_constraintTop_toTopOf="@+id/AnalGiving" />
-
-        <RadioButton
-            android:id="@+id/AnalBoth"
+            android:id="@+id/sex_AnalReceiving_radiobtn"
             android:layout_width="110dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:text="Both"
+            android:text="@string/sex_Receiving_radiobtn"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/AnalReceiving"
-            app:layout_constraintTop_toTopOf="@+id/AnalReceiving" />
+            app:layout_constraintStart_toEndOf="@+id/sex_AnalGiving_radiobtn"
+            app:layout_constraintTop_toTopOf="@+id/sex_AnalGiving_radiobtn" />
+
+        <RadioButton
+            android:id="@+id/sex_AnalBoth_radiobtn"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/sex_Both_radiobtn"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/sex_AnalReceiving_radiobtn"
+            app:layout_constraintTop_toTopOf="@+id/sex_AnalReceiving_radiobtn" />
 
         <CheckBox
-            android:id="@+id/OralCheck"
+            android:id="@+id/sex_OralCheck_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:onClick="OralClicked"
-            android:text="Oral Penetration"
+            android:text="@string/sex_OralCheck_checkbox"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/AnalGiving"
-            app:layout_constraintTop_toBottomOf="@+id/AnalGiving" />
+            app:layout_constraintStart_toStartOf="@+id/sex_AnalGiving_radiobtn"
+            app:layout_constraintTop_toBottomOf="@+id/sex_AnalGiving_radiobtn" />
 
         <RadioButton
-            android:id="@+id/OralGiving"
+            android:id="@+id/sex_OralGiving_radiobtn"
             android:layout_width="110dp"
             android:layout_height="48dp"
-            android:text="Giving"
+            android:text="@string/sex_Giving_radiobtn"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/OralCheck"
-            app:layout_constraintTop_toBottomOf="@+id/OralCheck" />
+            app:layout_constraintStart_toStartOf="@+id/sex_OralCheck_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/sex_OralCheck_checkbox" />
 
         <RadioButton
-            android:id="@+id/OralReceiving"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="Receiving"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/OralGiving"
-            app:layout_constraintTop_toTopOf="@+id/OralGiving" />
-
-        <RadioButton
-            android:id="@+id/OralBoth"
+            android:id="@+id/sex_OralReceiving_radiobtn"
             android:layout_width="110dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:text="Both"
+            android:text="@string/sex_Receiving_radiobtn"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/OralReceiving"
-            app:layout_constraintTop_toTopOf="@+id/OralGiving" />
+            app:layout_constraintStart_toEndOf="@+id/sex_OralGiving_radiobtn"
+            app:layout_constraintTop_toTopOf="@+id/sex_OralGiving_radiobtn" />
+
+        <RadioButton
+            android:id="@+id/sex_OralBoth_radiobtn"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/sex_Both_radiobtn"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/sex_OralReceiving_radiobtn"
+            app:layout_constraintTop_toTopOf="@+id/sex_OralGiving_radiobtn" />
 
         <Button
-            android:id="@+id/SexDone"
+            android:id="@+id/sex_Done_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Done"
+            android:text="@string/sex_Done_button"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/OralGiving" />
+            app:layout_constraintTop_toBottomOf="@+id/sex_OralGiving_radiobtn" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

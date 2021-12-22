@@ -41,7 +41,7 @@ public class SurveySexFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment\
         View rootView = inflater.inflate(R.layout.fragment_survey_sex, container, false);
-        CheckBox kissingCheck = rootView.findViewById(R.id.KissingCheck);
+        CheckBox kissingCheck = rootView.findViewById(R.id.sex_KissingCheck_checkbox);
         kissingCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,7 +52,7 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
-        CheckBox birthControlCheck = rootView.findViewById(R.id.BirthControlCheck);
+        CheckBox birthControlCheck = rootView.findViewById(R.id.sex_BirthControlCheck_checkbox);
         birthControlCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -102,22 +102,22 @@ public class SurveySexFragment extends Fragment {
         /**
          * Instantiate java parameters with UI parameters
          */
-        kiss = view.findViewById(R.id.KissingCheck);
-        tongue = view.findViewById(R.id.TongueCheck);
-        bc = view.findViewById(R.id.BirthControlCheck);
-        bc1 = view.findViewById(R.id.BirthControl1);
-        bc2 = view.findViewById(R.id.BirthControl2);
-        bc3 = view.findViewById(R.id.BirthControl3);
-        bc4 = view.findViewById(R.id.BirthControl4);
-        bc5 = view.findViewById(R.id.BirthControl5);
-        bc6 = view.findViewById(R.id.BirthControl6);
-        bc7 = view.findViewById(R.id.BirthControl7);
-        bc8 = view.findViewById(R.id.BirthControl8);
-        bc9 = view.findViewById(R.id.BirthControl9);
-        bc10 = view.findViewById(R.id.BirthControl10);
-        bc11 = view.findViewById(R.id.BirthControl11);
-        bc12 = view.findViewById(R.id.BirthControl12);
-        bcNote = view.findViewById(R.id.BirthControlNote);
-        bcSubnote = view.findViewById(R.id.BirthControlSubnote);
+        kiss = view.findViewById(R.id.sex_KissingCheck_checkbox);
+        tongue = view.findViewById(R.id.sex_TongueCheck_checkbox);
+        bc = view.findViewById(R.id.sex_BirthControlCheck_checkbox);
+        bc1 = view.findViewById(R.id.sex_BirthControl1_checkbox);
+        bc2 = view.findViewById(R.id.sex_BirthControl2_checkbox);
+        bc3 = view.findViewById(R.id.sex_BirthControl3_checkbox);
+        bc4 = view.findViewById(R.id.sex_BirthControl4_checkbox);
+        bc5 = view.findViewById(R.id.sex_BirthControl5_checkbox);
+        bc6 = view.findViewById(R.id.sex_BirthControl6_checkbox);
+        bc7 = view.findViewById(R.id.sex_BirthControl7_checkbox);
+        bc8 = view.findViewById(R.id.sex_BirthControl8_checkbox);
+        bc9 = view.findViewById(R.id.sex_BirthControl9_checkbox);
+        bc10 = view.findViewById(R.id.sex_BirthControl10_checkbox);
+        bc11 = view.findViewById(R.id.sex_BirthControl11_checkbox);
+        bc12 = view.findViewById(R.id.sex_BirthControl12_checkbox);
+        bcNote = view.findViewById(R.id.sex_BirthControlNote_text);
+        bcSubnote = view.findViewById(R.id.sex_BirthControlSubnote_text);
     }
 }
