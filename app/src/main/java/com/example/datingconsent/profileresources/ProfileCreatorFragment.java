@@ -2,6 +2,7 @@ package com.example.datingconsent.profileresources;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -9,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +25,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This fragment is used for user creation or modification of their profile for this app.
@@ -127,30 +134,51 @@ public class ProfileCreatorFragment extends Fragment {
 
         //Instantiate the phone number text box and build its formatter (enhanced PhoneNumberFormattingTextWatcher)
         phoneNumberEdt = view.findViewById(R.id.profile_phone_number_edittext);
-        buildPhoneNumberFormatter();
+        //buildPhoneNumberFormatter();
         phoneNumberEdt.addTextChangedListener(phoneNumberFormatter);
         invalidPhoneNumberTV = view.findViewById(R.id.profile_invalid_phone_number_textview);
 
         //Instantiate gender spinner
+        String[] gender_array = getResources().getStringArray(R.array.gender_array);
         genderSpinner = (Spinner) view.findViewById(R.id.gender_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireActivity().getBaseContext(),
-                R.array.gender_array, android.R.layout.simple_spinner_item);
+        genderOtherEdt = view.findViewById(R.id.profile_gender_other_edittext);
+        final List<String> genderList = new ArrayList<String>(Arrays.asList(gender_array));
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity().getBaseContext(),
+                 android.R.layout.simple_spinner_item,genderList){
+            @Override
+            public boolean isEnabled(int position){
+                if(position==0){
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                    return true;
+            }
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent){
+                View view = super.getDropDownView(position, convertView,parent);
+                TextView tv = (TextView) view;
+                if(position ==0){
+                    tv.setTextColor(Color.GRAY);
+                }
+                else{
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         genderSpinner.setAdapter(adapter);
-        //Trying to include hint here
-        /*
-        private boolean genderSpinner.isEnabled(int position){
-            return position !=0;
-        }*/
         //Track spinner selection
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 genderOtherEdt.setVisibility(View.GONE);
-                if(position==3)
+                if(position==4)
                     genderOtherEdt.setVisibility(View.VISIBLE);
             }
 
@@ -159,18 +187,15 @@ public class ProfileCreatorFragment extends Fragment {
 
             }
         });
-
+/*
         //Instantiate the buttons:
         createButton = view.findViewById(R.id.profile_create_button);
-        changeFirstNameButton = view.findViewById(R.id.profile_change_first_name_button);
-        changeLastNameButton = view.findViewById(R.id.profile_change_last_name_button);
+        changeNameButton = view.findViewById(R.id.profile_change_name_button);
         changePhoneNumberButton = view.findViewById(R.id.profile_change_phone_number_button);
 
         //Instantiate the check mark ImageViews
-        firstNameCheckMark = view.findViewById(R.id.profile_checkmark_first_name_imageview);
-        firstNameCheckMark.setImageResource(R.drawable.ic_check);
-        lastNameCheckMark = view.findViewById(R.id.profile_checkmark_last_name_imageview);
-        lastNameCheckMark.setImageResource(R.drawable.ic_check);
+        nameCheckMark = view.findViewById(R.id.profile_checkmark_name_imageview);
+        nameCheckMark.setImageResource(R.drawable.ic_check);
         phoneNumberCheckMark = view.findViewById(R.id.profile_checkmark_phone_number_imageview);
         phoneNumberCheckMark.setImageResource(R.drawable.ic_check);*//*
 
@@ -226,8 +251,9 @@ public class ProfileCreatorFragment extends Fragment {
                 lastNameET.setText(profile.getLastName());
                 phoneNumberET.setText(profile.getPhoneNumber());
             }
-        }
+        }*/
     }
+
 
 
     /**
@@ -238,7 +264,7 @@ public class ProfileCreatorFragment extends Fragment {
      * If any EditText entry is not valid, an error message will appear under that EditText.
      * @param view The button being clicked.
      */
-    private void createButtonHandler(View view) {
+    /*private void createButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
         String lastName = lastNameET.getText().toString();
         String phoneNumber = phoneNumberET.getText().toString();
@@ -262,7 +288,7 @@ public class ProfileCreatorFragment extends Fragment {
                 invalidPhoneNumberTV.setVisibility(View.VISIBLE);
         }
 
-    }
+    }*/
 
 
     /**
@@ -273,7 +299,7 @@ public class ProfileCreatorFragment extends Fragment {
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
      */
-    private void changeFirstNameButtonHandler(View view) {
+    /*private void changeFirstNameButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
 
         if (firstName.matches("[a-zA-z]+")) {
@@ -285,18 +311,18 @@ public class ProfileCreatorFragment extends Fragment {
             invalidFirstNameTV.setVisibility(View.VISIBLE);
             firstNameCheckMark.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
 
-    *//**
+    /**
      * Only used if the parent activity is NOT ProfileCreator
      * Handles any click event for the "change last name" button.
      * If the EditText entry for first name is valid, profile last name is changed and a check mark
      * is displayed.
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
-     *//*
-    private void changeLastNameButtonHandler(View view) {
+     */
+    /*private void changeLastNameButtonHandler(View view) {
         String lastName = lastNameET.getText().toString();
 
         if (lastName.matches("[a-zA-z]+")) {
@@ -308,18 +334,18 @@ public class ProfileCreatorFragment extends Fragment {
             invalidLastNameTV.setVisibility(View.VISIBLE);
             lastNameCheckMark.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
 
-    *//**
+    /**
      * Only used if the parent activity is NOT ProfileCreator
      * Handles any click event for the "change phone number" button.
      * If the EditText entry for first name is valid, profile phone number is changed and a check mark
      * is displayed.
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
-     *//*
-    private void changePhoneNumberButtonHandler(View view) {
+     */
+    /*private void changePhoneNumberButtonHandler(View view) {
         String phoneNumber = phoneNumberET.getText().toString();
 
         if (phoneNumber.matches("\\(\\d{3}\\)\\s\\d{3}-\\d{4}")) {
@@ -331,15 +357,15 @@ public class ProfileCreatorFragment extends Fragment {
             invalidPhoneNumberTV.setVisibility(View.VISIBLE);
             phoneNumberCheckMark.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
 
-    *//**
+    /**
      * Builds field phoneNumberFormatter, of type PhoneNumberFormattingTextWatcher.
      * Ensures that the phone number entered into the EditText instance phoneNumberEt is
      * valid.
-     *//*
-    private void buildPhoneNumberFormatter() {
+     */
+    /*private void buildPhoneNumberFormatter() {
         phoneNumberFormatter = new PhoneNumberFormattingTextWatcher() {
             private boolean backspaceFlag; //Set to true if the user is erasing a character.
             private boolean editedFlag; //Set to true if the text box is edited in the
@@ -398,6 +424,8 @@ public class ProfileCreatorFragment extends Fragment {
                     phoneNumberET.setText(formatted);
                     phoneNumberET.setSelection(phoneNumberET.getText().length() - cursorPos);
                 }
+
+
                 //If the edited flag is true, that means that the text changed event was triggered
                 //by this formatter, so the string is already formatted:
                 else
@@ -407,7 +435,7 @@ public class ProfileCreatorFragment extends Fragment {
     }*/
 
 
-/*    *//**
+    /**
      * Builds field firstNameFormatter, of type TextWatcher.
      * Ensures that the first name entered into the EditText instance firstNameET is valid by
      * allowing only alphabetical characters, spaces, and hyphens to be entered.

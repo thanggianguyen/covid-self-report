@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import com.example.datingconsent.R;
 import com.example.datingconsent.profileresources.ProfileCreatorFragment;
 
-//Todo: add ProfileCreatorFragment
 /**
  * The activity used to create a user profile.
  * It first displays a disclaimer (DisclaimerFragment) for the user to read.
