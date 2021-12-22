@@ -144,7 +144,7 @@ public class ProfileCreatorFragment extends Fragment {
         genderOtherEdt = view.findViewById(R.id.profile_gender_other_edittext);
         final List<String> genderList = new ArrayList<String>(Arrays.asList(gender_array));
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity().getBaseContext(),
-                 android.R.layout.simple_spinner_item,genderList){
+                 R.layout.custom_spinner_items,genderList){
             @Override
             public boolean isEnabled(int position){
                 if(position==0){
@@ -180,6 +180,9 @@ public class ProfileCreatorFragment extends Fragment {
                 genderOtherEdt.setVisibility(View.GONE);
                 if(position==4)
                     genderOtherEdt.setVisibility(View.VISIBLE);
+                if(position>0){
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                }
             }
 
             @Override
