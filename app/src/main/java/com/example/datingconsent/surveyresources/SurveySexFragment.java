@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.datingconsent.R;
@@ -22,6 +24,7 @@ public class SurveySexFragment extends Fragment {
     private CheckBox bc, bc1, bc2, bc3, bc4, bc5, bc6;
     private CheckBox bc7, bc8, bc9, bc10, bc11, bc12;
     private TextView bcNote, bcSubnote;
+    private RadioGroup analGroup, oralGroup;
 
     public SurveySexFragment() {
         // Required empty public constructor
@@ -90,6 +93,30 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
+        CheckBox analCheck = rootView.findViewById(R.id.sex_AnalCheck_checkbox);
+        analCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    analGroup.setVisibility(View.VISIBLE);
+                }
+                else{
+                    analGroup.setVisibility(View.GONE);
+                }
+            }
+        });
+        CheckBox oralCheck = rootView.findViewById(R.id.sex_OralCheck_checkbox);
+        oralCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    oralGroup.setVisibility(View.VISIBLE);
+                }
+                else{
+                    oralGroup.setVisibility(View.GONE);
+                }
+            }
+        });
 
 
         return rootView;
@@ -119,5 +146,7 @@ public class SurveySexFragment extends Fragment {
         bc12 = view.findViewById(R.id.sex_BirthControl12_checkbox);
         bcNote = view.findViewById(R.id.sex_BirthControlNote_text);
         bcSubnote = view.findViewById(R.id.sex_BirthControlSubnote_text);
+        analGroup = view.findViewById(R.id.sex_Anal_radioGroup);
+        oralGroup = view.findViewById(R.id.sex_Oral_radioGroup);
     }
 }

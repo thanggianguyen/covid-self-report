@@ -201,7 +201,7 @@
         android:ems="10"
         android:hint="List any other dates that are not above"
         android:inputType="textPersonName"
-        android:textColorHint="#000000"
+        android:textColorHint="#86000000"
         app:layout_constraintStart_toStartOf="@+id/dating_Date5_checkbox"
         app:layout_constraintTop_toBottomOf="@+id/dating_Date5_checkbox" />
 

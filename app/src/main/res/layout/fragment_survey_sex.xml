@@ -220,34 +220,38 @@
             app:layout_constraintStart_toStartOf="@+id/sex_VaginalCheck_checkbox"
             app:layout_constraintTop_toBottomOf="@+id/sex_VaginalCheck_checkbox" />
 
-        <RadioButton
-            android:id="@+id/sex_AnalGiving_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:text="@string/sex_Giving_radiobtn"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/sex_AnalCheck_checkbox"
-            app:layout_constraintTop_toBottomOf="@+id/sex_AnalCheck_checkbox" />
+            <RadioGroup
+                android:id="@+id/sex_Anal_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/sex_AnalCheck_checkbox"
+                app:layout_constraintTop_toBottomOf="@+id/sex_AnalCheck_checkbox">
 
-        <RadioButton
-            android:id="@+id/sex_AnalReceiving_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sex_Receiving_radiobtn"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/sex_AnalGiving_radiobtn"
-            app:layout_constraintTop_toTopOf="@+id/sex_AnalGiving_radiobtn" />
+                <RadioButton
+                    android:id="@+id/sex_AnalGiving_radiobtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex_Giving_radiobtn"
+                    android:visibility="visible" />
 
-        <RadioButton
-            android:id="@+id/sex_AnalBoth_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sex_Both_radiobtn"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/sex_AnalReceiving_radiobtn"
-            app:layout_constraintTop_toTopOf="@+id/sex_AnalReceiving_radiobtn" />
+                <RadioButton
+                    android:id="@+id/sex_AnalReceiving_radiobtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex_Receiving_radiobtn"
+                    android:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/sex_AnalBoth_radiobtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex_Both_radiobtn"
+                    android:visibility="visible" />
+
+            </RadioGroup>
+
+
 
         <CheckBox
             android:id="@+id/sex_OralCheck_checkbox"
@@ -256,37 +260,38 @@
             android:layout_marginTop="8dp"
             android:text="@string/sex_OralCheck_checkbox"
             android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/sex_AnalGiving_radiobtn"
-            app:layout_constraintTop_toBottomOf="@+id/sex_AnalGiving_radiobtn" />
+            app:layout_constraintStart_toStartOf="@+id/sex_Anal_radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/sex_Anal_radioGroup" />
 
-        <RadioButton
-            android:id="@+id/sex_OralGiving_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:text="@string/sex_Giving_radiobtn"
+        <RadioGroup
+            android:id="@+id/sex_Oral_radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/sex_OralCheck_checkbox"
-            app:layout_constraintTop_toBottomOf="@+id/sex_OralCheck_checkbox" />
+            app:layout_constraintTop_toBottomOf="@+id/sex_OralCheck_checkbox">
 
-        <RadioButton
-            android:id="@+id/sex_OralReceiving_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sex_Receiving_radiobtn"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/sex_OralGiving_radiobtn"
-            app:layout_constraintTop_toTopOf="@+id/sex_OralGiving_radiobtn" />
+            <RadioButton
+                android:id="@+id/sex_OralGiving_radiobtn"
+                android:layout_width="110dp"
+                android:layout_height="48dp"
+                android:text="@string/sex_Giving_radiobtn"
+                android:visibility="visible" />
 
-        <RadioButton
-            android:id="@+id/sex_OralBoth_radiobtn"
-            android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:text="@string/sex_Both_radiobtn"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/sex_OralReceiving_radiobtn"
-            app:layout_constraintTop_toTopOf="@+id/sex_OralGiving_radiobtn" />
+            <RadioButton
+                android:id="@+id/sex_OralReceiving_radiobtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sex_Receiving_radiobtn"
+                android:visibility="visible" />
+
+            <RadioButton
+                android:id="@+id/sex_OralBoth_radiobtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sex_Both_radiobtn"
+                android:visibility="visible" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/sex_Done_button"
@@ -295,10 +300,9 @@
             android:layout_marginTop="8dp"
             android:text="@string/sex_Done_button"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sex_OralGiving_radiobtn" />
+            app:layout_constraintTop_toBottomOf="@+id/sex_Oral_radioGroup" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
