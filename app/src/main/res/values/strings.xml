@@ -16,7 +16,7 @@
     <string name="profile_title_textview_text_alternate">Change Your Profile</string>
     <string name="preference_next_button_text">Next Question</string>
     <string name="preference_title_textview_text">Survey</string>
-    <string name="profile_gender_other_edittext">Other</string>
+    <string name="profile_gender_other_edittext">Gender</string>
     <string name="profile_religion_edittext">Religion</string>
     <string name="profile_political_edittext">Political View</string>
 
