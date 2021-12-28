@@ -35,7 +35,7 @@ public class SurveyLauncher extends AppCompatActivity {
         setContentView(R.layout.activity_survey_launcher);
 
         fm = getSupportFragmentManager();
-        mainFragment = new SurveySexFragment();
+        mainFragment = new SurveyDatingFragment();
         fm.beginTransaction().replace(R.id.survey_content_container, mainFragment).commit();
     }
 }

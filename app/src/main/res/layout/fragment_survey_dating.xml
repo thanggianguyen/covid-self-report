@@ -29,59 +29,6 @@
         app:layout_constraintTop_toBottomOf="@+id/sex_title_text" />
 
 
-    <CheckBox
-        android:id="@+id/dating_PhyTouYes_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/dating_Yes_checkbox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouTitle_text" />
-
-    <CheckBox
-        android:id="@+id/dating_PayYes_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dating_Yes_checkbox"
-        app:layout_constraintStart_toStartOf="@+id/dating_PayTitle_text"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PayTitle_text" />
-
-    <CheckBox
-        android:id="@+id/dating_SexYes_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dating_Yes_checkbox"
-        app:layout_constraintStart_toStartOf="@+id/dating_SexTitle_text"
-        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text" />
-
-    <CheckBox
-        android:id="@+id/dating_PhyTouNo_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/dating_No_checkbox"
-        app:layout_constraintStart_toEndOf="@+id/dating_PhyTouYes_checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouTitle_text" />
-
-    <CheckBox
-        android:id="@+id/dating_PayNo_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="@string/dating_No_checkbox"
-        app:layout_constraintStart_toEndOf="@+id/dating_PayYes_checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PayTitle_text" />
-
-    <CheckBox
-        android:id="@+id/dating_SexNo_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="1dp"
-        android:text="@string/dating_No_checkbox"
-        app:layout_constraintStart_toEndOf="@+id/dating_SexYes_checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text" />
-
     <EditText
         android:id="@+id/PhyTouWhere"
         android:layout_width="wrap_content"
@@ -92,8 +39,8 @@
         android:minHeight="48dp"
         android:textColorHint="#000000"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/dating_PhyTouYes_checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouYes_checkbox" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="148dp" />
 
     <TextView
         android:id="@+id/dating_PhyTouTitle_text"
@@ -102,32 +49,68 @@
         android:layout_marginTop="16dp"
         android:text="@string/dating_PhyTouTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toTopOf="@+id/dating_PhyTouYes_checkbox"
-        app:layout_constraintEnd_toEndOf="@+id/dating_PhyTouYes_checkbox"
-        app:layout_constraintStart_toEndOf="@+id/dating_PhyTouYes_checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text" />
+        app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <RadioGroup
+        android:id="@+id/dating_PhyTou_RadioGroup"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:orientation='horizontal'
+        app:layout_constraintStart_toStartOf="@+id/dating_PhyTouTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTouTitle_text">
+
+        <RadioButton
+            android:id="@+id/dating_PhyTouYes_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_Yes_radiobtn" />
+
+        <RadioButton
+            android:id="@+id/dating_PhyTouNo_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_No_radiobtn" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/dating_PayTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/dating_PayTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PhyTouWhere" />
+        app:layout_constraintStart_toStartOf="@+id/dating_PhyTou_RadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTou_RadioGroup" />
+
+    <RadioGroup
+        android:id="@+id/dating_Pay_RadioGroup"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:orientation='horizontal'
+        app:layout_constraintStart_toStartOf="@+id/dating_PayTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PayTitle_text">
+
+        <RadioButton
+            android:id="@+id/dating_PayYes_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_Yes_radiobtn" />
+
+        <RadioButton
+            android:id="@+id/dating_PayNo_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_No_radiobtn" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/dating_DateTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="@string/dating_DateTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PayYes_checkbox" />
+        app:layout_constraintStart_toStartOf="@+id/dating_Pay_RadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/dating_Pay_RadioGroup" />
 
     <TextView
         android:id="@+id/dating_DateSubtitle_text"
@@ -215,6 +198,27 @@
         app:layout_constraintStart_toStartOf="@+id/dating_DateOther_edittext"
         app:layout_constraintTop_toBottomOf="@+id/dating_DateOther_edittext" />
 
+    <RadioGroup
+        android:id="@+id/dating_Sex_RadioGroup"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation='horizontal'
+        app:layout_constraintStart_toStartOf="@+id/dating_SexTitle_text"
+        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text">
+
+        <RadioButton
+            android:id="@+id/dating_SexYes_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_Yes_radiobtn" />
+
+        <RadioButton
+            android:id="@+id/dating_SexNo_radiobtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dating_No_radiobtn" />
+    </RadioGroup>
+
     <TextView
         android:id="@+id/dating_PhyTouWarn_text"
         android:layout_width="wrap_content"
@@ -241,12 +245,12 @@
         android:id="@+id/dating_SexWarn_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="12dp"
         android:text="@string/dating_Warn_text"
         android:textColor="@android:color/holo_red_light"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/dating_SexNo_checkbox"
-        app:layout_constraintTop_toTopOf="@+id/dating_SexNo_checkbox" />
+        app:layout_constraintStart_toEndOf="@+id/dating_Sex_RadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/dating_SexTitle_text" />
 
     <TextView
         android:id="@+id/dating_PayWarn_text"
@@ -261,12 +265,12 @@
 
     <Button
         android:id="@+id/dating_DatingSurveyDone_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="106dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="32dp"
         android:text="@string/dating_DatingSurveyDone_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dating_SexNo_checkbox" />
+        app:layout_constraintTop_toBottomOf="@+id/dating_Sex_RadioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

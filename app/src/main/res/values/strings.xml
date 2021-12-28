@@ -20,8 +20,8 @@
     <string name="profile_religion_edittext">Religion</string>
     <string name="profile_political_edittext">Political View</string>
 
-    <string name="dating_Yes_checkbox">Yes</string>
-    <string name="dating_No_checkbox">No</string>
+    <string name="dating_Yes_radiobtn">Yes</string>
+    <string name="dating_No_radiobtn">No</string>
     <string name="dating_title_text">Dating Consent</string>
     <string name="dating_SubTitle_text">What is okay for you on a date?</string>
     <string name="dating_PhyTouTitle_text">1) Physical Touch</string>

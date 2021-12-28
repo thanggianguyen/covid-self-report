@@ -295,9 +295,9 @@
 
         <Button
             android:id="@+id/sex_Done_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="101dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="32dp"
             android:text="@string/sex_Done_button"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
