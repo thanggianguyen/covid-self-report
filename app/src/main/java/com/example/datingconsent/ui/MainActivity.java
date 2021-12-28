@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialize local variables gson (JSON file reader), toProfileCreator (takes user to the ProfileCreator activity), and profileJsonStr (String of the user's profile, saved as a JSON file):
         Gson gson = new Gson();
-        Intent toProfileCreator = new Intent(this, SurveyLauncher.class);
-        startActivityForResult(toProfileCreator, 321);
+        Intent toProfileCreator = new Intent(this, ProfileCreator.class);
+        startActivityForResult(toProfileCreator, 123);
         //deprecated
 
         //String profileJsonStr = checkForFile(PROFILE_FILE_NAME);

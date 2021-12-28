@@ -133,26 +133,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sexual_orientation_spinner" />
 
-            <ImageView
-                android:id="@+id/profile_checkmark_name_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_name_edittext"
-                app:layout_constraintEnd_toStartOf="@+id/profile_name_edittext"
-                app:layout_constraintTop_toTopOf="@+id/profile_name_edittext" />
-
-            <TextView
-                android:id="@+id/profile_invalid_name_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_invalid_name_textview_text"
-                android:textColor="@color/design_default_color_error"
-                android:textSize="11sp"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="@+id/profile_name_edittext"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name_edittext" />
-
             <Button
                 android:id="@+id/profile_change_name_button"
                 android:layout_width="wrap_content"
@@ -246,7 +226,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/edit_text_background"
                 android:hint="Age"
-                android:inputType="phone"
+                android:inputType="number"
                 android:maxLength="20"
                 android:padding="5dp"
                 android:singleLine="true"
@@ -269,37 +249,6 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext" />
-
-            <ImageView
-                android:id="@+id/profile_checkmark_phone_number_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_phone_number_edittext"
-                app:layout_constraintEnd_toStartOf="@+id/profile_phone_number_edittext"
-                app:layout_constraintTop_toTopOf="@+id/profile_phone_number_edittext" />
-
-            <TextView
-                android:id="@+id/profile_invalid_phone_number_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_invalid_phone_number_textview_text"
-                android:textColor="@color/design_default_color_error"
-                android:textSize="11sp"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="@+id/profile_phone_number_edittext"
-                app:layout_constraintTop_toBottomOf="@+id/profile_phone_number_edittext" />
-
-            <TextView
-                android:id="@+id/profile_invalid_age_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profile_invalid_age_textview_text"
-                android:textColor="@color/design_default_color_error"
-                android:textSize="11sp"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="@+id/profile_age_edittext"
                 app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext" />
 
             <Button

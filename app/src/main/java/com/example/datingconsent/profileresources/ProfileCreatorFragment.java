@@ -48,31 +48,46 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private EditText nameEdt;
     /**
+     * The textbox the user enters their age in
+     */
+    private EditText ageEdt;
+    /**
+     * The textbox the user enters their pronouns in
+     */
+    private EditText pronounsEdt;
+    /**
      * The textbox the user enters their phone number in
      */
     private EditText phoneNumberEdt;
-
     /**
      * The spinner to select gender
      */
     private Spinner genderSpinner;
-
     /**
      * The textbox the user enters if they select Other for gender
      */
     private EditText genderOtherEdt;
     /**
+     * The textbox the user enters their religion in
+     */
+    private EditText religionEdt;
+    /**
+     * The textbox the user enters their political view in
+     */
+    private EditText politicalViewEdt;
+    /**
+     * The textbox the user enters their other sexual orientation in
+     */
+    private EditText sexualOrientationOtherEdt;
+    /**
+     * The textbox the user enters their custom looking for in
+     */
+    private EditText lookingForOtherEdt;
+
+    /**
      * The button the user clicks to create their profile
      */
     private Button createButton;
-    /**
-     * The TextView that informs the user the name entered is invalid
-     */
-    private TextView invalidNameTV;
-    /**
-     * The TextView that informs the user the phone number entered is invalid
-     */
-    private TextView invalidPhoneNumberTV;
     /**
      * Button for changing the name attribute (not used if parent is ProfileCreator)
      */
@@ -82,13 +97,35 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private Button changePhoneNumberButton;
     /**
-     * ImageView for successful name change (not used if parent is ProfileCreator)
+     * Button for changing the pronouns attribute (not used if parent is ProfileCreator)
      */
-    private ImageView nameCheckMark;
+    private Button changePronounsButton;
     /**
-     * ImageView for successful phone number change (not used if parent is ProfileCreator)
+     * Button for changing the age attribute (not used if parent is ProfileCreator)
      */
-    private ImageView phoneNumberCheckMark;
+    private Button changeAgeButton;
+    /**
+     * Button for changing the gender attribute (not used if parent is ProfileCreator)
+     */
+    private Button changeGenderButton;
+    /**
+     * Button for changing the religion attribute (not used if parent is ProfileCreator)
+     */
+    private Button changeReligionButton;
+    /**
+    /**
+     * Button for changing the political view attribute (not used if parent is ProfileCreator)
+     */
+    private Button changePoliticalButton;
+    /**
+     * Button for changing the sexual orientation  attribute (not used if parent is ProfileCreator)
+     */
+    private Button changeSexualOrientationButton;
+    /**
+     * Button for changing the looking for attribute (not used if parent is ProfileCreator)
+     */
+    private Button changeLookingForButton;
+
     /**
      * Tracks and is activated upon any text input events for phoneNumberEdt
      */
@@ -97,6 +134,14 @@ public class ProfileCreatorFragment extends Fragment {
      * Tracks and is activated upon any text input events for nameEdt
      */
     private TextWatcher nameFormatter;
+    private TextWatcher ageFormatter;
+    private TextWatcher pronounsFormatter;
+    private TextWatcher genderFormatter;
+    private TextWatcher religionFormatter;
+    private TextWatcher politicalFormatter;
+    private TextWatcher sexualOrientationFormatter;
+    private TextWatcher lookingForFormatter;
+
 
 
     /**
@@ -130,14 +175,50 @@ public class ProfileCreatorFragment extends Fragment {
         nameEdt = view.findViewById(R.id.profile_name_edittext);
         buildInputFormatter(nameEdt);
         nameEdt.addTextChangedListener(nameFormatter);
-        invalidNameTV = view.findViewById(R.id.profile_invalid_name_textview);
+
+        //TODO: create age formatter
+        //Instantiate the age text box and build its formatter (enhanced TextWatcher)
+        ageEdt = view.findViewById(R.id.profile_age_edittext);
+        buildInputFormatter(ageEdt);
+        ageEdt.addTextChangedListener(ageFormatter);
+
+        //TODO: use different formatter for pronouns that include /
+        //Instantiate the pronouns text box and build its formatter (enhanced TextWatcher)
+        pronounsEdt = view.findViewById(R.id.profile_pronouns_edittext);
+        buildInputFormatter(pronounsEdt);
+        pronounsEdt.addTextChangedListener(pronounsFormatter);
 
         //Instantiate the phone number text box and build its formatter (enhanced PhoneNumberFormattingTextWatcher)
         phoneNumberEdt = view.findViewById(R.id.profile_phone_number_edittext);
         //buildPhoneNumberFormatter();
         phoneNumberEdt.addTextChangedListener(phoneNumberFormatter);
-        invalidPhoneNumberTV = view.findViewById(R.id.profile_invalid_phone_number_textview);
 
+        //Instantiate the other gender text box and build its formatter (enhanced TextWatcher)
+        genderOtherEdt = view.findViewById(R.id.profile_gender_other_edittext);
+        buildInputFormatter(genderOtherEdt);
+        genderOtherEdt.addTextChangedListener(genderFormatter);
+
+        //Instantiate the religion text box and build its formatter (enhanced TextWatcher)
+        religionEdt = view.findViewById(R.id.profile_religion_edittext);
+        buildInputFormatter(religionEdt);
+        religionEdt.addTextChangedListener(religionFormatter);
+
+        //Instantiate the political text box and build its formatter (enhanced TextWatcher)
+        politicalViewEdt = view.findViewById(R.id.profile_political_edittext);
+        buildInputFormatter(politicalViewEdt);
+        politicalViewEdt.addTextChangedListener(politicalFormatter);
+
+        //Instantiate the other sexual orientation text box and build its formatter (enhanced TextWatcher)
+        sexualOrientationOtherEdt = view.findViewById(R.id.profile_sexual_orientation_other_edittext);
+        buildInputFormatter(sexualOrientationOtherEdt);
+        sexualOrientationOtherEdt.addTextChangedListener(sexualOrientationFormatter);
+
+        //Instantiate the other looking for text box and build its formatter (enhanced TextWatcher)
+        lookingForOtherEdt = view.findViewById(R.id.profile_looking_for_other_edittext);
+        buildInputFormatter(lookingForOtherEdt);
+        lookingForOtherEdt.addTextChangedListener(lookingForFormatter);
+
+        //region Spinners
         //Instantiate gender spinner
         String[] gender_array = getResources().getStringArray(R.array.gender_array);
         genderSpinner = (Spinner) view.findViewById(R.id.gender_spinner);
@@ -160,7 +241,7 @@ public class ProfileCreatorFragment extends Fragment {
                 View view = super.getDropDownView(position, convertView,parent);
                 TextView tv = (TextView) view;
                 if(position ==0){
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(Color.GRAY); //set Gender hint as gray
                 }
                 else{
                     tv.setTextColor(Color.BLACK);
@@ -178,9 +259,9 @@ public class ProfileCreatorFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 genderOtherEdt.setVisibility(View.GONE);
-                if(position==4)
+                if(position==4) //Enable other EditText when Other is selected
                     genderOtherEdt.setVisibility(View.VISIBLE);
-                if(position>0){
+                if(position>0){ //Color the current selection black instead of gray
                     ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
                 }
             }
@@ -190,19 +271,21 @@ public class ProfileCreatorFragment extends Fragment {
 
             }
         });
-/*
+        //endregion
+
+
         //Instantiate the buttons:
         createButton = view.findViewById(R.id.profile_create_button);
         changeNameButton = view.findViewById(R.id.profile_change_name_button);
+        changeAgeButton = view.findViewById(R.id.profile_change_age_button);
         changePhoneNumberButton = view.findViewById(R.id.profile_change_phone_number_button);
+        changeGenderButton = view.findViewById(R.id.profile_change_gender_button);
+        changeReligionButton =  view.findViewById(R.id.profile_change_religion_button);
+        changePoliticalButton = view.findViewById(R.id.profile_change_political_button);
+        changeSexualOrientationButton = view.findViewById(R.id.profile_change_sexual_orientation_button);
+        changeLookingForButton = view.findViewById(R.id.profile_change_looking_for_button);
 
-        //Instantiate the check mark ImageViews
-        nameCheckMark = view.findViewById(R.id.profile_checkmark_name_imageview);
-        nameCheckMark.setImageResource(R.drawable.ic_check);
-        phoneNumberCheckMark = view.findViewById(R.id.profile_checkmark_phone_number_imageview);
-        phoneNumberCheckMark.setImageResource(R.drawable.ic_check);*//*
-
-
+/*
         //***SET ONCLICK METHODS FOR THE BUTTONS***
         //If this fragment is used by ProfileCreator:
         if (requireActivity() instanceof com.example.covidselfreport.ProfileCreator) {
