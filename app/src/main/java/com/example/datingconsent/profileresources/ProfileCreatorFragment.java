@@ -76,9 +76,17 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private EditText politicalViewEdt;
     /**
+     * The spinner to select sexual orientation
+     */
+    private Spinner sexualOrientationSpinner;
+    /**
      * The textbox the user enters their other sexual orientation in
      */
     private EditText sexualOrientationOtherEdt;
+    /**
+     * The spinner to select looking for
+     */
+    private Spinner lookingForSpinner;
     /**
      * The textbox the user enters their custom looking for in
      */
@@ -173,104 +181,64 @@ public class ProfileCreatorFragment extends Fragment {
 
         //Instantiate the name text box and build its formatter (enhanced TextWatcher)
         nameEdt = view.findViewById(R.id.profile_name_edittext);
-        buildInputFormatter(nameEdt);
+        nameFormatter= buildInputFormatter(nameEdt);
         nameEdt.addTextChangedListener(nameFormatter);
 
         //TODO: create age formatter
         //Instantiate the age text box and build its formatter (enhanced TextWatcher)
         ageEdt = view.findViewById(R.id.profile_age_edittext);
-        buildInputFormatter(ageEdt);
-        ageEdt.addTextChangedListener(ageFormatter);
+        //ageFormatter = buildInputFormatter(ageEdt);
+        //ageEdt.addTextChangedListener(ageFormatter);
 
         //TODO: use different formatter for pronouns that include /
         //Instantiate the pronouns text box and build its formatter (enhanced TextWatcher)
         pronounsEdt = view.findViewById(R.id.profile_pronouns_edittext);
-        buildInputFormatter(pronounsEdt);
+        pronounsFormatter =  buildInputFormatter(pronounsEdt);
         pronounsEdt.addTextChangedListener(pronounsFormatter);
 
         //Instantiate the phone number text box and build its formatter (enhanced PhoneNumberFormattingTextWatcher)
         phoneNumberEdt = view.findViewById(R.id.profile_phone_number_edittext);
-        //buildPhoneNumberFormatter();
+        buildPhoneNumberFormatter();
         phoneNumberEdt.addTextChangedListener(phoneNumberFormatter);
 
         //Instantiate the other gender text box and build its formatter (enhanced TextWatcher)
         genderOtherEdt = view.findViewById(R.id.profile_gender_other_edittext);
-        buildInputFormatter(genderOtherEdt);
+        genderFormatter = buildInputFormatter(genderOtherEdt);
         genderOtherEdt.addTextChangedListener(genderFormatter);
 
         //Instantiate the religion text box and build its formatter (enhanced TextWatcher)
         religionEdt = view.findViewById(R.id.profile_religion_edittext);
-        buildInputFormatter(religionEdt);
+        religionFormatter = buildInputFormatter(religionEdt);
         religionEdt.addTextChangedListener(religionFormatter);
 
         //Instantiate the political text box and build its formatter (enhanced TextWatcher)
         politicalViewEdt = view.findViewById(R.id.profile_political_edittext);
-        buildInputFormatter(politicalViewEdt);
+        politicalFormatter = buildInputFormatter(politicalViewEdt);
         politicalViewEdt.addTextChangedListener(politicalFormatter);
 
         //Instantiate the other sexual orientation text box and build its formatter (enhanced TextWatcher)
         sexualOrientationOtherEdt = view.findViewById(R.id.profile_sexual_orientation_other_edittext);
-        buildInputFormatter(sexualOrientationOtherEdt);
+        sexualOrientationFormatter = buildInputFormatter(sexualOrientationOtherEdt);
         sexualOrientationOtherEdt.addTextChangedListener(sexualOrientationFormatter);
 
         //Instantiate the other looking for text box and build its formatter (enhanced TextWatcher)
         lookingForOtherEdt = view.findViewById(R.id.profile_looking_for_other_edittext);
-        buildInputFormatter(lookingForOtherEdt);
+        lookingForFormatter = buildInputFormatter(lookingForOtherEdt);
         lookingForOtherEdt.addTextChangedListener(lookingForFormatter);
 
         //region Spinners
         //Instantiate gender spinner
         String[] gender_array = getResources().getStringArray(R.array.gender_array);
+        String[] sexual_orientation_array = getResources().getStringArray(R.array.sexual_orientation_array);
+        String[] looking_for_array = getResources().getStringArray(R.array.looking_for_array);
+
         genderSpinner = (Spinner) view.findViewById(R.id.gender_spinner);
-        genderOtherEdt = view.findViewById(R.id.profile_gender_other_edittext);
-        final List<String> genderList = new ArrayList<String>(Arrays.asList(gender_array));
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity().getBaseContext(),
-                 R.layout.custom_spinner_items,genderList){
-            @Override
-            public boolean isEnabled(int position){
-                if(position==0){
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                }
-                else
-                    return true;
-            }
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent){
-                View view = super.getDropDownView(position, convertView,parent);
-                TextView tv = (TextView) view;
-                if(position ==0){
-                    tv.setTextColor(Color.GRAY); //set Gender hint as gray
-                }
-                else{
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
+        sexualOrientationSpinner = (Spinner) view.findViewById(R.id.sexual_orientation_spinner);
+        lookingForSpinner = (Spinner) view.findViewById(R.id.looking_for_spinner);
 
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        genderSpinner.setAdapter(adapter);
-        //Track spinner selection
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                genderOtherEdt.setVisibility(View.GONE);
-                if(position==4) //Enable other EditText when Other is selected
-                    genderOtherEdt.setVisibility(View.VISIBLE);
-                if(position>0){ //Color the current selection black instead of gray
-                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        buildSpinnerAdapter(gender_array,genderSpinner,genderOtherEdt,4);
+        buildSpinnerAdapter(sexual_orientation_array,sexualOrientationSpinner,sexualOrientationOtherEdt,4);
+        buildSpinnerAdapter(looking_for_array,lookingForSpinner,lookingForOtherEdt,4);
         //endregion
 
 
@@ -340,7 +308,65 @@ public class ProfileCreatorFragment extends Fragment {
         }*/
     }
 
+    /**
+     * Implement spinner adapter with custom spinner template
+     * set the hint gray
+     * and enable other EditText when "Other" is selected
+     * @param array
+     * @param spinner
+     * @param otherEdt
+     * @param otherPosition
+     */
+    private void buildSpinnerAdapter(String[] array, Spinner spinner, EditText otherEdt, int otherPosition){
+        final List<String> itemList = new ArrayList<String>(Arrays.asList(array));
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity().getBaseContext(),
+                R.layout.custom_spinner_items,itemList){
+            @Override
+            public boolean isEnabled(int position){
+                if(position==0){
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                    return true;
+            }
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent){
+                View view = super.getDropDownView(position, convertView,parent);
+                TextView tv = (TextView) view;
+                if(position ==0){
+                    tv.setTextColor(Color.GRAY); //set Gender hint as gray
+                }
+                else{
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
 
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        //Track spinner selection
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                otherEdt.setVisibility(View.GONE);
+                if(position==otherPosition) //Enable other EditText when Other is selected
+                    otherEdt.setVisibility(View.VISIBLE);
+                if(position>0){ //Color the current selection black instead of gray
+                    ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
     /**
      * Only used if the parent activity is ProfileCreator.
@@ -451,8 +477,9 @@ public class ProfileCreatorFragment extends Fragment {
      * Ensures that the phone number entered into the EditText instance phoneNumberEt is
      * valid.
      */
-    /*private void buildPhoneNumberFormatter() {
-        phoneNumberFormatter = new PhoneNumberFormattingTextWatcher() {
+    private void buildPhoneNumberFormatter() {
+        phoneNumberFormatter = new PhoneNumberFormattingTextWatcher()
+        {
             private boolean backspaceFlag; //Set to true if the user is erasing a character.
             private boolean editedFlag; //Set to true if the text box is edited in the
             //afterTextChanged() method, because the watcher will be
@@ -463,7 +490,7 @@ public class ProfileCreatorFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Assign the cursor position to the location the edit took place.
-                cursorPos = s.length() - phoneNumberET.getSelectionStart();
+                cursorPos = s.length() - phoneNumberEdt.getSelectionStart();
 
                 if (count > after)
                     backspaceFlag = true;
@@ -472,8 +499,9 @@ public class ProfileCreatorFragment extends Fragment {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after)
-            { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -487,28 +515,35 @@ public class ProfileCreatorFragment extends Fragment {
                 if (!editedFlag) {
                     editedFlag = true; //phone number string will be edited here.
                     String formatted;
-                    if (phoneNum.length() >= 6 && !backspaceFlag) {
-                        if (phoneNum.length() > 10) //10 digits max for phone numbers.
-                            formatted = "(" + phoneNum.substring(0, 3) + ") " +
-                                    phoneNum.substring(3, 6) + "-" + phoneNum.substring(6, 10);
+                    if(!backspaceFlag) { // when user entering new digits
+                        if (phoneNum.length() >= 3) {
+                            String firstThree = "(" + phoneNum.substring(0, 3) + ") ";
+                            if (phoneNum.length() >= 6) {
+                                String firstSix = firstThree + phoneNum.substring(3, 6);
+                                if (phoneNum.length() > 10) //10 digits max for phone numbers.
+                                    formatted = firstSix +"-"+ phoneNum.substring(6, 10);
+                                else
+                                    formatted = firstSix +"-" + phoneNum.substring(6);
+                            } else
+                                formatted = firstThree + phoneNum.substring(3);
+                        }
                         else
-                            formatted = "(" + phoneNum.substring(0, 3) + ") " +
-                                    phoneNum.substring(3, 6) + "-" + phoneNum.substring(6);
+                            formatted = phoneNum;
                     }
-                    else if (phoneNum.length() >= 3 && !backspaceFlag)
-                        formatted = "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3);
-                    else if (phoneNum.length() <= 3 && backspaceFlag)
-                        formatted = phoneNum;
-                    else if (phoneNum.length() <= 6 && backspaceFlag)
-                        formatted = "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3);
-                    else if (backspaceFlag)
-                        formatted = "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3, 6) +
-                                "-" + phoneNum.substring(6);
-                    else
-                        formatted = phoneNum;
-
-                    phoneNumberET.setText(formatted);
-                    phoneNumberET.setSelection(phoneNumberET.getText().length() - cursorPos);
+                    else { // while user deleting digits
+                        if (phoneNum.length() >= 3) {
+                            String firstThree = "(" + phoneNum.substring(0, 3) + ") ";
+                            if (phoneNum.length() >= 6) {
+                                String firstSix = firstThree + phoneNum.substring(3, 6);
+                                formatted = firstSix + "-" + phoneNum.substring(6);
+                            } else
+                                formatted = firstThree + phoneNum.substring(3);
+                        }
+                        else
+                            formatted = phoneNum;
+                    }
+                    phoneNumberEdt.setText(formatted);
+                    phoneNumberEdt.setSelection(phoneNumberEdt.getText().length() - cursorPos);
                 }
 
 
@@ -518,55 +553,10 @@ public class ProfileCreatorFragment extends Fragment {
                     editedFlag = false;
             }
         };
-    }*/
-
-
-    /**
-     * Builds field firstNameFormatter, of type TextWatcher.
-     * Ensures that the first name entered into the EditText instance firstNameET is valid by
-     * allowing only alphabetical characters, spaces, and hyphens to be entered.
-     *//*
-    private void buildFirstNameFormatter() {
-        firstNameFormatter = new TextWatcher() {
-            private boolean backspaceFlag; //Set to true if the user is erasing a character.
-            private boolean editedFlag;
-            private int cursorPos;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //Assign the cursor position to the location the edit took place.
-                cursorPos = s.length() - firstNameET.getSelectionStart();
-
-                if (count > after)
-                    backspaceFlag = true;
-                else
-                    backspaceFlag = false;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after)
-            {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String firstName = s.toString();
-                //Get rid of all characters that are not alphabetical, whitespace, or hyphens:
-                firstName = firstName.replaceAll("[^a-zA-z\\s-]", "");
-                if (!editedFlag) {
-                    if (!backspaceFlag) {
-                        editedFlag = true;
-                        firstNameET.setText(firstName);
-                        firstNameET.setSelection(firstNameET.getText().length() - cursorPos);
-                    }
-                }
-                else
-                    editedFlag = false;
-            }
-        };
     }
 
 
-    *//**
+    /**
      * Builds field lastNameFormatter, of type TextWatcher.
      * Ensures that the last name entered into the EditText instance lastNameET is valid by
      * allowing only alphabetical characters, spaces, and hyphens to be entered.
@@ -610,7 +600,7 @@ public class ProfileCreatorFragment extends Fragment {
         };
     }*/
 
-    private void buildInputFormatter(EditText inputEdt){
+    private TextWatcher buildInputFormatter(EditText inputEdt){
         //Set to true if the user is erasing a character.
         //Assign the cursor position to the location the edit took place.
         //Get rid of all characters that are not alphabetical, whitespace, or hyphens:
@@ -649,5 +639,6 @@ public class ProfileCreatorFragment extends Fragment {
                     editedFlag = false;
             }
         };
+        return inputFormatter;
     }
 }

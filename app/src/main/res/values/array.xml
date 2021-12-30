@@ -14,6 +14,7 @@
     </string-array>
 
     <string-array name="sexual_orientation_array">
+        <item>Sexual Orientation</item>
         <item>Straight</item>
         <item>Gay/Lesbian</item>
         <item>Bisexual</item>
@@ -21,6 +22,7 @@
     </string-array>
 
     <string-array name="looking_for_array">
+        <item>Looking For</item>
         <item>Open</item>
         <item>Casual Date</item>
         <item>Relationship</item>
