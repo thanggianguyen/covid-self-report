@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="surveyresources.SurveyDatingFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".surveyresources.SurveyDatingFragment">
@@ -37,20 +43,21 @@
         android:hint="Where?"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#000000"
+        android:textColorHint="#86000000"
         android:visibility="gone"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="148dp" />
+        app:layout_constraintStart_toStartOf="@+id/dating_PhyTou_RadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTou_RadioGroup" />
 
     <TextView
         android:id="@+id/dating_PhyTouTitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/dating_PhyTouTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text"
-        tools:layout_editor_absoluteX="15dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sex_SubTitle_text" />
 
     <RadioGroup
         android:id="@+id/dating_PhyTou_RadioGroup"
@@ -80,7 +87,7 @@
         android:text="@string/dating_PayTitle_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toStartOf="@+id/dating_PhyTou_RadioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/dating_PhyTou_RadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/PhyTouWhere" />
 
     <RadioGroup
         android:id="@+id/dating_Pay_RadioGroup"
@@ -274,3 +281,4 @@
         app:layout_constraintTop_toBottomOf="@+id/dating_Sex_RadioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
