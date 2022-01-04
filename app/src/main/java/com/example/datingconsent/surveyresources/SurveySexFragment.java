@@ -20,7 +20,7 @@ import com.example.datingconsent.R;
 public class SurveySexFragment extends Fragment {
 
     private CheckBox kiss, tongue;
-    private CheckBox bc, bc1, bc2, bc3, bc4, bc5, bc6;
+    private CheckBox bc1, bc2, bc3, bc4, bc5, bc6;
     private CheckBox bc7, bc8, bc9, bc10, bc11, bc12;
     private TextView bcNote, bcSubnote;
     private RadioGroup analGroup, oralGroup;
@@ -39,6 +39,7 @@ public class SurveySexFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment\
         View rootView = inflater.inflate(R.layout.fragment_survey_sex, container, false);
+        //Additional information prompted if kissing Checkbox is checked
         CheckBox kissingCheck = rootView.findViewById(R.id.sex_KissingCheck_checkbox);
         kissingCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -50,6 +51,7 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
+        //Additional information prompted if Birth Control Checkbox is checked
         CheckBox birthControlCheck = rootView.findViewById(R.id.sex_BirthControlCheck_checkbox);
         birthControlCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,6 +90,7 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
+        //Additional Radio Group will appear if Anal Checkbox is checked
         CheckBox analCheck = rootView.findViewById(R.id.sex_AnalCheck_checkbox);
         analCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -100,6 +103,7 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
+        //Additional Radio Group will appear if Oral Checkbox is checked
         CheckBox oralCheck = rootView.findViewById(R.id.sex_OralCheck_checkbox);
         oralCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -112,10 +116,7 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
-
-
         return rootView;
-
     }
     
 
@@ -126,7 +127,6 @@ public class SurveySexFragment extends Fragment {
          */
         kiss = view.findViewById(R.id.sex_KissingCheck_checkbox);
         tongue = view.findViewById(R.id.sex_TongueCheck_checkbox);
-        bc = view.findViewById(R.id.sex_BirthControlCheck_checkbox);
         bc1 = view.findViewById(R.id.sex_BirthControl1_checkbox);
         bc2 = view.findViewById(R.id.sex_BirthControl2_checkbox);
         bc3 = view.findViewById(R.id.sex_BirthControl3_checkbox);

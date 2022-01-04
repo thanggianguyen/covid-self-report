@@ -23,8 +23,9 @@ public class SurveyDatingFragment extends Fragment {
     private RadioGroup PhyTou, Pay, Sex;
     private RadioButton PhyTouNo, PayYes, PayNo, SexYes, SexNo;
     private CheckBox date1, date2, date3, date4, date5, date6;
-    private TextView PhyTouWarn, PhyTouWhere, PayWarn, SexWarn;
-
+    private TextView PhyTouWarn, PhyTouWhere, PayWarn, SexWarn, dateWarn;
+    private int count=0;
+    //TODO: Transition from Dating Survey to Sex Survey
     public SurveyDatingFragment() {
         // Required empty public constructor
     }
@@ -38,6 +39,81 @@ public class SurveyDatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_survey_dating, container, false);
+        //Counter used to check if the user checked any checkboxes in the date section
+        CheckBox date1 = rootView.findViewById(R.id.dating_Date1_checkbox);
+        date1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        CheckBox date2 = rootView.findViewById(R.id.dating_Date2_checkbox);
+        date2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        CheckBox date3 = rootView.findViewById(R.id.dating_Date3_checkbox);
+        date3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        CheckBox date4 = rootView.findViewById(R.id.dating_Date4_checkbox);
+        date4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        CheckBox date5 = rootView.findViewById(R.id.dating_Date5_checkbox);
+        date5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        CheckBox date6 = rootView.findViewById(R.id.dating_Date6_checkbox);
+        date6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+        });
+        //The Done button will warn the user if any sections require attention after being clicked
+        //Else no warning message will appear
         Button done = rootView.findViewById(R.id.dating_DatingSurveyDone_button);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +148,19 @@ public class SurveyDatingFragment extends Fragment {
                     // one of the radio buttons is checked
                     SexWarn.setVisibility(View.INVISIBLE);
                 }
+                if(count==0)
+                {
+                    // none of the checkboxes are checked
+                    dateWarn.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    // one of the checkboxes is checked
+                    dateWarn.setVisibility(View.INVISIBLE);
+                }
             }
         });
+        //Additional question asked if PhyTou Checkbox is checked
         RadioButton PhyTouYes = rootView.findViewById(R.id.dating_PhyTouYes_radiobtn);
         PhyTouYes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -85,7 +172,6 @@ public class SurveyDatingFragment extends Fragment {
                 }
             }
         });
-
         return rootView;
     }
 
@@ -98,7 +184,6 @@ public class SurveyDatingFragment extends Fragment {
         PhyTouWhere = view.findViewById(R.id.PhyTouWhere);
         Pay = view.findViewById(R.id.dating_Pay_RadioGroup);
         Sex = view.findViewById(R.id.dating_Sex_RadioGroup);
-        /*PhyTouYes = view.findViewById(R.id.dating_PhyTouYes_radiobtn);*/
         PhyTouNo = view.findViewById(R.id.dating_PhyTouNo_radiobtn);
         PayYes = view.findViewById(R.id.dating_PayYes_radiobtn);
         PayNo = view.findViewById(R.id.dating_PayNo_radiobtn);
@@ -113,5 +198,6 @@ public class SurveyDatingFragment extends Fragment {
         date4 = view.findViewById(R.id.dating_Date4_checkbox);
         date5 = view.findViewById(R.id.dating_Date5_checkbox);
         date6 = view.findViewById(R.id.dating_Date6_checkbox);
+        dateWarn = view.findViewById(R.id.dating_DateWarn_text);
     }
 }
