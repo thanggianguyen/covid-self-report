@@ -35,8 +35,11 @@ public class Profile
     /**COVID-19 vaccination status of the user */
     private boolean vaccinated;
     private Date vaccinationDate;
+    /**COVID-19 second shot status of the user */
+    private boolean secondShot;
+    private Date secondShotDate;
     /**COVID-19 booster shot status of the user */
-    private boolean booster;
+    private boolean boosterShot;
     private Date boosterDate;
     /** The user's preference survey responses */
     private Survey preferences;
@@ -62,13 +65,15 @@ public class Profile
          * @param looking
          * @param vaccinated
          * @param vaccinationDate
-         * @param booster
+         * @param secondShot
+         * @param secondShotDate
+         * @param boosterShot
          * @param boosterDate
          */
     public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns,
         int age, String religion, String politicalView, String looking,
-        boolean vaccinated, Date vaccinationDate,boolean booster, Date boosterDate) {
+        boolean vaccinated, Date vaccinationDate, boolean secondShot, Date secondShotDate,boolean boosterShot, Date boosterDate) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
@@ -80,13 +85,12 @@ public class Profile
         this.looking = looking;
         this.vaccinated = vaccinated;
         this.vaccinationDate = vaccinationDate;
-        this.booster = booster;
+        this.secondShot = secondShot;
+        this.secondShotDate = secondShotDate;
+        this.boosterShot = boosterShot;
         this.boosterDate = boosterDate;
         this.preferences = null;
-        if (phoneNumber.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"))
-            this.phoneNumber = phoneNumber;
-        else
-            this.phoneNumber = null;
+        this.phoneNumber = phoneNumber;
 
     }
 
@@ -104,13 +108,15 @@ public class Profile
          * @param looking
          * @param vaccinated
          * @param vaccinationDate
-         * @param booster
+         * @param secondShot
+         * @param secondShotDate
+         * @param boosterShot
          * @param boosterDate
          * @param preferences
          */
     public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns, int age, String religion, String politicalView, String looking,
-        boolean vaccinated, Date vaccinationDate,boolean booster, Date boosterDate, Survey
+                   boolean vaccinated, Date vaccinationDate, boolean secondShot, Date secondShotDate, boolean boosterShot, Date boosterDate, Survey
         preferences) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -123,13 +129,13 @@ public class Profile
         this.looking = looking;
         this.vaccinated = vaccinated;
         this.vaccinationDate = vaccinationDate;
-        this.booster = booster;
+        this.secondShot = secondShot;
+        this.secondShotDate = secondShotDate;
+        this.boosterShot = boosterShot;
         this.boosterDate = boosterDate;
         this.preferences = preferences;
-        if (phoneNumber.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"))
-            this.phoneNumber = phoneNumber;
-        else
-            this.phoneNumber = null;
+        this.phoneNumber = phoneNumber;
+
 
     }
     //endregion
@@ -147,11 +153,7 @@ public class Profile
     }
 
 
-    public void setPhoneNumber(String phoneNumber)
-    {
-        if (phoneNumber.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"))
-            this.phoneNumber = phoneNumber;
-    }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public void setGender(String gender)
     {
@@ -189,9 +191,17 @@ public class Profile
     {
         this.vaccinationDate = vaccinationDate;
     }
-    public void setBooster(boolean booster)
+    public void setSecondShot(boolean secondShot)
     {
-        this.booster = booster;
+        this.secondShot = secondShot;
+    }
+    public void setSecondShotDate(Date secondShotDate)
+    {
+        this.secondShotDate = secondShotDate;
+    }
+    public void setBoosterShot(boolean boosterShot)
+    {
+        this.boosterShot = boosterShot;
     }
     public void setBoosterDate(Date boosterDate )
     {
@@ -254,8 +264,12 @@ public class Profile
         return vaccinationDate;
     }
 
+    public boolean isSecondShot(){return secondShot;}
+
+    public Date getSecondShotDate() { return secondShotDate; }
+
     public boolean isBooster() {
-        return booster;
+        return boosterShot;
     }
 
     public Date getBoosterDate() {
