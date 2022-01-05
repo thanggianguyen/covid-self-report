@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewDebug;
@@ -184,11 +185,10 @@ public class ProfileCreatorFragment extends Fragment {
         nameFormatter= buildInputFormatter(nameEdt);
         nameEdt.addTextChangedListener(nameFormatter);
 
-        //TODO: create age formatter
         //Instantiate the age text box and build its formatter (enhanced TextWatcher)
         ageEdt = view.findViewById(R.id.profile_age_edittext);
-        //ageFormatter = buildInputFormatter(ageEdt);
-        //ageEdt.addTextChangedListener(ageFormatter);
+        ageFormatter = buildNumberFormatter(ageEdt);
+        ageEdt.addTextChangedListener(ageFormatter);
 
         //TODO: use different formatter for pronouns that include /
         //Instantiate the pronouns text box and build its formatter (enhanced TextWatcher)
@@ -376,31 +376,39 @@ public class ProfileCreatorFragment extends Fragment {
      * If any EditText entry is not valid, an error message will appear under that EditText.
      * @param view The button being clicked.
      */
-    /*private void createButtonHandler(View view) {
-        String firstName = firstNameET.getText().toString();
-        String lastName = lastNameET.getText().toString();
-        String phoneNumber = phoneNumberET.getText().toString();
+    private void createButtonHandler(View view) {
+        String name = nameEdt.getText().toString();
+        String age = ageEdt.getText().toString();
+        String pronouns = pronounsEdt.getText().toString();
+        String phoneNumber = phoneNumberEdt.getText().toString();
+        String gender = genderSpinner.getSelectedItem().toString();
+        if (gender == "Other")
+            gender = genderOtherEdt.getText().toString();
+        String religion = religionEdt.getText().toString();
+        String sexualOrientation = sexualOrientationSpinner.getSelectedItem().toString();
+        if (sexualOrientation =="Other")
+            sexualOrientation = sexualOrientationOtherEdt.getText().toString();
+        String lookingFor = lookingForSpinner.getSelectedItem().toString();
+        if(lookingFor=="Other")
+            lookingFor=lookingForOtherEdt.getText().toString();
 
-        if (firstName.matches("[a-zA-Z]+") && lastName.matches("[a-zA-Z]+") &&
-                phoneNumber.matches("\\(\\d{3}\\)\\s\\d{3}-\\d{4}")) {
-            MainActivity.getProfile().setFirstName(firstName);
-            MainActivity.getProfile().setLastName(lastName);
-            MainActivity.getProfile().setPhoneNumber(phoneNumber);
 
-            Intent returnIntent = new Intent();
-            requireActivity().setResult(Activity.RESULT_OK, returnIntent);
-            requireActivity().finish();
-        }
-        else {
-            if (!firstName.matches("[a-zA-z]+"))
-                invalidFirstNameTV.setVisibility(View.VISIBLE);
-            if (!lastName.matches("[a-zA-Z]+"))
-                invalidLastNameTV.setVisibility(View.VISIBLE);
-            if (!phoneNumber.matches("\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
-                invalidPhoneNumberTV.setVisibility(View.VISIBLE);
-        }
+        MainActivity.getProfile().setName(name);
+        MainActivity.getProfile().setAge(age);
+        MainActivity.getProfile().setPronouns(pronouns);
+        MainActivity.getProfile().setPhoneNumber(phoneNumber);
+        MainActivity.getProfile().setGender(gender);
+        MainActivity.getProfile().setReligion(religion);
+        MainActivity.getProfile().setSexualOrientation(sexualOrientation);
+        MainActivity.getProfile().setLookingFor(lookingFor);
 
-    }*/
+
+        Intent returnIntent = new Intent();
+        requireActivity().setResult(Activity.RESULT_OK, returnIntent);
+        requireActivity().finish();
+
+
+    }
 
 
     /**
@@ -411,7 +419,7 @@ public class ProfileCreatorFragment extends Fragment {
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
      */
-    /*private void changeFirstNameButtonHandler(View view) {
+    private void changeButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
 
         if (firstName.matches("[a-zA-z]+")) {
@@ -423,7 +431,7 @@ public class ProfileCreatorFragment extends Fragment {
             invalidFirstNameTV.setVisibility(View.VISIBLE);
             firstNameCheckMark.setVisibility(View.INVISIBLE);
         }
-    }*/
+    }
 
 
     /**
@@ -474,95 +482,19 @@ public class ProfileCreatorFragment extends Fragment {
 
     /**
      * Builds field phoneNumberFormatter, of type PhoneNumberFormattingTextWatcher.
-     * Ensures that the phone number entered into the EditText instance phoneNumberEt is
-     * valid.
+     * Ensures that the phone number entered into the EditText is valid.
      */
     private void buildPhoneNumberFormatter() {
-        phoneNumberFormatter = new PhoneNumberFormattingTextWatcher()
-        {
-            private boolean backspaceFlag; //Set to true if the user is erasing a character.
-            private boolean editedFlag; //Set to true if the text box is edited in the
-            //afterTextChanged() method, because the watcher will be
-            //triggered again when that method changes the text.
-            //Tells us whether the edit was by the user or the method.
-            private int cursorPos; //The position of the cursor in the text box.
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //Assign the cursor position to the location the edit took place.
-                cursorPos = s.length() - phoneNumberEdt.getSelectionStart();
-
-                if (count > after)
-                    backspaceFlag = true;
-                else
-                    backspaceFlag = false;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String phoneNum = s.toString();
-                //Replace all occurrences of non-digit characters with an empty string (remove them)
-                phoneNum = phoneNum.replaceAll("[^\\d]", "");
-                //^^^ raw phone number (digits only) ^^^
-
-                //If the edited flag is false, that means that the text changed event was triggered
-                //by the user, so the string must be formatted appropriately:
-                if (!editedFlag) {
-                    editedFlag = true; //phone number string will be edited here.
-                    String formatted;
-                    if(!backspaceFlag) { // when user entering new digits
-                        if (phoneNum.length() >= 3) {
-                            String firstThree = "(" + phoneNum.substring(0, 3) + ") ";
-                            if (phoneNum.length() >= 6) {
-                                String firstSix = firstThree + phoneNum.substring(3, 6);
-                                if (phoneNum.length() > 10) //10 digits max for phone numbers.
-                                    formatted = firstSix +"-"+ phoneNum.substring(6, 10);
-                                else
-                                    formatted = firstSix +"-" + phoneNum.substring(6);
-                            } else
-                                formatted = firstThree + phoneNum.substring(3);
-                        }
-                        else
-                            formatted = phoneNum;
-                    }
-                    else { // while user deleting digits
-                        if (phoneNum.length() >= 3) {
-                            String firstThree = "(" + phoneNum.substring(0, 3) + ") ";
-                            if (phoneNum.length() >= 6) {
-                                String firstSix = firstThree + phoneNum.substring(3, 6);
-                                formatted = firstSix + "-" + phoneNum.substring(6);
-                            } else
-                                formatted = firstThree + phoneNum.substring(3);
-                        }
-                        else
-                            formatted = phoneNum;
-                    }
-                    phoneNumberEdt.setText(formatted);
-                    phoneNumberEdt.setSelection(phoneNumberEdt.getText().length() - cursorPos);
-                }
-
-
-                //If the edited flag is true, that means that the text changed event was triggered
-                //by this formatter, so the string is already formatted:
-                else
-                    editedFlag = false;
-            }
-        };
+        phoneNumberFormatter = new PhoneNumberFormattingTextWatcher();
     }
 
 
     /**
-     * Builds field lastNameFormatter, of type TextWatcher.
-     * Ensures that the last name entered into the EditText instance lastNameET is valid by
-     * allowing only alphabetical characters, spaces, and hyphens to be entered.
-     *//*
-    private void buildLastNameFormatter() {
-        lastNameFormatter = new TextWatcher() {
+     * Builds field numberFormatter, of type TextWatcher.
+     * Ensures that the inputted value are only digits
+     */
+    private TextWatcher buildNumberFormatter(EditText inputEdt) {
+            TextWatcher numberFormatter = new TextWatcher() {
             private boolean backspaceFlag; //Set to true if the user is erasing a character.
             private boolean editedFlag;
             private int cursorPos;
@@ -570,7 +502,7 @@ public class ProfileCreatorFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Assign the cursor position to the location the edit took place.
-                cursorPos = s.length() - lastNameET.getSelectionStart();
+                cursorPos = s.length() - inputEdt.getSelectionStart();
 
                 if (count > after)
                     backspaceFlag = true;
@@ -584,22 +516,28 @@ public class ProfileCreatorFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String lastName = s.toString();
-                //Get rid of all characters that are not alphabetical, whitespace, or hyphens:
-                lastName = lastName.replaceAll("[^a-zA-z\\s-]", "");
+                String number = s.toString();
+                //Get rid of all characters that are not number:
+                number = number.replaceAll("[^\\d]", "");
                 if (!editedFlag) {
                     if (!backspaceFlag) {
                         editedFlag = true;
-                        lastNameET.setText(lastName);
-                        lastNameET.setSelection(lastNameET.getText().length() - cursorPos);
+                        inputEdt.setText(number);
+                        inputEdt.setSelection(inputEdt.getText().length() - cursorPos);
                     }
                 }
                 else
                     editedFlag = false;
             }
         };
-    }*/
+            return numberFormatter;
+    }
 
+    /**
+     * Builds field buildInputFormatter, of type TextWatcher.
+     * Ensures that the text entered into the EditText is valid by
+     * allowing only alphabetical characters, spaces, and hyphens to be entered.
+     */
     private TextWatcher buildInputFormatter(EditText inputEdt){
         //Set to true if the user is erasing a character.
         //Assign the cursor position to the location the edit took place.
@@ -627,8 +565,8 @@ public class ProfileCreatorFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 String input = s.toString();
-                //Get rid of all characters that are not alphabetical, whitespace, or hyphens:
-                input = input.replaceAll("[^a-zA-z\\s-]", "");
+                //Get rid of all characters that are not alphabetical, whitespace, hyphens, or slash:
+                input = input.replaceAll("[^a-zA-z\\s-/]", "");
                 if (!editedFlag) {
                     if (!backspaceFlag) {
                         editedFlag = true;

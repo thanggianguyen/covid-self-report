@@ -336,6 +336,39 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/gender_spinner" />
 
+            <TextView
+                android:id="@+id/vaccinated_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/profile_vaccinated_textview_text"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_looking_for_other_edittext" />
+
+            <RadioGroup
+                android:id="@+id/vaccinated_radio_group"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:orientation='horizontal'
+                app:layout_constraintStart_toStartOf="@id/vaccinated_textview"
+                app:layout_constraintTop_toBottomOf="@+id/vaccinated_textview">
+
+                <RadioButton
+                    android:id="@+id/vaccinated_yes_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_yes_radiobtn" />
+
+                <RadioButton
+                    android:id="@+id/vaccinnated_no_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_no_radiobtn" />
+            </RadioGroup>
 
             <Button
                 android:id="@+id/profile_create_button"
@@ -344,7 +377,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="32dp"
                 android:text="@string/profile_create_button_text"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/profile_change_looking_for_button"
                 app:layout_constraintStart_toStartOf="parent"

@@ -21,6 +21,11 @@
     <string name="profile_looking_for_other_edittext">Looking For</string>
     <string name="profile_religion_edittext">Religion</string>
     <string name="profile_political_edittext">Political View</string>
+    <string name="profile_vaccinated_textview_text">Are you COVID-19 vaccinated?</string>
+    <string name="profile_second_shot_textview_text">Second shot?</string>
+    <string name="profile_booster_textview_text">Booster?</string>
+    <string name="profile_yes_radiobtn">Yes</string>
+    <string name="profile_no_radiobtn">No</string>
 
     <string name="dating_Yes_radiobtn">Yes</string>
     <string name="dating_No_radiobtn">No</string>
