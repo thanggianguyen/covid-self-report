@@ -53,7 +53,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_name_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_title_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_title_textview"
+                tools:visibility="gone" />
 
             <EditText
                 android:id="@+id/profile_religion_edittext"
@@ -70,7 +71,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_religion_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_gender_other_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_gender_other_edittext"
+                tools:visibility="gone" />
 
             <EditText
                 android:id="@+id/profile_political_edittext"
@@ -87,7 +89,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_political_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_religion_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_religion_edittext"
+                tools:visibility="gone" />
 
             <EditText
                 android:id="@+id/profile_gender_other_edittext"
@@ -104,8 +107,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/gender_spinner"
                 app:layout_constraintStart_toStartOf="@+id/gender_spinner"
-                app:layout_constraintTop_toBottomOf="@+id/gender_spinner"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
 
             <EditText
                 android:id="@+id/profile_looking_for_other_edittext"
@@ -122,8 +124,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/looking_for_spinner"
                 app:layout_constraintStart_toStartOf="@+id/looking_for_spinner"
-                app:layout_constraintTop_toBottomOf="@+id/looking_for_spinner"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/looking_for_spinner" />
 
             <EditText
                 android:id="@+id/profile_sexual_orientation_other_edittext"
@@ -140,8 +141,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/sexual_orientation_spinner"
                 app:layout_constraintStart_toStartOf="@+id/sexual_orientation_spinner"
-                app:layout_constraintTop_toBottomOf="@+id/sexual_orientation_spinner"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/sexual_orientation_spinner" />
 
             <Button
                 android:id="@+id/profile_change_name_button"
@@ -240,7 +240,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_phone_number_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_pronouns_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_pronouns_edittext"
+                tools:visibility="gone" />
 
             <EditText
                 android:id="@+id/profile_age_edittext"
@@ -258,7 +259,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_age_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_name_edittext"
+                tools:visibility="gone" />
 
             <EditText
                 android:id="@+id/profile_pronouns_edittext"
@@ -277,7 +279,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_pronouns_button"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_age_edittext"
+                tools:visibility="gone" />
 
             <Button
                 android:id="@+id/profile_change_phone_number_button"
@@ -299,7 +302,8 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_gender_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile_phone_number_edittext" />
+                app:layout_constraintTop_toBottomOf="@id/profile_phone_number_edittext"
+                tools:visibility="gone" />
 
             <Spinner
                 android:id="@+id/sexual_orientation_spinner"
@@ -311,7 +315,8 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_sexual_orientation_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_political_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_political_edittext"
+                tools:visibility="gone" />
 
             <Spinner
                 android:id="@+id/looking_for_spinner"
@@ -323,7 +328,8 @@
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/profile_change_looking_for_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_sexual_orientation_other_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/profile_sexual_orientation_other_edittext"
+                tools:visibility="gone" />
 
             <Button
                 android:id="@+id/profile_change_gender_button"
@@ -363,12 +369,133 @@
                     android:text="@string/profile_yes_radiobtn" />
 
                 <RadioButton
-                    android:id="@+id/vaccinnated_no_radio_button"
+                    android:id="@+id/vaccinated_no_radio_button"
                     android:layout_width="100dp"
                     android:textSize="24sp"
                     android:layout_height="wrap_content"
                     android:text="@string/profile_no_radiobtn" />
             </RadioGroup>
+
+            <EditText
+                android:id="@+id/vaccinated_date_edittext"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Vaccinated Date"
+                android:inputType="date"
+                android:maxLength="20"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/vaccinated_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vaccinated_radio_group"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/second_shot_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/profile_second_shot_textview_text"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vaccinated_date_edittext" />
+
+            <RadioGroup
+                android:id="@+id/second_shot_radio_group"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:orientation='horizontal'
+                app:layout_constraintStart_toStartOf="@id/second_shot_textview"
+                app:layout_constraintTop_toBottomOf="@+id/second_shot_textview">
+
+                <RadioButton
+                    android:id="@+id/second_yes_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_yes_radiobtn" />
+
+                <RadioButton
+                    android:id="@+id/second_no_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_no_radiobtn" />
+            </RadioGroup>
+            <EditText
+                android:id="@+id/second_shot_date_edittext"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Second Shot Date"
+                android:inputType="date"
+                android:maxLength="20"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/vaccinated_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/second_shot_radio_group"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/booster_shot_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="32dp"
+                android:text="@string/profile_booster_textview_text"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/second_shot_date_edittext" />
+
+            <RadioGroup
+                android:id="@+id/booster_radio_group"
+                android:layout_width="200dp"
+                android:layout_height="48dp"
+                android:orientation='horizontal'
+                app:layout_constraintStart_toStartOf="@id/booster_shot_textview"
+                app:layout_constraintTop_toBottomOf="@+id/booster_shot_textview">
+
+                <RadioButton
+                    android:id="@+id/booster_yes_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_yes_radiobtn" />
+
+                <RadioButton
+                    android:id="@+id/booster_no_radio_button"
+                    android:layout_width="100dp"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_no_radiobtn" />
+            </RadioGroup>
+            <EditText
+                android:id="@+id/booster_date_edittext"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Booster Shot Date"
+                android:inputType="date"
+                android:maxLength="20"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/vaccinated_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booster_radio_group"
+                android:importantForAutofill="no" />
+
 
             <Button
                 android:id="@+id/profile_create_button"
@@ -377,11 +504,10 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="32dp"
                 android:text="@string/profile_create_button_text"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/profile_change_looking_for_button"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_looking_for_other_edittext" />
+                app:layout_constraintTop_toBottomOf="@+id/booster_date_edittext" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
