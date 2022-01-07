@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -92,6 +93,38 @@ public class ProfileCreatorFragment extends Fragment {
      * The textbox the user enters their custom looking for in
      */
     private EditText lookingForOtherEdt;
+    /**
+     * Radio Buttons for COVID-19 vaccination status
+     */
+    private RadioGroup vaccinatedRadioGroup;
+    /**
+     * First dose date text box
+     */
+    private EditText vaccinatedDateEdt;
+    /**
+     * Second shot prompt
+     */
+    private TextView secondShotTextView;
+    /**
+     * Radio Buttons for the second shot status
+     */
+    private RadioGroup secondShotRadioGroup;
+    /**
+     * Second shot date text box
+     */
+    private EditText secondShotDateEdt;
+    /**
+     * Booster shot prompt
+     */
+    private TextView boosterTextView;
+    /**
+     * Radio Buttons for the booster shot status
+     */
+    private RadioGroup boosterRadioGroup;
+    /**
+     * Booster shot date text box
+     */
+    private EditText boosterShotDateEdt;
 
     /**
      * The button the user clicks to create their profile
@@ -190,7 +223,6 @@ public class ProfileCreatorFragment extends Fragment {
         ageFormatter = buildNumberFormatter(ageEdt);
         ageEdt.addTextChangedListener(ageFormatter);
 
-        //TODO: use different formatter for pronouns that include /
         //Instantiate the pronouns text box and build its formatter (enhanced TextWatcher)
         pronounsEdt = view.findViewById(R.id.profile_pronouns_edittext);
         pronounsFormatter =  buildInputFormatter(pronounsEdt);
@@ -225,6 +257,22 @@ public class ProfileCreatorFragment extends Fragment {
         lookingForOtherEdt = view.findViewById(R.id.profile_looking_for_other_edittext);
         lookingForFormatter = buildInputFormatter(lookingForOtherEdt);
         lookingForOtherEdt.addTextChangedListener(lookingForFormatter);
+
+        //Vaccination prompts
+        secondShotTextView = view.findViewById(R.id.second_shot_textview);
+        boosterTextView = view.findViewById(R.id.booster_shot_textview);
+
+        //Date Picker Text Box for shots
+        vaccinatedDateEdt = view.findViewById(R.id.vaccinated_date_edittext);
+        secondShotDateEdt = view.findViewById(R.id.second_shot_date_edittext);
+        boosterShotDateEdt = view.findViewById(R.id.booster_date_edittext);
+
+        //Vaccination status choices
+        vaccinatedRadioGroup = view.findViewById(R.id.vaccinated_radio_group);
+        secondShotRadioGroup = view.findViewById(R.id.second_shot_radio_group);
+        boosterRadioGroup = view.findViewById(R.id.booster_radio_group);
+
+
 
         //region Spinners
         //Instantiate gender spinner
@@ -376,7 +424,7 @@ public class ProfileCreatorFragment extends Fragment {
      * If any EditText entry is not valid, an error message will appear under that EditText.
      * @param view The button being clicked.
      */
-    private void createButtonHandler(View view) {
+    /*private void createButtonHandler(View view) {
         String name = nameEdt.getText().toString();
         String age = ageEdt.getText().toString();
         String pronouns = pronounsEdt.getText().toString();
@@ -408,7 +456,7 @@ public class ProfileCreatorFragment extends Fragment {
         requireActivity().finish();
 
 
-    }
+    }*/
 
 
     /**
@@ -419,7 +467,7 @@ public class ProfileCreatorFragment extends Fragment {
      * If the EditText entry is invalid, an error message appears.
      * @param view The button being clicked
      */
-    private void changeButtonHandler(View view) {
+   /* private void changeButtonHandler(View view) {
         String firstName = firstNameET.getText().toString();
 
         if (firstName.matches("[a-zA-z]+")) {
@@ -431,7 +479,7 @@ public class ProfileCreatorFragment extends Fragment {
             invalidFirstNameTV.setVisibility(View.VISIBLE);
             firstNameCheckMark.setVisibility(View.INVISIBLE);
         }
-    }
+    }*/
 
 
     /**
