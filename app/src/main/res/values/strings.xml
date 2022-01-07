@@ -44,6 +44,7 @@
     <string name="dating_Date5_checkbox">Movies</string>
     <string name="dating_Date6_checkbox">Museum</string>
     <string name="dating_DatingSurveyDone_button">Done</string>
+    <string name="dating_DatingSurveyBack_button">Back</string>
 
     <string name="sex_title_text">Sexual Consent</string>
     <string name="sex_SubTitle_text">What is okay for you during sex?</string>
@@ -71,6 +72,7 @@
     <string name="sex_Both_radiobtn">Both</string>
     <string name="sex_OralCheck_checkbox">Oral Penetration</string>
     <string name="sex_Done_button">Done</string>
+    <string name="sex_Back_button">Back</string>
 
     <string name="share_options">Share Options</string>
     <string name="title_intake">Intake</string>

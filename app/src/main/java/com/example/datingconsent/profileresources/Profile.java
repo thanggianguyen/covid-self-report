@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-import com.example.datingconsent.profileresources.Survey;
+import com.example.datingconsent.surveyresources.Survey;
 import com.google.gson.Gson;
 
 
