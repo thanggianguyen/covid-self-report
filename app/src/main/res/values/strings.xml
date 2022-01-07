@@ -79,8 +79,12 @@
     <string name="update">Update</string>
 
     <string name="profile_gender_spinner_hint">Gender</string>
-
-
+    <string name="second_shot_date_edittext">Second Shot Date</string>
+    <string name="phone_number_edittext">Phone Number</string>
+    <string name="age_edittext">Age</string>
+    <string name="pronouns_hint">Pronouns</string>
+    <string name="vaccinated_date_hint">Vaccinated Date</string>
+    <string name="booster_shot_date_hint">Booster Shot Date</string>
 
 
 </resources>
