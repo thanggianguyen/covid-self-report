@@ -1,4 +1,4 @@
-package com.example.datingconsent.profileresources;
+package com.example.datingconsent.surveyresources;
 
 import com.google.gson.Gson;
 
