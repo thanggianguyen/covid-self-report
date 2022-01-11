@@ -93,7 +93,7 @@ public class SurveyDatingFragment extends Fragment {
         //Initialize Warnings by adding each TextView to the array:
         int[] textIDs = {R.id.dating_PhyTouWarn_text, R.id.dating_PayWarn_text,
                 R.id.dating_DateWarn_text, R.id.dating_SexWarn_text};
-        warn = new CheckBox[textIDs.length];
+        warn = new TextView[textIDs.length];
         for (int i = 0; i < textIDs.length; i++)
             warn[i] = view.findViewById(textIDs[i]);
 
