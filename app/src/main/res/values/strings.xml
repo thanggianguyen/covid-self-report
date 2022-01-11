@@ -85,8 +85,19 @@
     <string name="phone_number_edittext">Phone Number</string>
     <string name="age_edittext">Age</string>
     <string name="pronouns_hint">Pronouns</string>
+    <string name="booster_shot_date_hint">Booster Shot Date is missing</string>
     <string name="vaccinated_date_hint">Vaccinated Date</string>
-    <string name="booster_shot_date_hint">Booster Shot Date</string>
+    <string name="profile_name_missing">Name is missing</string>
+    <string name="profile_age_missing">Age is missing</string>
+    <string name="profile_pronouns_missing">Pronouns are missing</string>
+    <string name="profile_phone_number_missing">Phone number is missing</string>
+    <string name="profile_gender_not_selected">Gender is not selected</string>
+    <string name="profile_gender_missing">Gender is missing</string>
+    <string name="vaccinated_date_missing">Vaccinated Date is missing</string>
+    <string name="second_date_missing">Second Shot Date is missing</string>
+    <string name="booster_shot_date_missing">Booster Shot Date is missing</string>
+
+    <string name="done">Done</string>
 
 
 </resources>

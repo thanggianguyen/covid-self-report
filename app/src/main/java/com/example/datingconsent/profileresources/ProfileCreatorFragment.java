@@ -15,18 +15,16 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,11 +32,12 @@ import androidx.fragment.app.Fragment;
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
 
-import java.lang.reflect.Array;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -55,19 +54,19 @@ import java.util.Locale;
 public class ProfileCreatorFragment extends Fragment {
 
     /**
-     * The textbox the user enters their name in
+     * The text box the user enters their name in
      */
     private EditText nameEdt;
     /**
-     * The textbox the user enters their age in
+     * The text box the user enters their age in
      */
     private EditText ageEdt;
     /**
-     * The textbox the user enters their pronouns in
+     * The text box the user enters their pronouns in
      */
     private EditText pronounsEdt;
     /**
-     * The textbox the user enters their phone number in
+     * The text box the user enters their phone number in
      */
     private EditText phoneNumberEdt;
     /**
@@ -75,15 +74,15 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private Spinner genderSpinner;
     /**
-     * The textbox the user enters if they select Other for gender
+     * The text box the user enters if they select Other for gender
      */
     private EditText genderOtherEdt;
     /**
-     * The textbox the user enters their religion in
+     * The text box the user enters their religion in
      */
     private EditText religionEdt;
     /**
-     * The textbox the user enters their political view in
+     * The text box the user enters their political view in
      */
     private EditText politicalViewEdt;
     /**
@@ -91,7 +90,7 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private Spinner sexualOrientationSpinner;
     /**
-     * The textbox the user enters their other sexual orientation in
+     * The text box the user enters their other sexual orientation in
      */
     private EditText sexualOrientationOtherEdt;
     /**
@@ -99,7 +98,7 @@ public class ProfileCreatorFragment extends Fragment {
      */
     private Spinner lookingForSpinner;
     /**
-     * The textbox the user enters their custom looking for in
+     * The text box the user enters their custom looking for in
      */
     private EditText lookingForOtherEdt;
     /**
@@ -139,50 +138,13 @@ public class ProfileCreatorFragment extends Fragment {
      * The button the user clicks to create their profile
      */
     private Button createButton;
-    /**
-     * Button for changing the name attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeNameButton;
-    /**
-     * Button for changing the phone number attribute (not used if parent is ProfileCreator)
-     */
-    private Button changePhoneNumberButton;
-    /**
-     * Button for changing the pronouns attribute (not used if parent is ProfileCreator)
-     */
-    private Button changePronounsButton;
-    /**
-     * Button for changing the age attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeAgeButton;
-    /**
-     * Button for changing the gender attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeGenderButton;
-    /**
-     * Button for changing the religion attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeReligionButton;
-    /**
-    /**
-     * Button for changing the political view attribute (not used if parent is ProfileCreator)
-     */
-    private Button changePoliticalButton;
-    /**
-     * Button for changing the sexual orientation  attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeSexualOrientationButton;
-    /**
-     * Button for changing the looking for attribute (not used if parent is ProfileCreator)
-     */
-    private Button changeLookingForButton;
 
     /**
      * Tracks and is activated upon any text input events for phoneNumberEdt
      */
     private PhoneNumberFormattingTextWatcher phoneNumberFormatter;
     /**
-     * Tracks and is activated upon any text input events for nameEdt
+     * Tracks and is activated upon any text input events for input fields
      */
     private TextWatcher nameFormatter;
     private TextWatcher ageFormatter;
@@ -221,8 +183,12 @@ public class ProfileCreatorFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //TODO: autofill out input with saved data
+        if (!(requireActivity() instanceof com.example.datingconsent.ui.ProfileCreator)) {
+            nameEdt.setText(MainActivity.getProfile().getName());
+        }
 
-        //Instantiate the name text box and build its formatter (enhanced TextWatcher)
+            //Instantiate the name text box and build its formatter (enhanced TextWatcher)
         nameEdt = view.findViewById(R.id.profile_name_edittext);
         nameFormatter= buildInputFormatter(nameEdt);
         nameEdt.addTextChangedListener(nameFormatter);
@@ -279,68 +245,59 @@ public class ProfileCreatorFragment extends Fragment {
         secondShotDateEdt.setInputType(InputType.TYPE_NULL);
         boosterShotDateEdt.setInputType(InputType.TYPE_NULL);
 
-        vaccinatedDateEdt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar=Calendar.getInstance();
-                String date = vaccinatedDateEdt.getText().toString();
-                String[] dateParts = date.split("/");
+        vaccinatedDateEdt.setOnClickListener(v -> {
+            final Calendar calendar=Calendar.getInstance();
+            String date = vaccinatedDateEdt.getText().toString();
+            String[] dateParts = date.split("/");
 
-                int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-                int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-                int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-                DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
+            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
+            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
+            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        vaccinatedDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                    }
-                }, year, month, day);
-                picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-                picker.show();
-            }
+                @Override
+                public void onDateSet(DatePicker view1, int year, int month, int dayOfMonth) {
+                    vaccinatedDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
+                }
+            }, year, month, day);
+            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+            picker.show();
         });
-        secondShotDateEdt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar=Calendar.getInstance();
-                String date = secondShotDateEdt.getText().toString();
-                String[] dateParts = date.split("/");
+        secondShotDateEdt.setOnClickListener(v -> {
+            final Calendar calendar=Calendar.getInstance();
+            String date = secondShotDateEdt.getText().toString();
+            String[] dateParts = date.split("/");
 
-                int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-                int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-                int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-                DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
+            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
+            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
+            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        secondShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                    }
-                }, year, month, day);
-                picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-                picker.show();
-            }
+                @Override
+                public void onDateSet(DatePicker view12, int year, int month, int dayOfMonth) {
+                    secondShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
+                }
+            }, year, month, day);
+            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+            picker.show();
         });
-        boosterShotDateEdt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar=Calendar.getInstance();
-                String date = boosterShotDateEdt.getText().toString();
-                String[] dateParts = date.split("/");
+        boosterShotDateEdt.setOnClickListener(v -> {
+            final Calendar calendar=Calendar.getInstance();
+            String date = boosterShotDateEdt.getText().toString();
+            String[] dateParts = date.split("/");
 
-                int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-                int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-                int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-                DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
+            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
+            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
+            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
 
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        boosterShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                    }
-                }, year, month, day);
-                picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-                picker.show();
-            }
+                @Override
+                public void onDateSet(DatePicker view13, int year, int month, int dayOfMonth) {
+                    boosterShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
+                }
+            }, year, month, day);
+            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+            picker.show();
         });
         //Vaccination status choices
         vaccinatedRadioGroup = view.findViewById(R.id.vaccinated_radio_group);
@@ -403,76 +360,35 @@ public class ProfileCreatorFragment extends Fragment {
         sexualOrientationSpinner = (Spinner) view.findViewById(R.id.sexual_orientation_spinner);
         lookingForSpinner = (Spinner) view.findViewById(R.id.looking_for_spinner);
 
-        buildSpinnerAdapter(gender_array,genderSpinner,genderOtherEdt,4);
-        buildSpinnerAdapter(sexual_orientation_array,sexualOrientationSpinner,sexualOrientationOtherEdt,4);
-        buildSpinnerAdapter(looking_for_array,lookingForSpinner,lookingForOtherEdt,4);
+        buildSpinnerAdapter(gender_array,genderSpinner,genderOtherEdt);
+        buildSpinnerAdapter(sexual_orientation_array,sexualOrientationSpinner,sexualOrientationOtherEdt);
+        buildSpinnerAdapter(looking_for_array,lookingForSpinner,lookingForOtherEdt);
         //endregion
 
 
         //Instantiate the buttons:
         createButton = view.findViewById(R.id.profile_create_button);
-        changeNameButton = view.findViewById(R.id.profile_change_name_button);
-        changeAgeButton = view.findViewById(R.id.profile_change_age_button);
-        changePhoneNumberButton = view.findViewById(R.id.profile_change_phone_number_button);
-        changeGenderButton = view.findViewById(R.id.profile_change_gender_button);
-        changeReligionButton =  view.findViewById(R.id.profile_change_religion_button);
-        changePoliticalButton = view.findViewById(R.id.profile_change_political_button);
-        changeSexualOrientationButton = view.findViewById(R.id.profile_change_sexual_orientation_button);
-        changeLookingForButton = view.findViewById(R.id.profile_change_looking_for_button);
 
-/*
+
+
         //***SET ONCLICK METHODS FOR THE BUTTONS***
         //If this fragment is used by ProfileCreator:
-        if (requireActivity() instanceof com.example.covidselfreport.ProfileCreator) {
-            createButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    createButtonHandler(v);
-                }
-            });
-        }
-        else { //else, make the change buttons visible and set their OnClickListeners:
+        if (!(requireActivity() instanceof com.example.datingconsent.ui.ProfileCreator)) {
+            //TODO Populate fields with Profile
             ((TextView)(view.findViewById(R.id.profile_title_textview))).setText(R.string.profile_title_textview_text_alternate);
-
             createButton.setText(R.string.done);
-            createButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    requireActivity().finish();
+        }
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createButtonHandler(v);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
-            });
-
-            changeFirstNameButton.setVisibility(View.VISIBLE);
-            changeFirstNameButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    changeFirstNameButtonHandler(v);
-                }
-            });
-
-            changeLastNameButton.setVisibility(View.VISIBLE);
-            changeLastNameButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    changeLastNameButtonHandler(v);
-                }
-            });
-
-            changePhoneNumberButton.setVisibility(View.VISIBLE);
-            changePhoneNumberButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    changePhoneNumberButtonHandler(v);
-                }
-            });
-
-            Profile profile = MainActivity.getProfile();
-            if (profile != null) {
-                firstNameET.setText(profile.getFirstName());
-                lastNameET.setText(profile.getLastName());
-                phoneNumberET.setText(profile.getPhoneNumber());
             }
-        }*/
+        });
+
     }
 
     /**
@@ -482,21 +398,16 @@ public class ProfileCreatorFragment extends Fragment {
      * @param array
      * @param spinner
      * @param otherEdt
-     * @param otherPosition
      */
-    private void buildSpinnerAdapter(String[] array, Spinner spinner, EditText otherEdt, int otherPosition){
-        final List<String> itemList = new ArrayList<String>(Arrays.asList(array));
+    private void buildSpinnerAdapter(String[] array, Spinner spinner, EditText otherEdt){
+        final List<String> itemList = new ArrayList<>(Arrays.asList(array));
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity().getBaseContext(),
                 R.layout.custom_spinner_items,itemList){
             @Override
             public boolean isEnabled(int position){
-                if(position==0){
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                }
-                else
-                    return true;
+                // Disable the first item from Spinner
+                // First item will be use for hint
+                return position != 0;
             }
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent){
@@ -521,7 +432,7 @@ public class ProfileCreatorFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 otherEdt.setVisibility(View.GONE);
-                if(position==otherPosition) //Enable other EditText when Other is selected
+                if(position== 4) //Enable other EditText when Other is selected
                     otherEdt.setVisibility(View.VISIBLE);
                 if(position>0){ //Color the current selection black instead of gray
                     ((TextView)parent.getChildAt(0)).setTextColor(Color.BLACK);
@@ -540,111 +451,115 @@ public class ProfileCreatorFragment extends Fragment {
      * Handles any click event for the "Create Profile" button (profile_create_button).
      * If the EditText entries are valid, they get assigned to their respective MainActivity.profile
      * fields and the activity finishes.
-     * If any EditText entry is not valid, an error message will appear under that EditText.
+     * If any EditText entry is not valid,
+     * or any Spinner is not selected,
+     * or any RadioGroup is not selected
+     * an error message will appear as Toast message.
      * @param view The button being clicked.
      */
-    /*private void createButtonHandler(View view) {
+    private void createButtonHandler(View view) throws ParseException {
+        boolean missing;
         String name = nameEdt.getText().toString();
         String age = ageEdt.getText().toString();
         String pronouns = pronounsEdt.getText().toString();
         String phoneNumber = phoneNumberEdt.getText().toString();
         String gender = genderSpinner.getSelectedItem().toString();
-        if (gender == "Other")
+        if (gender.equals(getResources().getStringArray(R.array.gender_array)[4]))
             gender = genderOtherEdt.getText().toString();
+        else if(gender.equals(getResources().getStringArray(R.array.gender_array)[0]))
+            gender ="";
         String religion = religionEdt.getText().toString();
         String sexualOrientation = sexualOrientationSpinner.getSelectedItem().toString();
-        if (sexualOrientation =="Other")
+        if (sexualOrientation.equals(getResources().getStringArray(R.array.sexual_orientation_array)[4]))
             sexualOrientation = sexualOrientationOtherEdt.getText().toString();
+        else if(sexualOrientation.equals(getResources().getStringArray(R.array.sexual_orientation_array)[0]))
+            sexualOrientation = "";
         String lookingFor = lookingForSpinner.getSelectedItem().toString();
-        if(lookingFor=="Other")
+        if(lookingFor.equals(getResources().getStringArray(R.array.looking_for_array)[4]))
             lookingFor=lookingForOtherEdt.getText().toString();
+        else if(lookingFor.equals(getResources().getStringArray(R.array.sexual_orientation_array)[0]))
+            lookingFor="";
+        String politicalView = politicalViewEdt.getText().toString();
+        boolean vaccinated = vaccinatedRadioGroup.getCheckedRadioButtonId() == R.id.vaccinated_yes_radio_button;
+        boolean second = secondShotRadioGroup.getCheckedRadioButtonId() == R.id.second_yes_radio_button;
+        boolean booster = boosterRadioGroup.getCheckedRadioButtonId() == R.id.booster_yes_radio_button;
+        Date vaccinatedDate;
+        Date secondDate;
+        Date boosterDate;
 
+        //Check for missing fields or unselected fields
+        if(missing = name.isEmpty())
+            Toast.makeText(requireActivity(), R.string.profile_name_missing, Toast.LENGTH_LONG).show();
+        else if(missing = age.isEmpty())
+            Toast.makeText(requireActivity(), R.string.profile_age_missing, Toast.LENGTH_LONG).show();
+        else if(missing = pronouns.isEmpty())
+            Toast.makeText(requireActivity(), R.string.profile_pronouns_missing, Toast.LENGTH_LONG).show();
+        else if(missing = phoneNumber.isEmpty())
+            Toast.makeText(requireActivity(), R.string.profile_phone_number_missing, Toast.LENGTH_LONG).show();
+        else if(missing = genderSpinner.getSelectedItemPosition()==0)
+            Toast.makeText(requireActivity(), R.string.profile_gender_not_selected, Toast.LENGTH_LONG).show();
+        else if(missing = gender.isEmpty())
+            Toast.makeText(requireActivity(), R.string.profile_gender_missing, Toast.LENGTH_LONG).show();
+        else if(vaccinated){
+            if(missing = vaccinatedDateEdt.getText().toString().isEmpty()) //vaccinated date is not there
+            Toast.makeText(requireActivity(), R.string.vaccinated_date_missing, Toast.LENGTH_LONG).show();
+            else if (second) {
+                if (missing = secondShotDateEdt.getText().toString().isEmpty())
+                    Toast.makeText(requireActivity(), R.string.second_date_missing, Toast.LENGTH_LONG).show();
+                else if (booster) {
+                    if (missing = boosterShotDateEdt.getText().toString().isEmpty())
+                        Toast.makeText(requireActivity(), R.string.booster_shot_date_missing, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
 
+        //TODO:Prepare dates for setting
+        if(!missing) {
+
+            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+            try {
+                if(vaccinated) {
+                    vaccinatedDate = format.parse(vaccinatedDateEdt.getText().toString());
+                    MainActivity.getProfile().setVaccinationDate(vaccinatedDate);
+                }
+                if(second) {
+                    secondDate = format.parse(secondShotDateEdt.getText().toString());
+                    MainActivity.getProfile().setSecondShotDate(secondDate);
+                }
+                if(booster) {
+                    boosterDate = format.parse(boosterShotDateEdt.getText().toString());
+                    MainActivity.getProfile().setBoosterDate(boosterDate);
+                }
+            } catch (ParseException e) {
+                Log.e("ProfileCreator: ", "Date Parsing Error");
+            }
+
+            Log.d("ProfileCreator: ",name);
         MainActivity.getProfile().setName(name);
-        MainActivity.getProfile().setAge(age);
+        MainActivity.getProfile().setAge(Integer.parseInt(age));
         MainActivity.getProfile().setPronouns(pronouns);
         MainActivity.getProfile().setPhoneNumber(phoneNumber);
         MainActivity.getProfile().setGender(gender);
         MainActivity.getProfile().setReligion(religion);
-        MainActivity.getProfile().setSexualOrientation(sexualOrientation);
-        MainActivity.getProfile().setLookingFor(lookingFor);
+        MainActivity.getProfile().setSexOrientation(sexualOrientation);
+        MainActivity.getProfile().setLooking(lookingFor);
+        MainActivity.getProfile().setPoliticalView(politicalView);
+        MainActivity.getProfile().setVaccinated(vaccinated);
+        MainActivity.getProfile().setSecondShot(second);
+        MainActivity.getProfile().setBoosterShot(booster);
 
 
         Intent returnIntent = new Intent();
         requireActivity().setResult(Activity.RESULT_OK, returnIntent);
         requireActivity().finish();
 
-
-    }*/
-
-
-    /**
-     * Only used if the parent activity is NOT ProfileCreator
-     * Handles any click event for the "change first name" button.
-     * If the EditText entry for first name is valid, profile first name is changed and a check mark
-     * is displayed.
-     * If the EditText entry is invalid, an error message appears.
-     * @param view The button being clicked
-     */
-   /* private void changeButtonHandler(View view) {
-        String firstName = firstNameET.getText().toString();
-
-        if (firstName.matches("[a-zA-z]+")) {
-            MainActivity.getProfile().setFirstName(firstName);
-            invalidFirstNameTV.setVisibility(View.INVISIBLE);
-            firstNameCheckMark.setVisibility(View.VISIBLE);
         }
-        else {
-            invalidFirstNameTV.setVisibility(View.VISIBLE);
-            firstNameCheckMark.setVisibility(View.INVISIBLE);
-        }
-    }*/
+    }
 
 
-    /**
-     * Only used if the parent activity is NOT ProfileCreator
-     * Handles any click event for the "change last name" button.
-     * If the EditText entry for first name is valid, profile last name is changed and a check mark
-     * is displayed.
-     * If the EditText entry is invalid, an error message appears.
-     * @param view The button being clicked
-     */
-    /*private void changeLastNameButtonHandler(View view) {
-        String lastName = lastNameET.getText().toString();
-
-        if (lastName.matches("[a-zA-z]+")) {
-            MainActivity.getProfile().setLastName(lastName);
-            invalidLastNameTV.setVisibility(View.INVISIBLE);
-            lastNameCheckMark.setVisibility(View.VISIBLE);
-        }
-        else {
-            invalidLastNameTV.setVisibility(View.VISIBLE);
-            lastNameCheckMark.setVisibility(View.INVISIBLE);
-        }
-    }*/
 
 
-    /**
-     * Only used if the parent activity is NOT ProfileCreator
-     * Handles any click event for the "change phone number" button.
-     * If the EditText entry for first name is valid, profile phone number is changed and a check mark
-     * is displayed.
-     * If the EditText entry is invalid, an error message appears.
-     * @param view The button being clicked
-     */
-    /*private void changePhoneNumberButtonHandler(View view) {
-        String phoneNumber = phoneNumberET.getText().toString();
 
-        if (phoneNumber.matches("\\(\\d{3}\\)\\s\\d{3}-\\d{4}")) {
-            MainActivity.getProfile().setPhoneNumber(phoneNumber);
-            invalidPhoneNumberTV.setVisibility(View.INVISIBLE);
-            phoneNumberCheckMark.setVisibility(View.VISIBLE);
-        }
-        else {
-            invalidPhoneNumberTV.setVisibility(View.VISIBLE);
-            phoneNumberCheckMark.setVisibility(View.INVISIBLE);
-        }
-    }*/
 
 
     /**
@@ -661,43 +576,39 @@ public class ProfileCreatorFragment extends Fragment {
      * Ensures that the inputted value are only digits
      */
     private TextWatcher buildNumberFormatter(EditText inputEdt) {
-            TextWatcher numberFormatter = new TextWatcher() {
-            private boolean backspaceFlag; //Set to true if the user is erasing a character.
-            private boolean editedFlag;
-            private int cursorPos;
+        return new TextWatcher() {
+        private boolean backspaceFlag; //Set to true if the user is erasing a character.
+        private boolean editedFlag;
+        private int cursorPos;
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //Assign the cursor position to the location the edit took place.
-                cursorPos = s.length() - inputEdt.getSelectionStart();
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            //Assign the cursor position to the location the edit took place.
+            cursorPos = s.length() - inputEdt.getSelectionStart();
 
-                if (count > after)
-                    backspaceFlag = true;
-                else
-                    backspaceFlag = false;
-            }
+            backspaceFlag = count > after;
+        }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int count, int after)
-            {}
+        @Override
+        public void onTextChanged(CharSequence s, int start, int count, int after)
+        {}
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                String number = s.toString();
-                //Get rid of all characters that are not number:
-                number = number.replaceAll("[^\\d]", "");
-                if (!editedFlag) {
-                    if (!backspaceFlag) {
-                        editedFlag = true;
-                        inputEdt.setText(number);
-                        inputEdt.setSelection(inputEdt.getText().length() - cursorPos);
-                    }
+        @Override
+        public void afterTextChanged(Editable s) {
+            String number = s.toString();
+            //Get rid of all characters that are not number:
+            number = number.replaceAll("[^\\d]", "");
+            if (!editedFlag) {
+                if (!backspaceFlag) {
+                    editedFlag = true;
+                    inputEdt.setText(number);
+                    inputEdt.setSelection(inputEdt.getText().length() - cursorPos);
                 }
-                else
-                    editedFlag = false;
             }
-        };
-            return numberFormatter;
+            else
+                editedFlag = false;
+        }
+    };
     }
 
     /**
@@ -709,7 +620,7 @@ public class ProfileCreatorFragment extends Fragment {
         //Set to true if the user is erasing a character.
         //Assign the cursor position to the location the edit took place.
         //Get rid of all characters that are not alphabetical, whitespace, or hyphens:
-        TextWatcher inputFormatter = new TextWatcher() {
+        return new TextWatcher() {
             private boolean backspaceFlag; //Set to true if the user is erasing a character.
             private boolean editedFlag;
             private int cursorPos;
@@ -719,10 +630,7 @@ public class ProfileCreatorFragment extends Fragment {
                 //Assign the cursor position to the location the edit took place.
                 cursorPos = s.length() - inputEdt.getSelectionStart();
 
-                if (count > after)
-                    backspaceFlag = true;
-                else
-                    backspaceFlag = false;
+                backspaceFlag = count > after;
             }
 
             @Override
@@ -744,6 +652,5 @@ public class ProfileCreatorFragment extends Fragment {
                     editedFlag = false;
             }
         };
-        return inputFormatter;
     }
 }
