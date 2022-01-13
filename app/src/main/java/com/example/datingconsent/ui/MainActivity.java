@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Initialize local variables gson (JSON file reader), toProfileCreator (takes user to the ProfileCreator activity), and profileJsonStr (String of the user's profile, saved as a JSON file):
+        preferenceSurvey = new Survey(5);
         Gson gson = new Gson();
         Intent toProfileCreator = new Intent(this, SurveyLauncher.class);
         startActivityForResult(toProfileCreator, 123);

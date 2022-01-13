@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,12 @@ import android.widget.TextView;
 
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
+import com.example.datingconsent.ui.SurveyLauncher;
 
 public class SurveyDatingFragment extends Fragment {
 
     private final Survey preferences = MainActivity.getPreferenceSurvey();
+    private FragmentManager fm;
     private RadioGroup PhyTou, Pay, Sex;
     private CheckBox[] dates;
     private TextView[] warn;
@@ -241,11 +244,14 @@ public class SurveyDatingFragment extends Fragment {
 
         //Save responses and quit the activity
         preferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.PREFERENCE_SURVEY_FILE_NAME);
-        if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {
+        /*if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {
             Intent returnIntent = new Intent();
             requireActivity().setResult(Activity.RESULT_OK, returnIntent);
         }
-        requireActivity().finish();
+        requireActivity().finish();*/
+        fm = getParentFragmentManager();
+        fm.beginTransaction().replace(R.id.survey_content_container,new SurveySexFragment()).commit();
+
     }
     /**
      * Handles click events for the backButton.
