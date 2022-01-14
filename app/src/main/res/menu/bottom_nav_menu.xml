@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_calendar"
+        android:id="@+id/navigation_survey"
         android:icon="@drawable/selector_calendar"
-        android:title="@string/title_calendar" />
+        android:title="@string/title_survey" />
 
     <item
-        android:id="@+id/navigation_intake"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/selector_intake"
-        android:title="@string/title_intake" />
+        android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_profile"

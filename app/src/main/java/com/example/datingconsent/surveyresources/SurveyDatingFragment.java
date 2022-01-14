@@ -1,5 +1,7 @@
 package com.example.datingconsent.surveyresources;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -190,7 +192,7 @@ public class SurveyDatingFragment extends Fragment {
                 dates[i].setChecked(true);
         }
         //Set the text response for Q3:
-        datesOther.setText(datingpreferences.getTextboxResponse(0));
+        datesOther.setText(datingpreferences.getTextboxResponse(2));
 
         //Set the selected RadioButton of RadioGroup q3Responses:
         int selectedIndexQ4;
@@ -239,13 +241,17 @@ public class SurveyDatingFragment extends Fragment {
 
         //Save responses and quit the activity
         datingpreferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.DATING_PREFERENCE_SURVEY_FILE_NAME);
-        /*if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {
-            Intent returnIntent = new Intent();
-            requireActivity().setResult(Activity.RESULT_OK, returnIntent);
+        if(Sex.getCheckedRadioButtonId()==R.id.dating_SexYes_radiobtn) {
+            fm = getParentFragmentManager();
+            fm.beginTransaction().replace(R.id.survey_content_container, new SurveySexFragment()).commit();
         }
-        requireActivity().finish();*/
-        fm = getParentFragmentManager();
-        fm.beginTransaction().replace(R.id.survey_content_container,new SurveySexFragment()).commit();
+        else if(Sex.getCheckedRadioButtonId()==R.id.dating_SexNo_radiobtn){
+            if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {
+                Intent returnIntent = new Intent();
+                requireActivity().setResult(Activity.RESULT_OK, returnIntent);
+            }
+            requireActivity().finish();
+        }
     }
     /**
      * Handles click events for the backButton.

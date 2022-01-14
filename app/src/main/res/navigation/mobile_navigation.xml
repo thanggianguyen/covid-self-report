@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_calendar">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_calendar"
-        android:name="com.example.covidselfreport.ui.calendar.CalendarFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        android:id="@+id/navigation_survey"
+        android:name="com.example.datingconsent.ui.survey.SurveyFragment"
+        android:label="@string/title_survey"
+        tools:layout="@layout/fragment_survey" />
 
     <fragment
-        android:id="@+id/navigation_intake"
-        android:name="com.example.covidselfreport.ui.intake.IntakeFragment"
-        android:label="@string/title_intake"
-        tools:layout="@layout/fragment_intake" />
+        android:id="@+id/navigation_home"
+        android:name="com.example.datingconsent.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.covidselfreport.ui.profile.ProfileFragment"
+        android:name="com.example.datingconsent.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

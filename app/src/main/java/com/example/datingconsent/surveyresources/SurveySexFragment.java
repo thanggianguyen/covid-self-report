@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -27,12 +28,14 @@ import com.example.datingconsent.ui.MainActivity;
 public class SurveySexFragment extends Fragment {
 
     private final Survey sexpreferences = MainActivity.getSexPreferenceSurvey();
+    private final Survey datingpreferences = MainActivity.getDatingPreferenceSurvey();
     private CheckBox kiss,birthControl, tongue,
                      vaginal, anal, oral;
     private CheckBox[] bc;
     private TextView bcNote, bcSubnote;
     private RadioGroup analGroup, oralGroup;
     private Button doneButton,backButton;
+    private RadioGroup datingSex;
 
     public SurveySexFragment() {
         // Required empty public constructor
@@ -70,6 +73,7 @@ public class SurveySexFragment extends Fragment {
         oralGroup = view.findViewById(R.id.sex_Oral_radioGroup);
         doneButton = view.findViewById(R.id.sex_Done_button);
         backButton = view.findViewById(R.id.sex_Back_button);
+        datingSex = view.findViewById(R.id.dating_Sex_RadioGroup);
 
         //Additional information prompted if kissing Checkbox is checked
         kiss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -160,7 +164,7 @@ public class SurveySexFragment extends Fragment {
                 if(!kiss.isChecked() && !birthControl.isChecked() &&
                         !vaginal.isChecked() && !anal.isChecked() && !oral.isChecked())
                 {
-                    AlertDialog.Builder warning = new AlertDialog.Builder(this);
+                    AlertDialog.Builder warning = new AlertDialog.Builder(requireActivity());
 
                     warning.setCancelable(true);
                     warning.setTitle("WARNING!");
@@ -175,12 +179,16 @@ public class SurveySexFragment extends Fragment {
                     warning.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            datingpreferences.setResponse(3, "1");
+                            Intent returnIntent = new Intent();
+                            requireActivity().setResult(Activity.RESULT_OK, returnIntent);
                             requireActivity().finish();
                         }
                     });
+                    warning.show();
                 }
-                    doneButtonHandler(v);
+                    else
+                        doneButtonHandler(v);
             }
         });
 
@@ -264,7 +272,7 @@ public class SurveySexFragment extends Fragment {
         sexpreferences.setResponse(2, birthControlResponse.substring(0, birthControlResponse.length()));
 
         //Set the response for Birth Control (index 3 of the preferenceSurvey questions arrays) to the selected CheckBoxes' text fields:
-        sexpreferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.dating_DateTitle_text)).getText().toString());
+        sexpreferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.sex_BirthControlCheck_checkbox)).getText().toString());
         String bcResponse = "";
         for (CheckBox current : bc) {
             if (current.isChecked())
@@ -286,7 +294,7 @@ public class SurveySexFragment extends Fragment {
             analResponse = anal.getText().toString();
         sexpreferences.setResponse(5, analResponse);
 
-        //Set the response for Anal (index 6 of the preferenceSurvey questions arrays) to the selected radiobutton index of Physical Touch Response:
+        //Set the response for Anal (index 6 of the preferenceSurvey questions arrays) to the selected radiobutton index of Anal Response:
         sexpreferences.setQuestion(6, ((TextView)requireActivity().findViewById(R.id.sex_AnalCheck_checkbox)).getText().toString());
         sexpreferences.setResponse(6, Integer.toString(analGroup.indexOfChild(requireView().findViewById(
                 analGroup.getCheckedRadioButtonId()))));
@@ -298,7 +306,7 @@ public class SurveySexFragment extends Fragment {
             oralResponse = oral.getText().toString();
         sexpreferences.setResponse(7, oralResponse);
 
-        //Set the response for Oral (index 8 of the preferenceSurvey questions arrays) to the selected radiobutton index of Physical Touch Response:
+        //Set the response for Oral (index 8 of the preferenceSurvey questions arrays) to the selected radiobutton index of Oral Response:
         sexpreferences.setQuestion(8, ((TextView)requireActivity().findViewById(R.id.sex_OralCheck_checkbox)).getText().toString());
         sexpreferences.setResponse(8, Integer.toString(oralGroup.indexOfChild(requireView().findViewById(
                 oralGroup.getCheckedRadioButtonId()))));
