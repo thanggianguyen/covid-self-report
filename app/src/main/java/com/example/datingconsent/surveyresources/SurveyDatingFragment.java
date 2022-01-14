@@ -1,11 +1,8 @@
 package com.example.datingconsent.surveyresources;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
@@ -18,26 +15,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
-import com.example.datingconsent.ui.SurveyLauncher;
 
 public class SurveyDatingFragment extends Fragment {
 
-    private final Survey preferences = MainActivity.getPreferenceSurvey();
+    private final Survey datingpreferences = MainActivity.getDatingPreferenceSurvey();
     private FragmentManager fm;
-    private RadioGroup PhyTou, Pay, Sex;
+    private RadioGroup PhyTou, Pay;
+    public RadioGroup Sex;
     private CheckBox[] dates;
     private TextView[] warn;
     private EditText PhyTouWhere, datesOther;
     private Button backButton, doneButton;
     private int count=0;
-    //TODO: Transition from Dating Survey to Sex Survey
+
     public SurveyDatingFragment() {
         // Required empty public constructor
     }
@@ -106,8 +102,7 @@ public class SurveyDatingFragment extends Fragment {
             doneButton.setText("Update");
         }
         //If the host activity is something else (SurveyLauncher), make the back button invisible
-        // (user has no choice but to fill out the survey) and change the "Update" button text to
-        //"Next", and make updateButton in the center of the screen.
+        // (user has no choice but to fill out the survey)
         else {
             backButton.setVisibility(View.INVISIBLE);
 
@@ -170,7 +165,7 @@ public class SurveyDatingFragment extends Fragment {
     private void initializeComponentsForModifier(View view) {
         //Set the selected RadioButton of RadioGroup q1Responses:
         int selectedIndexQ1;
-        try { selectedIndexQ1 = Integer.parseInt(preferences.getResponse(0)); }
+        try { selectedIndexQ1 = Integer.parseInt(datingpreferences.getResponse(0)); }
         catch (NumberFormatException e) { selectedIndexQ1 = 0; }
         switch (selectedIndexQ1) {
             case 0: PhyTou.check(R.id.dating_PhyTouYes_radiobtn); break;
@@ -178,11 +173,11 @@ public class SurveyDatingFragment extends Fragment {
         }
 
         //Set the text response for Q1:
-        PhyTouWhere.setText(preferences.getTextboxResponse(0));
+        PhyTouWhere.setText(datingpreferences.getTextboxResponse(0));
 
         //Set the selected RadioButton of RadioGroup q2Responses:
         int selectedIndexQ2;
-        try { selectedIndexQ2 = Integer.parseInt(preferences.getResponse(1)); }
+        try { selectedIndexQ2 = Integer.parseInt(datingpreferences.getResponse(1)); }
         catch (NumberFormatException e) { selectedIndexQ2 = 0; }
         switch (selectedIndexQ2) {
             case 0: Pay.check(R.id.dating_PayYes_radiobtn); break;
@@ -191,15 +186,15 @@ public class SurveyDatingFragment extends Fragment {
 
         //Set the selected checkboxes for Q3:
         for (int i = 0; i < dates.length; i++) {
-            if (preferences.getResponse(2).contains(dates[i].getText().toString()))
+            if (datingpreferences.getResponse(2).contains(dates[i].getText().toString()))
                 dates[i].setChecked(true);
         }
         //Set the text response for Q3:
-        datesOther.setText(preferences.getTextboxResponse(0));
+        datesOther.setText(datingpreferences.getTextboxResponse(0));
 
         //Set the selected RadioButton of RadioGroup q3Responses:
         int selectedIndexQ4;
-        try { selectedIndexQ4 = Integer.parseInt(preferences.getResponse(3)); }
+        try { selectedIndexQ4 = Integer.parseInt(datingpreferences.getResponse(3)); }
         catch (NumberFormatException e) { selectedIndexQ4 = 0; }
         switch(selectedIndexQ4) {
             case 0: Sex.check(R.id.dating_SexYes_radiobtn); break;
@@ -217,33 +212,33 @@ public class SurveyDatingFragment extends Fragment {
 
     private void doneButtonHandler(View view) {
         //Set the response for Physical Touch (index 0 of the preferenceSurvey questions arrays) to the selected radiobutton index of Physical Touch Response:
-        preferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.dating_PhyTouTitle_text)).getText().toString());
-        preferences.setResponse(0, Integer.toString(PhyTou.indexOfChild(requireView().findViewById(
+        datingpreferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.dating_PhyTouTitle_text)).getText().toString());
+        datingpreferences.setResponse(0, Integer.toString(PhyTou.indexOfChild(requireView().findViewById(
                 PhyTou.getCheckedRadioButtonId()))));
-        preferences.setTextboxResponse(0, PhyTouWhere.getText().toString());
+        datingpreferences.setTextboxResponse(0, PhyTouWhere.getText().toString());
 
         //Set the response for Paying (index 1 of the preferenceSurvey questions arrays) to the selected radiobutton index of Paying Response:
-        preferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.dating_PayTitle_text)).getText().toString());
-        preferences.setResponse(1, Integer.toString(Pay.indexOfChild(requireView().findViewById(
+        datingpreferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.dating_PayTitle_text)).getText().toString());
+        datingpreferences.setResponse(1, Integer.toString(Pay.indexOfChild(requireView().findViewById(
                 Pay.getCheckedRadioButtonId()))));
 
         //Set the response for Dates (index 2 of the preferenceSurvey questions arrays) to the selected CheckBoxes' text fields:
-        preferences.setQuestion(2, ((TextView)requireActivity().findViewById(R.id.dating_DateTitle_text)).getText().toString());
+        datingpreferences.setQuestion(2, ((TextView)requireActivity().findViewById(R.id.dating_DateTitle_text)).getText().toString());
         String datesResponse = "";
         for (CheckBox current : dates) {
             if (current.isChecked())
                 datesResponse += current.getText().toString() + ", ";
         }
-        preferences.setResponse(2, datesResponse.substring(0, datesResponse.length() - 2));
-        preferences.setTextboxResponse(0, datesOther.getText().toString());
+        datingpreferences.setResponse(2, datesResponse.substring(0, datesResponse.length() - 2));
+        datingpreferences.setTextboxResponse(0, datesOther.getText().toString());
 
         //Set the response for Sex (index 3 of the preferenceSurvey questions arrays) to the selected radiobutton index of Sex Response:
-        preferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.dating_SexTitle_text)).getText().toString());
-        preferences.setResponse(3, Integer.toString(Sex.indexOfChild(requireView().findViewById(
+        datingpreferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.dating_SexTitle_text)).getText().toString());
+        datingpreferences.setResponse(3, Integer.toString(Sex.indexOfChild(requireView().findViewById(
                 Sex.getCheckedRadioButtonId()))));
 
         //Save responses and quit the activity
-        preferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.PREFERENCE_SURVEY_FILE_NAME);
+        datingpreferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.DATING_PREFERENCE_SURVEY_FILE_NAME);
         /*if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {
             Intent returnIntent = new Intent();
             requireActivity().setResult(Activity.RESULT_OK, returnIntent);
@@ -251,7 +246,6 @@ public class SurveyDatingFragment extends Fragment {
         requireActivity().finish();*/
         fm = getParentFragmentManager();
         fm.beginTransaction().replace(R.id.survey_content_container,new SurveySexFragment()).commit();
-
     }
     /**
      * Handles click events for the backButton.
