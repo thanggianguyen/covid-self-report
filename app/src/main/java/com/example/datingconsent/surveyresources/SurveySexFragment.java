@@ -254,22 +254,28 @@ public class SurveySexFragment extends Fragment {
         sexpreferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.sex_KissingCheck_checkbox)).getText().toString());
         String kissResponse = "";
             if (kiss.isChecked())
-                kissResponse = kiss.getText().toString();
+                kissResponse = "Yes";
+            else
+                kissResponse = "No";
         sexpreferences.setResponse(0, kissResponse);
 
         //Set the response for Tongue (index 1 of the preferenceSurvey questions arrays) to the selected CheckBox's text fields:
         sexpreferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.sex_TongueCheck_checkbox)).getText().toString());
         String tongueResponse = "";
         if (tongue.isChecked())
-            tongueResponse = tongue.getText().toString();
+            tongueResponse = "Yes";
+        else
+            tongueResponse = "No";
         sexpreferences.setResponse(1, tongueResponse);
 
         //Set the response for Birth Control Initiate (index 2 of the preferenceSurvey questions arrays) to the selected CheckBox's text fields:
         sexpreferences.setQuestion(2, ((TextView)requireActivity().findViewById(R.id.sex_BirthControlCheck_checkbox)).getText().toString());
         String birthControlResponse = "";
         if (birthControl.isChecked())
-            birthControlResponse = birthControl.getText().toString();
-        sexpreferences.setResponse(2, birthControlResponse.substring(0, birthControlResponse.length()));
+            birthControlResponse = "Yes";
+        else
+            birthControlResponse = "No";
+        sexpreferences.setResponse(2, birthControlResponse);
 
         //Set the response for Birth Control (index 3 of the preferenceSurvey questions arrays) to the selected CheckBoxes' text fields:
         sexpreferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.sex_BirthControlCheck_checkbox)).getText().toString());
@@ -284,14 +290,18 @@ public class SurveySexFragment extends Fragment {
         sexpreferences.setQuestion(4, ((TextView)requireActivity().findViewById(R.id.sex_VaginalCheck_checkbox)).getText().toString());
         String vaginalResponse = "";
         if (vaginal.isChecked())
-            vaginalResponse = vaginal.getText().toString();
-        sexpreferences.setResponse(4, vaginalResponse.substring(0, vaginalResponse.length()));
+            vaginalResponse = "Yes";
+        else
+            vaginalResponse = "No";
+        sexpreferences.setResponse(4, vaginalResponse);
 
         //Set the response for Anal (index 5 of the preferenceSurvey questions arrays) to the selected CheckBox's text fields:
         sexpreferences.setQuestion(5, ((TextView)requireActivity().findViewById(R.id.sex_AnalCheck_checkbox)).getText().toString());
         String analResponse = "";
         if (anal.isChecked())
-            analResponse = anal.getText().toString();
+            analResponse = "Yes";
+        else
+            analResponse = "No";
         sexpreferences.setResponse(5, analResponse);
 
         //Set the response for Anal (index 6 of the preferenceSurvey questions arrays) to the selected radiobutton index of Anal Response:
@@ -303,7 +313,9 @@ public class SurveySexFragment extends Fragment {
         sexpreferences.setQuestion(7, ((TextView)requireActivity().findViewById(R.id.sex_OralCheck_checkbox)).getText().toString());
         String oralResponse = "";
         if (oral.isChecked())
-            oralResponse = oral.getText().toString();
+            oralResponse = "Yes";
+        else
+            oralResponse = "No";
         sexpreferences.setResponse(7, oralResponse);
 
         //Set the response for Oral (index 8 of the preferenceSurvey questions arrays) to the selected radiobutton index of Oral Response:

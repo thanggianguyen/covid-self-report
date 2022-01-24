@@ -48,9 +48,9 @@
 
     <string name="sex_title_text">Sexual Consent</string>
     <string name="sex_SubTitle_text">What is okay for you during sex?</string>
-    <string name="sex_KissingCheck_checkbox">Kissing</string>
-    <string name="sex_TongueCheck_checkbox">With Tongue</string>
-    <string name="sex_BirthControlCheck_checkbox">Birth Control</string>
+    <string name="sex_KissingCheck_checkbox">1) Kissing</string>
+    <string name="sex_TongueCheck_checkbox">1a) With Tongue</string>
+    <string name="sex_BirthControlCheck_checkbox">2) Birth Control</string>
     <string name="sex_BirthControl1_checkbox">Tubal Block or Vasectomy</string>
     <string name="sex_BirthControl2_checkbox">IUD</string>
     <string name="sex_BirthControl3_checkbox">Implant</string>
@@ -65,12 +65,12 @@
     <string name="sex_BirthControl12_checkbox">Pill</string>
     <string name="sex_BirthControlNote_text">Check the birth control that YOU use.</string>
     <string name="sex_BirthControlSubnote_text">(This will be viewed by partners you have matched with)</string>
-    <string name="sex_VaginalCheck_checkbox">Vaginal Penetration</string>
-    <string name="sex_AnalCheck_checkbox">Anal Penetration</string>
+    <string name="sex_VaginalCheck_checkbox">3) Vaginal Penetration</string>
+    <string name="sex_AnalCheck_checkbox">4) Anal Penetration</string>
     <string name="sex_Giving_radiobtn">Giving</string>
     <string name="sex_Receiving_radiobtn">Receiving</string>
     <string name="sex_Both_radiobtn">Both</string>
-    <string name="sex_OralCheck_checkbox">Oral Penetration</string>
+    <string name="sex_OralCheck_checkbox">5) Oral Penetration</string>
     <string name="sex_Done_button">Done</string>
     <string name="sex_Back_button">Back</string>
 
@@ -79,6 +79,10 @@
     <string name="title_survey">Survey</string>
     <string name="title_profile">Profile</string>
     <string name="update">Update</string>
+
+    <string name="survey_title">Your Survey</string>
+    <string name="survey_Dating">Dating:</string>
+    <string name="survey_Sex">Sex:</string>
 
     <string name="profile_gender_spinner_hint">Gender</string>
     <string name="second_shot_date_edittext">Second Shot Date</string>

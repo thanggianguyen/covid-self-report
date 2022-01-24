@@ -1,14 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.survey.SurveyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/surveyfrag_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.survey.SurveyFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/survey_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/survey_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/survey_Dating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/survey_Dating"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/survey_title" />
+
+        <TextView
+            android:id="@+id/survey_Dating_PhyTou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating" />
+
+        <TextView
+            android:id="@+id/survey_Dating_PhyTouWhere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Dating_PhyTou"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_PhyTou" />
+
+        <TextView
+            android:id="@+id/survey_Dating_PhyTouWhere_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Dating_PhyTouWhere"
+            app:layout_constraintTop_toTopOf="@+id/survey_Dating_PhyTouWhere" />
+
+        <TextView
+            android:id="@+id/survey_Dating_PhyTou_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Dating_PhyTou"
+            app:layout_constraintTop_toTopOf="@+id/survey_Dating_PhyTou" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Dating_PhyTou"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_PhyTouWhere" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Pay_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Dating_Pay"
+            app:layout_constraintTop_toTopOf="@+id/survey_Dating_Pay" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Dates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Dating_Pay"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_Pay" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Dates_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Dating_Dates"
+            app:layout_constraintTop_toTopOf="@+id/survey_Dating_Dates" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Dating_Dates"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_Dates" />
+
+        <TextView
+            android:id="@+id/survey_Dating_Sex_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Dating_Sex"
+            app:layout_constraintTop_toTopOf="@+id/survey_Dating_Sex" />
+
+        <TextView
+            android:id="@+id/survey_Sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/survey_Sex"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/survey_Dating"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_Sex" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Kiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Kiss_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Kiss"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Kiss" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Tongue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Sex_Kiss"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Kiss" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Tongue_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Tongue"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Tongue" />
+
+        <TextView
+            android:id="@+id/survey_Sex_BirthControl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Sex_Kiss"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Tongue" />
+
+        <TextView
+            android:id="@+id/survey_Sex_BirthControl_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_BirthControl"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_BirthControl" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Vaginal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Sex_BirthControl"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_BirthControl" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Vaginal_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Vaginal"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Vaginal" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Anal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Sex_Vaginal"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Vaginal" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Anal_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Anal"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Anal" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Oral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="@+id/survey_Sex_Anal"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Anal" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Oral_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Oral"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Oral" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

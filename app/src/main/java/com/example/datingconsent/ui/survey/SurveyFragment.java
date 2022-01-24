@@ -2,59 +2,34 @@ package com.example.datingconsent.ui.survey;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.datingconsent.R;
+import com.example.datingconsent.surveyresources.Survey;
+import com.example.datingconsent.ui.MainActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SurveyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SurveyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Survey datingSurvey = MainActivity.getDatingPreferenceSurvey();
+    private Survey sexSurvey = MainActivity.getDatingPreferenceSurvey();
+    private TextView[] titles;
+    private TextView[] response;
 
     public SurveyFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SurveyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SurveyFragment newInstance(String param1, String param2) {
-        SurveyFragment fragment = new SurveyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -62,5 +37,53 @@ public class SurveyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_survey, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        titles = new TextView[11];
+        response = new TextView[11];
+
+        titles[0] = view.findViewById(R.id.survey_Dating_PhyTou);
+        titles[1] = view.findViewById(R.id.survey_Dating_Pay);
+        titles[2] = view.findViewById(R.id.survey_Dating_Dates);
+        titles[3] = view.findViewById(R.id.survey_Dating_Sex);
+        titles[4] = view.findViewById(R.id.survey_Sex_Kiss);
+        titles[5] = view.findViewById(R.id.survey_Sex_Tongue);
+        titles[6] = view.findViewById(R.id.survey_Sex_BirthControl);
+        titles[7] = view.findViewById(R.id.survey_Sex_Vaginal);
+        titles[8] = view.findViewById(R.id.survey_Sex_Anal);
+        titles[9] = view.findViewById(R.id.survey_Sex_Oral);
+        titles[10] = view.findViewById(R.id.survey_Dating_PhyTouWhere);
+
+        response[0] = view.findViewById(R.id.survey_Dating_PhyTou_response);
+        response[1] = view.findViewById(R.id.survey_Dating_Pay_response);
+        response[2] = view.findViewById(R.id.survey_Dating_Dates_response);
+        response[3] = view.findViewById(R.id.survey_Dating_Sex_response);
+        response[4] = view.findViewById(R.id.survey_Sex_Kiss_response);
+        response[5] = view.findViewById(R.id.survey_Sex_Tongue_response);
+        response[6] = view.findViewById(R.id.survey_Sex_BirthControl_response);
+        response[7] = view.findViewById(R.id.survey_Sex_Vaginal_response);
+        response[8] = view.findViewById(R.id.survey_Sex_Anal_response);
+        response[9] = view.findViewById(R.id.survey_Sex_Oral_response);
+        response[10] = view.findViewById(R.id.survey_Dating_PhyTouWhere_response);
+
+        titles[10].setText("Where?:");
+        response[10].setText(datingSurvey.getTextboxResponse(0));
+
+        for(int i = 0; i <= 3; i++)
+        {
+            titles[i].setText(datingSurvey.getQuestion(i));
+            response[i].setText(datingSurvey.getResponse(i));
+        }
+        for(int i = 0; i <= 5; i++)
+        {
+            titles[i+4].setText(sexSurvey.getQuestion(i));
+            response[i+4].setText(datingSurvey.getResponse(i));
+        }
+
+
+
+
     }
 }
