@@ -1,5 +1,6 @@
 package com.example.datingconsent.ui.survey;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,11 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.datingconsent.R;
 import com.example.datingconsent.surveyresources.Survey;
 import com.example.datingconsent.ui.MainActivity;
+import com.example.datingconsent.ui.SurveyModifier;
 
 
 public class SurveyFragment extends Fragment {
@@ -21,6 +24,7 @@ public class SurveyFragment extends Fragment {
     private Survey sexSurvey = MainActivity.getDatingPreferenceSurvey();
     private TextView[] titles;
     private TextView[] response;
+    private Button EditButton;
 
     public SurveyFragment() {
         // Required empty public constructor
@@ -82,8 +86,43 @@ public class SurveyFragment extends Fragment {
             response[i+4].setText(datingSurvey.getResponse(i));
         }
 
+        if(datingSurvey.getResponse(3).equals("Yes")){
+            titles[4].setVisibility(View.VISIBLE);
+            titles[5].setVisibility(View.VISIBLE);
+            titles[6].setVisibility(View.VISIBLE);
+            titles[7].setVisibility(View.VISIBLE);
+            titles[8].setVisibility(View.VISIBLE);
+            titles[9].setVisibility(View.VISIBLE);
+            response[4].setVisibility(View.VISIBLE);
+            response[5].setVisibility(View.VISIBLE);
+            response[6].setVisibility(View.VISIBLE);
+            response[7].setVisibility(View.VISIBLE);
+            response[8].setVisibility(View.VISIBLE);
+            response[9].setVisibility(View.VISIBLE);
+        }
+        else if(datingSurvey.getResponse(3).equals("No")){
+            titles[4].setVisibility(View.INVISIBLE);
+            titles[5].setVisibility(View.INVISIBLE);
+            titles[6].setVisibility(View.INVISIBLE);
+            titles[7].setVisibility(View.INVISIBLE);
+            titles[8].setVisibility(View.INVISIBLE);
+            titles[9].setVisibility(View.INVISIBLE);
+            response[4].setVisibility(View.INVISIBLE);
+            response[5].setVisibility(View.INVISIBLE);
+            response[6].setVisibility(View.INVISIBLE);
+            response[7].setVisibility(View.INVISIBLE);
+            response[8].setVisibility(View.INVISIBLE);
+            response[9].setVisibility(View.INVISIBLE);
+        }
 
-
-
+        //Set the OnClickListener for the change preferences button:
+        EditButton = view.findViewById(R.id.survey_Edit_button);
+        EditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toSurveyModifier = new Intent(requireActivity(), SurveyModifier.class);
+                startActivity(toSurveyModifier);
+            }
+        });
     }
 }

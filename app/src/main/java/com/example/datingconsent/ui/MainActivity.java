@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         datingpreferenceSurvey.saveToJson(getFilesDir().toString(), DATING_PREFERENCE_SURVEY_FILE_NAME);
                         profile.saveToJson(getFilesDir().toString(), PROFILE_FILE_NAME);
                         //TODO: Create MainScreen
-                        //Intent toMainScreen = new Intent(this, MainScreen.class);
-                        //startActivity(toMainScreen);
+                        Intent toMainScreen = new Intent(this, MainScreen.class);
+                        startActivity(toMainScreen);
                     }
                 }
         );

@@ -83,6 +83,8 @@
     <string name="survey_title">Your Survey</string>
     <string name="survey_Dating">Dating:</string>
     <string name="survey_Sex">Sex:</string>
+    <string name="survey_Edit_button">Edit Survey</string>
+
 
     <string name="profile_gender_spinner_hint">Gender</string>
     <string name="second_shot_date_edittext">Second Shot Date</string>

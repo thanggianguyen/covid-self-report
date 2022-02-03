@@ -33,7 +33,7 @@ public class SurveyModifier extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey_launcher);
+        setContentView(R.layout.activity_survey_modifier);
 
         fm = getSupportFragmentManager();
         mainFragment = new SurveyDatingFragment();

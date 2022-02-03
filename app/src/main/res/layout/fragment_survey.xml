@@ -271,5 +271,15 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toEndOf="@+id/survey_Sex_Oral"
             app:layout_constraintTop_toTopOf="@+id/survey_Sex_Oral" />
+
+        <Button
+            android:id="@+id/survey_Edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/survey_Edit_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Oral_response" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
