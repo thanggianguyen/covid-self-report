@@ -10,16 +10,15 @@
         android:id="@+id/profilefragment_initials_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/textview_background_circle"
         android:gravity="center"
         android:text=""
-        android:textSize="48sp"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/profilefragment_name_textview"
@@ -83,50 +82,15 @@
         />
 
     <Button
-        android:id="@+id/profilefragment_notifications_button"
+        android:id="@+id/profilefragment_share_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="@string/profile_notifications_button_text"
+        android:text="@string/profile_share_profile_button_text"
         android:textColor="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilefragment_change_profile_button" />
-
-    <ImageView
-        android:id="@+id/profilefragment_notifications_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintTop_toTopOf="@+id/profilefragment_notifications_button"
-        app:layout_constraintEnd_toStartOf="@+id/profilefragment_notifications_button"
-        app:layout_constraintBottom_toBottomOf="@+id/profilefragment_notifications_button"
-        />
-
-    <ImageView
-        android:id="@+id/profilefragment_notifications_open_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toTopOf="@+id/profilefragment_notifications_button"
-        app:layout_constraintStart_toEndOf="@+id/profilefragment_notifications_button"
-        app:layout_constraintBottom_toBottomOf="@+id/profilefragment_notifications_button"
-        />
-
-    <Button
-        android:id="@+id/profilefragment_share_profile_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:background="@android:color/transparent"
-        android:text="@string/profile_share_profile_button_text"
-        android:textColor="#808080"
-        app:layout_constraintTop_toBottomOf="@+id/profilefragment_notifications_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
 
     <ImageView
         android:id="@+id/profilefragment_share_profile_imageview"

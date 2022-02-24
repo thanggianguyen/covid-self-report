@@ -88,10 +88,8 @@ public class ProfileFragment extends Fragment {
         nameText = view.findViewById(R.id.profilefragment_name_textview);
         phoneNumberText = view.findViewById(R.id.profilefragment_phonenumber_textview);
         changeProfileIcon = view.findViewById(R.id.profilefragment_change_profile_imageview);
-        notificationsIcon = view.findViewById(R.id.profilefragment_notifications_imageview);
         shareProfileIcon = view.findViewById(R.id.profilefragment_share_profile_imageview);
         changeProfileOpenIcon = view.findViewById(R.id.profilefragment_change_profile_open_imageview);
-        notificationsOpenIcon = view.findViewById(R.id.profilefragment_notifications_open_imageview);
         sharePreferencesOpenIcon = view.findViewById(R.id.profilefragment_share_profile_open_imageview);
 
         //Display the initials, first name, last name, and phone number, taken from the user profile:
@@ -99,10 +97,8 @@ public class ProfileFragment extends Fragment {
 
         //Set the image resources:
         changeProfileIcon.setImageResource(R.drawable.ic_profilefragment_person);
-        notificationsIcon.setImageResource(R.drawable.ic_profilefragment_notification);
         shareProfileIcon.setImageResource(R.drawable.ic_profilefragment_share);
         changeProfileOpenIcon.setImageResource(R.drawable.ic_open_in_new);
-        notificationsOpenIcon.setImageResource(R.drawable.ic_open_in_new);
         sharePreferencesOpenIcon.setImageResource(R.drawable.ic_open_in_new);
 
         //Set the OnClickListener for the change profile button:
@@ -127,7 +123,6 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-
     /**
      * When this screen is resumed, profile information (name and phone number) is updated.
      * This is called just in case the user has changed their profile info, to keep it up to date.
@@ -137,7 +132,6 @@ public class ProfileFragment extends Fragment {
         super.onResume();
         updateProfileInfo();
     }
-
 
     /**
      * Sets the text of the initials, name and phone number TextViews to the appropriate values,
@@ -170,7 +164,6 @@ public class ProfileFragment extends Fragment {
         phoneNumberText.setText(phoneNumber);
     }
 
-
     /**
      * Generates a String-based report of the user's profile.
      * The String includes the user's name, the date the report was generated, and the user's profile and consent survey responses.
@@ -183,26 +176,40 @@ public class ProfileFragment extends Fragment {
         Date today = Calendar.getInstance().getTime();
 
         String profileText = profile.getName() + "'s Profile and Consent Survey" +
-                "\nReport generated on " + today + "\n\nPreferences:" + "\n";// + preferences.toString();
+                "\nFile generated on " + today + "\n\nPreferences:" + "\n";// + preferences.toString();
+
+        profileText += "Name: " + profile.getName() + "\n"
+                + "Age: " + profile.getAge() + "\n"
+                + "Pronouns: " + profile.getPronouns() + "\n"
+                + "Phone No.: " + profile.getPhoneNumber() + "\n"
+                + "Gender: " + profile.getGender() + "\n"
+                + "Religion: " + profile.getReligion() + "\n"
+                + "Political View: " + profile.getPoliticalView() + "\n"
+                + "Sexual Orientation: " + profile.getSexOrientation() + "\n"
+                + "Looking For: " + profile.getLooking() + "\n"
+                + "Vaccinated: " + profile.isVaccinated() + "\t\t"
+                + "Date: " + profile.getVaccinationDate() + "\n"
+                + "2nd Shot: " + profile.isSecondShot() + "\t\t"
+                + "Date: " + profile.getSecondShotDate() + "\n"
+                + "Vaccinated: " + profile.isBooster() + "\t\t"
+                + "Date: " + profile.getBoosterDate() + "\n";
 
         for (int i = 0; i < MainActivity.DATING_PREFERENCE_QUESTION_COUNT; i++) {
             profileText += datingpreferences.getQuestion(i) + "\n";
             if (i >= 3)
                 profileText += datingpreferences.getResponse(i) + "\n";
             if (datingpreferences.getTextboxResponse(i) != null && !datingpreferences.getTextboxResponse(i).isEmpty())
-                profileText += "Condition(s): " + datingpreferences.getTextboxResponse(i) + "\n";
+                profileText += datingpreferences.getTextboxResponse(i) + "\n";
         }
         for (int i = 0; i < MainActivity.SEX_PREFERENCE_QUESTION_COUNT; i++) {
             profileText += sexpreferences.getQuestion(i) + "\n";
             if (i >= 3)
                 profileText += sexpreferences.getResponse(i) + "\n";
             if (sexpreferences.getTextboxResponse(i) != null && !sexpreferences.getTextboxResponse(i).isEmpty())
-                profileText += "Condition(s): " + sexpreferences.getTextboxResponse(i) + "\n";
+                profileText += sexpreferences.getTextboxResponse(i) + "\n";
         }
-
         return profileText;
     }
-
 
     /**
      * Generates a PDF representation of the user's profile.
@@ -227,18 +234,37 @@ public class ProfileFragment extends Fragment {
             //Write the report title:
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(24);
-            canvas.drawText(profile.getName() + "'s Health Report", 30, yPos, title);
+            canvas.drawText(profile.getName() + "'s Profile and Consent Survey", 30, yPos, title);
             yPos += 20;
 
             //Write the date the report was generated on:
             title.setTextSize(12);
             Date today = Calendar.getInstance().getTime();
-            canvas.drawText("Report generated on " + today.toString(), 32, yPos, title);
+            canvas.drawText("File generated on " + today.toString(), 32, yPos, title);
+            yPos += 30;
+
+            //Write the Profile Information:
+            title.setTextSize(12);
+            canvas.drawText("Name: " + profile.getName() + "\n"
+                    + "Age: " + profile.getAge() + "\n"
+                    + "Pronouns: " + profile.getPronouns() + "\n"
+                    + "Phone No.: " + profile.getPhoneNumber() + "\n"
+                    + "Gender: " + profile.getGender() + "\n"
+                    + "Religion: " + profile.getReligion() + "\n"
+                    + "Political View: " + profile.getPoliticalView() + "\n"
+                    + "Sexual Orientation: " + profile.getSexOrientation() + "\n"
+                    + "Looking For: " + profile.getLooking() + "\n"
+                    + "Vaccinated: " + profile.isVaccinated() + "\t\t"
+                    + "Date: " + profile.getVaccinationDate() + "\n"
+                    + "2nd Shot: " + profile.isSecondShot() + "\t\t"
+                    + "Date: " + profile.getSecondShotDate() + "\n"
+                    + "Vaccinated: " + profile.isBooster() + "\t\t"
+                    + "Date: " + profile.getBoosterDate() + "\n", 32, yPos, title);
             yPos += 30;
 
             //Write the "Preference Survey" header:
             title.setTextSize(20);
-            canvas.drawText("Preference Survey Responses:", 32, yPos, title);
+            canvas.drawText("Consent Survey Responses:", 32, yPos, title);
             yPos += 30;
 
             //Go through the preferences Survey object and write each question/response pair to the PDF:
@@ -304,6 +330,4 @@ public class ProfileFragment extends Fragment {
         else
             return getProfileText();
     }
-
-
 }
