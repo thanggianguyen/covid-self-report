@@ -118,14 +118,14 @@ public class SurveyDatingFragment extends Fragment {
             set.connect(R.id.dating_DatingSurveyDone_button, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
             set.applyTo(layout);
         }
-        //If user clicks PhyTouYes, PhyTouWhere should appear to answer.
+        /*//If user clicks PhyTouYes, PhyTouWhere should appear to answer.
         //If user clicks PhyTouNo, PhyTouWhere should not appear to answer.
         if(PhyTouYes.isChecked()){
             PhyTouWhere.setVisibility(View.VISIBLE);
         }
         else if(PhyTouNo.isChecked()){
             PhyTouWhere.setVisibility(View.GONE);
-        }
+        }*/
         //Set the onClick action for the update button:
         doneButton = view.findViewById(R.id.dating_DatingSurveyDone_button);
         doneButton.setOnClickListener(new View.OnClickListener() {

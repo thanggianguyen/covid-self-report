@@ -330,4 +330,28 @@ public class ProfileFragment extends Fragment {
         else
             return getProfileText();
     }
+
+    private static String datingpreferenceNumberToText(int questionNum, int num) {
+        String str = "";
+        if (questionNum == 0 || questionNum == 1 || questionNum == 3) {
+            switch (num) {
+                case 0: str = "Yes"; break;
+                case 1: str = "No"; break;
+                default: str = Integer.toString(num); break;
+            }
+        }
+        return str;
+    }
+    private static String sexpreferenceNumberToText(int questionNum, int num) {
+        String str = "";
+        if (questionNum == 10 || questionNum == 11) {
+            switch (num) {
+                case 0: str = "Giving"; break;
+                case 1: str = "Receiving"; break;
+                case 2: str = "Both"; break;
+                default: str = Integer.toString(num); break;
+            }
+        }
+        return str;
+    }
 }
