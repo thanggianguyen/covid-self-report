@@ -92,12 +92,17 @@ public class MainActivity extends AppCompatActivity {
         datingpreferenceSurvey = new Survey(4);
         sexpreferenceSurvey = new Survey(8);
         Gson gson = new Gson();
-        Intent toProfileCreator = new Intent(this, ProfileCreator.class);
-        surveyResultLauncher.launch(toProfileCreator);
+        String profileJsonStr = checkForFile(PROFILE_FILE_NAME);
 
-        //deprecated
-
-        //String profileJsonStr = checkForFile(PROFILE_FILE_NAME);
+        if (profileJsonStr == null) {
+            Intent toProfileCreator = new Intent(this, ProfileCreator.class);
+            profileCreatorResultLauncher.launch(toProfileCreator);
+        }
+        //If the profile file exists, check for dating preference
+        else {
+            profile = gson.fromJson(profileJsonStr, Profile.class);
+            checkForDatingPreferenceSurvey();
+        }
 
     }
 
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String datingpreferenceJsonStr = checkForFile(DATING_PREFERENCE_SURVEY_FILE_NAME);
         String sexpreferenceJsonStr = checkForFile(SEX_PREFERENCE_SURVEY_FILE_NAME);
-
+        Log.d("MainActivity","Checking for Preference "+datingpreferenceJsonStr);
 
         //If the preference survey file does not exist, have the user fill out the preference survey:
         if (datingpreferenceJsonStr == null || sexpreferenceJsonStr == null) {
@@ -156,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             datingpreferenceSurvey = gson.fromJson(datingpreferenceJsonStr, Survey.class);
             sexpreferenceSurvey = gson.fromJson(sexpreferenceJsonStr, Survey.class);
-
+            Intent toMainScreen = new Intent(this, MainScreen.class);
+            startActivity(toMainScreen);
         }
     }
 

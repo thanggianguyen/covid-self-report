@@ -91,7 +91,7 @@
     <string name="phone_number_edittext">Phone Number</string>
     <string name="age_edittext">Age</string>
     <string name="pronouns_hint">Pronouns</string>
-    <string name="booster_shot_date_hint">Booster Shot Date is missing</string>
+    <string name="booster_shot_date_hint">Booster Shot Date</string>
     <string name="vaccinated_date_hint">Vaccinated Date</string>
     <string name="profile_name_missing">Name is missing</string>
     <string name="profile_age_missing">Age is missing</string>
