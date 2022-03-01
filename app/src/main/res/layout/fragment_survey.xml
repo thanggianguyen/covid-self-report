@@ -87,7 +87,7 @@
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintStart_toStartOf="@+id/survey_Dating_PhyTou"
-            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_PhyTouWhere" />
+            app:layout_constraintTop_toBottomOf="@+id/survey_Dating_PhyTouWhere_response" />
 
         <TextView
             android:id="@+id/survey_Dating_Pay_response"
@@ -223,7 +223,7 @@
             app:layout_constraintTop_toBottomOf="@+id/survey_Sex_BirthControl" />
 
         <TextView
-            android:id="@+id/survey_Sex_Vaginal_response"
+            android:id="@+id/survey_Sex_Vaginal_YesNoresponse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -243,13 +243,23 @@
             app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Vaginal" />
 
         <TextView
-            android:id="@+id/survey_Sex_Anal_response"
+            android:id="@+id/survey_Sex_Anal_YesNoresponse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toEndOf="@+id/survey_Sex_Anal"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Anal" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Anal_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Anal_YesNoresponse"
             app:layout_constraintTop_toTopOf="@+id/survey_Sex_Anal" />
 
         <TextView
@@ -263,13 +273,23 @@
             app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Anal" />
 
         <TextView
-            android:id="@+id/survey_Sex_Oral_response"
+            android:id="@+id/survey_Sex_Oral_YesNoresponse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toEndOf="@+id/survey_Sex_Oral"
+            app:layout_constraintTop_toTopOf="@+id/survey_Sex_Oral" />
+
+        <TextView
+            android:id="@+id/survey_Sex_Oral_response"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toEndOf="@+id/survey_Sex_Oral_YesNoresponse"
             app:layout_constraintTop_toTopOf="@+id/survey_Sex_Oral" />
 
         <Button
@@ -280,6 +300,7 @@
             android:text="@string/survey_Edit_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Oral_response" />
+            app:layout_constraintTop_toBottomOf="@+id/survey_Sex_Oral_YesNoresponse" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
