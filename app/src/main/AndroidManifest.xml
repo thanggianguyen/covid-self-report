@@ -12,6 +12,8 @@
         <activity android:name=".ui.ProfileCreator" />
         <activity android:name=".ui.SurveyLauncher" />
         <activity android:name=".ui.MainScreen"/>
+        <activity android:name=".ui.ProfileModifier"/>
+        <activity android:name=".ui.SurveyModifier"/>
         <activity android:name=".ui.MainActivity">
 
             <intent-filter>
