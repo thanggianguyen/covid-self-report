@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class SurveyDatingFragment extends Fragment {
     private final Survey datingpreferences = MainActivity.getDatingPreferenceSurvey();
     private FragmentManager fm;
     private RadioGroup PhyTou, Pay;
+    private RadioButton PhyTouYes, PhyTouNo;
     public RadioGroup Sex;
     private CheckBox[] dates;
     private TextView[] warn;
@@ -64,6 +66,8 @@ public class SurveyDatingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         PhyTou = view.findViewById(R.id.dating_PhyTou_RadioGroup);
+        PhyTouYes = view.findViewById(R.id.dating_PhyTouYes_radiobtn);
+        PhyTouYes = view.findViewById(R.id.dating_PhyTouNo_radiobtn);
         PhyTouWhere = view.findViewById(R.id.PhyTouWhere);
         Pay = view.findViewById(R.id.dating_Pay_RadioGroup);
         datesOther = view.findViewById(R.id.dating_DateOther_edittext);
@@ -97,7 +101,6 @@ public class SurveyDatingFragment extends Fragment {
         warn = new TextView[textIDs.length];
         for (int i = 0; i < textIDs.length; i++)
             warn[i] = view.findViewById(textIDs[i]);
-
         //If the host activity is SurveyModifier, call initializeComponentsForModifier().
         if (requireActivity() instanceof com.example.datingconsent.ui.SurveyModifier) {
             initializeComponentsForModifier(view);
@@ -115,7 +118,14 @@ public class SurveyDatingFragment extends Fragment {
             set.connect(R.id.dating_DatingSurveyDone_button, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
             set.applyTo(layout);
         }
-
+        //If user clicks PhyTouYes, PhyTouWhere should appear to answer.
+        //If user clicks PhyTouNo, PhyTouWhere should not appear to answer.
+        if(PhyTouYes.isChecked()){
+            PhyTouWhere.setVisibility(View.VISIBLE);
+        }
+        else if(PhyTouNo.isChecked()){
+            PhyTouWhere.setVisibility(View.GONE);
+        }
         //Set the onClick action for the update button:
         doneButton = view.findViewById(R.id.dating_DatingSurveyDone_button);
         doneButton.setOnClickListener(new View.OnClickListener() {

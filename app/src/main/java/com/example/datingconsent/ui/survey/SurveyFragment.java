@@ -86,7 +86,7 @@ public class SurveyFragment extends Fragment {
             response[i+4].setText(datingSurvey.getResponse(i));
         }
 
-        if(datingSurvey.getResponse(3).equals("Yes")){
+        /*if(datingSurvey.getResponse(3).equals("Yes")){
             titles[4].setVisibility(View.VISIBLE);
             titles[5].setVisibility(View.VISIBLE);
             titles[6].setVisibility(View.VISIBLE);
@@ -113,7 +113,7 @@ public class SurveyFragment extends Fragment {
             response[7].setVisibility(View.INVISIBLE);
             response[8].setVisibility(View.INVISIBLE);
             response[9].setVisibility(View.INVISIBLE);
-        }
+        }*/
 
         //Set the OnClickListener for the change preferences button:
         EditButton = view.findViewById(R.id.survey_Edit_button);
