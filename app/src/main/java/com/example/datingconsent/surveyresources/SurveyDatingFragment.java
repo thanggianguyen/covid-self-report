@@ -30,7 +30,6 @@ public class SurveyDatingFragment extends Fragment {
     private final Survey datingpreferences = MainActivity.getDatingPreferenceSurvey();
     private FragmentManager fm;
     private RadioGroup PhyTou, Pay;
-    private RadioButton PhyTouYes, PhyTouNo;
     public RadioGroup Sex;
     private CheckBox[] dates;
     private TextView[] warn;
@@ -66,8 +65,6 @@ public class SurveyDatingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         PhyTou = view.findViewById(R.id.dating_PhyTou_RadioGroup);
-        PhyTouYes = view.findViewById(R.id.dating_PhyTouYes_radiobtn);
-        PhyTouNo = view.findViewById(R.id.dating_PhyTouNo_radiobtn);
         PhyTouWhere = view.findViewById(R.id.PhyTouWhere);
         Pay = view.findViewById(R.id.dating_Pay_RadioGroup);
         datesOther = view.findViewById(R.id.dating_DateOther_edittext);
@@ -120,12 +117,14 @@ public class SurveyDatingFragment extends Fragment {
         }
         //If user clicks PhyTouYes, PhyTouWhere should appear to answer.
         //If user clicks PhyTouNo, PhyTouWhere should not appear to answer.
-        if(PhyTouYes.isChecked()){
+        if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouYes_radiobtn){
             PhyTouWhere.setVisibility(View.VISIBLE);
+
         }
-        else if(PhyTouNo.isChecked()){
+        else if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouNo_radiobtn){
             PhyTouWhere.setVisibility(View.GONE);
         }
+
         //Set the onClick action for the update button:
         doneButton = view.findViewById(R.id.dating_DatingSurveyDone_button);
         doneButton.setOnClickListener(new View.OnClickListener() {

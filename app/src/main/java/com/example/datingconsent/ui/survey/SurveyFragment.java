@@ -111,21 +111,21 @@ public class SurveyFragment extends Fragment {
             response[6].setVisibility(View.VISIBLE);
             response[7].setVisibility(View.VISIBLE);
             response[8].setVisibility(View.VISIBLE);
-            if (sexSurvey.getResponse(5).equals("Yes")){
+            /*if (sexSurvey.getResponse(5).equals("Yes")){
                 response[10].setText(preferenceNumberToText(10, Integer.parseInt(sexSurvey.getResponse(6))));
                 response[10].setVisibility(View.VISIBLE);
             }
             else if(sexSurvey.getResponse(5).equals("No")) {
                 response[10].setVisibility(View.GONE);
-            }
+            }*/
             response[9].setVisibility(View.VISIBLE);
-            if(sexSurvey.getResponse(7).equals("Yes")) {
+            /*if(sexSurvey.getResponse(7).equals("Yes")) {
                 response[11].setText(preferenceNumberToText(11, Integer.parseInt(sexSurvey.getResponse(8))));
                 response[11].setVisibility(View.VISIBLE);
             }
             else if(sexSurvey.getResponse(7).equals("No")) {
                 response[11].setVisibility(View.GONE);
-            }
+            }*/
         }
         else if(datingSurvey.getResponse(3).equals("1")){
             SexTitle.setVisibility(View.GONE);
