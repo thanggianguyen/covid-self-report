@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if(result.getResultCode() == Activity.RESULT_OK){
-                        Log.d("MainActivity","Result profile callback");
+                        Log.d("MainActivityProfile",profile.toString());
                         profile.saveToJson(getFilesDir().toString(), PROFILE_FILE_NAME);
                         checkForDatingPreferenceSurvey();
                     }

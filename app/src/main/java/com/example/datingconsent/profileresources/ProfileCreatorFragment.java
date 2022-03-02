@@ -2,12 +2,14 @@ package com.example.datingconsent.profileresources;
 
 import static java.lang.String.*;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.InputType;
@@ -31,9 +33,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
+import com.example.datingconsent.ui.MainScreen;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -183,10 +189,7 @@ public class ProfileCreatorFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TODO: autofill out input with saved data
-        if (!(requireActivity() instanceof com.example.datingconsent.ui.ProfileCreator)) {
-            nameEdt.setText(MainActivity.getProfile().getName());
-        }
+
 
             //Instantiate the name text box and build its formatter (enhanced TextWatcher)
         nameEdt = view.findViewById(R.id.profile_name_edittext);
@@ -244,61 +247,21 @@ public class ProfileCreatorFragment extends Fragment {
         vaccinatedDateEdt.setInputType(InputType.TYPE_NULL);
         secondShotDateEdt.setInputType(InputType.TYPE_NULL);
         boosterShotDateEdt.setInputType(InputType.TYPE_NULL);
+        DatePickerDialog vaccinatedDatePicker;
+        DatePickerDialog secondDatePicker;
+        DatePickerDialog boosterDatePicker;
 
         vaccinatedDateEdt.setOnClickListener(v -> {
-            final Calendar calendar=Calendar.getInstance();
-            String date = vaccinatedDateEdt.getText().toString();
-            String[] dateParts = date.split("/");
-
-            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-
-                @Override
-                public void onDateSet(DatePicker view1, int year, int month, int dayOfMonth) {
-                    vaccinatedDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                }
-            }, year, month, day);
-            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-            picker.show();
+           buildPicker(vaccinatedDateEdt);
         });
         secondShotDateEdt.setOnClickListener(v -> {
-            final Calendar calendar=Calendar.getInstance();
-            String date = secondShotDateEdt.getText().toString();
-            String[] dateParts = date.split("/");
-
-            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-
-                @Override
-                public void onDateSet(DatePicker view12, int year, int month, int dayOfMonth) {
-                    secondShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                }
-            }, year, month, day);
-            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-            picker.show();
+            buildPicker(secondShotDateEdt);
         });
-        boosterShotDateEdt.setOnClickListener(v -> {
-            final Calendar calendar=Calendar.getInstance();
-            String date = boosterShotDateEdt.getText().toString();
-            String[] dateParts = date.split("/");
-
-            int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
-            int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
-            int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
-            DatePickerDialog picker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-
-                @Override
-                public void onDateSet(DatePicker view13, int year, int month, int dayOfMonth) {
-                    boosterShotDateEdt.setText(format(Locale.US,"%d/%d/%d",  month + 1,dayOfMonth, year));
-                }
-            }, year, month, day);
-            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
-            picker.show();
+        boosterShotDateEdt.setOnClickListener(v->{
+            buildPicker(boosterShotDateEdt);
         });
+
+
         //Vaccination status choices
         vaccinatedRadioGroup = view.findViewById(R.id.vaccinated_radio_group);
         secondShotRadioGroup = view.findViewById(R.id.second_shot_radio_group);
@@ -316,10 +279,10 @@ public class ProfileCreatorFragment extends Fragment {
                     vaccinatedDateEdt.setVisibility(View.GONE);
                     secondShotTextView.setVisibility(View.GONE);
                     secondShotRadioGroup.setVisibility(View.GONE);
-                    secondShotDateEdt.setVisibility(View.GONE);
-                    boosterTextView.setVisibility(View.GONE);
-                    boosterRadioGroup.setVisibility(View.GONE);
-                    boosterShotDateEdt.setVisibility(View.GONE);
+                    secondShotRadioGroup.check(R.id.second_no_radio_button);
+                    vaccinatedDateEdt.setText("");
+                    secondShotClear();
+
                 }
             }
         });
@@ -333,9 +296,7 @@ public class ProfileCreatorFragment extends Fragment {
                     boosterRadioGroup.setVisibility(View.VISIBLE);
                 }
                 else {
-                    secondShotDateEdt.setVisibility(View.GONE);
-                    boosterTextView.setVisibility(View.GONE);
-                    boosterRadioGroup.setVisibility(View.GONE);
+                    secondShotClear();
                 }
             }
         });
@@ -347,6 +308,7 @@ public class ProfileCreatorFragment extends Fragment {
                     boosterShotDateEdt.setVisibility(View.VISIBLE);
                 else
                     boosterShotDateEdt.setVisibility(View.GONE);
+                    boosterShotDateEdt.setText("");
             }
         });
 
@@ -371,13 +333,39 @@ public class ProfileCreatorFragment extends Fragment {
 
 
 
-        //***SET ONCLICK METHODS FOR THE BUTTONS***
-        //If this fragment is used by ProfileCreator:
+
+        //If this fragment is used by ProfileModifier:
         if (!(requireActivity() instanceof com.example.datingconsent.ui.ProfileCreator)) {
-            //TODO Populate fields with Profile
             ((TextView)(view.findViewById(R.id.profile_title_textview))).setText(R.string.profile_title_textview_text_alternate);
             createButton.setText(R.string.done);
+            nameEdt.setText(MainActivity.getProfile().getName());
+            int age = MainActivity.getProfile().getAge();
+            ageEdt.setText(String.valueOf(age));
+            pronounsEdt.setText(MainActivity.getProfile().getPronouns());
+            phoneNumberEdt.setText(MainActivity.getProfile().getPhoneNumber());
+            setSpinner(MainActivity.getProfile().getGender(),gender_array,genderSpinner);
+            religionEdt.setText(MainActivity.getProfile().getReligion());
+            politicalViewEdt.setText(MainActivity.getProfile().getPoliticalView());
+            setSpinner(MainActivity.getProfile().getSexOrientation(),sexual_orientation_array,sexualOrientationSpinner);
+            setSpinner(MainActivity.getProfile().getLooking(),looking_for_array,lookingForSpinner);
+            boolean vaccinated = MainActivity.getProfile().isVaccinated();
+            boolean second = MainActivity.getProfile().isSecondShot();
+            boolean booster = MainActivity.getProfile().isBooster();
+            vaccinatedRadioGroup.check(vaccinated?R.id.vaccinated_yes_radio_button:R.id.vaccinated_no_radio_button);
+            secondShotRadioGroup.check(second?R.id.second_yes_radio_button:R.id.second_no_radio_button);
+            boosterRadioGroup.check(booster?R.id.booster_yes_radio_button:R.id.booster_no_radio_button);
+            if(vaccinated) {
+                vaccinatedDateEdt.setText(MainActivity.getProfile().getVaccinationDate());
+                if(second) {
+                    secondShotDateEdt.setText(MainActivity.getProfile().getSecondShotDate());
+                    if(booster) {
+                        boosterShotDateEdt.setText(MainActivity.getProfile().getBoosterDate());
+                    }
+                }
+            }
+
         }
+        //***SET ONCLICK METHODS FOR THE BUTTONS***
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -389,6 +377,16 @@ public class ProfileCreatorFragment extends Fragment {
             }
         });
 
+    }
+
+    private void secondShotClear() {
+        secondShotDateEdt.setVisibility(View.GONE);
+        boosterTextView.setVisibility(View.GONE);
+        boosterRadioGroup.setVisibility(View.GONE);
+        boosterShotDateEdt.setVisibility(View.GONE);
+        boosterRadioGroup.check(R.id.booster_no_radio_button);
+        secondShotDateEdt.setText("");
+        boosterShotDateEdt.setText("");
     }
 
     /**
@@ -483,9 +481,9 @@ public class ProfileCreatorFragment extends Fragment {
         boolean vaccinated = vaccinatedRadioGroup.getCheckedRadioButtonId() == R.id.vaccinated_yes_radio_button;
         boolean second = secondShotRadioGroup.getCheckedRadioButtonId() == R.id.second_yes_radio_button;
         boolean booster = boosterRadioGroup.getCheckedRadioButtonId() == R.id.booster_yes_radio_button;
-        Date vaccinatedDate;
-        Date secondDate;
-        Date boosterDate;
+        LocalDate vaccinatedDate;
+        LocalDate secondDate;
+        LocalDate boosterDate;
 
         //Check for missing fields or unselected fields
         if(missing = name.isEmpty())
@@ -513,48 +511,39 @@ public class ProfileCreatorFragment extends Fragment {
             }
         }
 
-        //TODO:Prepare dates for setting
+        //Prepare dates for setting
         if(!missing) {
 
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-            try {
-                if(vaccinated) {
-                    vaccinatedDate = format.parse(vaccinatedDateEdt.getText().toString());
-                    MainActivity.getProfile().setVaccinationDate(vaccinatedDate);
+            if (vaccinated) {
+                MainActivity.getProfile().setVaccinationDate(vaccinatedDateEdt.getText().toString());
+                if (second) {
+                    MainActivity.getProfile().setSecondShotDate(secondShotDateEdt.getText().toString());
+                    if (booster) {
+                        MainActivity.getProfile().setBoosterDate(boosterShotDateEdt.getText().toString());
+                    }
                 }
-                if(second) {
-                    secondDate = format.parse(secondShotDateEdt.getText().toString());
-                    MainActivity.getProfile().setSecondShotDate(secondDate);
-                }
-                if(booster) {
-                    boosterDate = format.parse(boosterShotDateEdt.getText().toString());
-                    MainActivity.getProfile().setBoosterDate(boosterDate);
-                }
-            } catch (ParseException e) {
-                Log.e("ProfileCreator: ", "Date Parsing Error");
             }
 
-            Log.d("ProfileCreator: ",name);
-        MainActivity.getProfile().setName(name);
-        MainActivity.getProfile().setAge(Integer.parseInt(age));
-        MainActivity.getProfile().setPronouns(pronouns);
-        MainActivity.getProfile().setPhoneNumber(phoneNumber);
-        MainActivity.getProfile().setGender(gender);
-        MainActivity.getProfile().setReligion(religion);
-        MainActivity.getProfile().setSexOrientation(sexualOrientation);
-        MainActivity.getProfile().setLooking(lookingFor);
-        MainActivity.getProfile().setPoliticalView(politicalView);
-        MainActivity.getProfile().setVaccinated(vaccinated);
-        MainActivity.getProfile().setSecondShot(second);
-        MainActivity.getProfile().setBoosterShot(booster);
+            MainActivity.getProfile().setName(name);
+            MainActivity.getProfile().setAge(Integer.parseInt(age));
+            MainActivity.getProfile().setPronouns(pronouns);
+            MainActivity.getProfile().setPhoneNumber(phoneNumber);
+            MainActivity.getProfile().setGender(gender);
+            MainActivity.getProfile().setReligion(religion);
+            MainActivity.getProfile().setSexOrientation(sexualOrientation);
+            MainActivity.getProfile().setLooking(lookingFor);
+            MainActivity.getProfile().setPoliticalView(politicalView);
+            MainActivity.getProfile().setVaccinated(vaccinated);
+            MainActivity.getProfile().setSecondShot(second);
+            MainActivity.getProfile().setBoosterShot(booster);
 
 
-        Intent returnIntent = new Intent();
-        requireActivity().setResult(Activity.RESULT_OK, returnIntent);
-        requireActivity().finish();
-
+            Intent returnIntent = new Intent();
+            requireActivity().setResult(Activity.RESULT_OK, returnIntent);
+            requireActivity().finish();
         }
-    }
+        }
+
 
 
 
@@ -653,4 +642,29 @@ public class ProfileCreatorFragment extends Fragment {
             }
         };
     }
+    private void setSpinner(String item, String[] string_array, Spinner spinner){
+        int pos = new ArrayList<>(Arrays.asList(string_array)).indexOf(item);
+        if(item.equals(""))
+            spinner.setSelection(0);
+        else
+            spinner.setSelection(pos);
+    }
+
+    private void buildPicker(EditText dateEdt){
+        final Calendar calendar=Calendar.getInstance();
+        String date = dateEdt.getText().toString();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.US);
+        String[] dateParts = date.split("/");
+
+        int day = date.isEmpty() ? calendar.get(Calendar.DAY_OF_MONTH): Integer.parseInt(dateParts[1]);
+        int month = date.isEmpty() ? calendar.get(Calendar.MONTH):Integer.parseInt(dateParts[0]);
+        int year = date.isEmpty() ? calendar.get(Calendar.YEAR):Integer.parseInt(dateParts[2]);
+        DatePickerDialog picker = new DatePickerDialog(getActivity(), (view, year1, month1, dayOfMonth) -> {
+            LocalDate date1 = LocalDate.of(year1, month1 +1,dayOfMonth);
+            dateEdt.setText(date1.format(dateFormat));
+        }, year, month, day);
+        picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+        picker.show();
+    }
+
 }

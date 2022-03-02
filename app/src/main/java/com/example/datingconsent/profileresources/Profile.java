@@ -3,6 +3,7 @@ package com.example.datingconsent.profileresources;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.example.datingconsent.surveyresources.Survey;
@@ -34,13 +35,13 @@ public class Profile
     private String looking;
     /**COVID-19 vaccination status of the user */
     private boolean vaccinated;
-    private Date vaccinationDate;
+    private String vaccinationDate;
     /**COVID-19 second shot status of the user */
     private boolean secondShot;
-    private Date secondShotDate;
+    private String secondShotDate;
     /**COVID-19 booster shot status of the user */
     private boolean boosterShot;
-    private Date boosterDate;
+    private String boosterDate;
     /** The user's preference survey responses */
     private Survey preferences;
 
@@ -73,7 +74,7 @@ public class Profile
     public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns,
         int age, String religion, String politicalView, String looking,
-        boolean vaccinated, Date vaccinationDate, boolean secondShot, Date secondShotDate,boolean boosterShot, Date boosterDate) {
+        boolean vaccinated, String vaccinationDate, boolean secondShot, String secondShotDate,boolean boosterShot, String boosterDate) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
@@ -116,7 +117,7 @@ public class Profile
          */
     public Profile(String name, String phoneNumber,
             String gender, String sexOrientation, String pronouns, int age, String religion, String politicalView, String looking,
-                   boolean vaccinated, Date vaccinationDate, boolean secondShot, Date secondShotDate, boolean boosterShot, Date boosterDate, Survey
+                   boolean vaccinated, String vaccinationDate, boolean secondShot, String secondShotDate, boolean boosterShot, String boosterDate, Survey
         preferences) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -187,7 +188,7 @@ public class Profile
     {
         this.vaccinated = vaccinated;
     }
-    public void setVaccinationDate(Date vaccinationDate)
+    public void setVaccinationDate(String vaccinationDate)
     {
         this.vaccinationDate = vaccinationDate;
     }
@@ -195,7 +196,7 @@ public class Profile
     {
         this.secondShot = secondShot;
     }
-    public void setSecondShotDate(Date secondShotDate)
+    public void setSecondShotDate(String secondShotDate)
     {
         this.secondShotDate = secondShotDate;
     }
@@ -203,7 +204,7 @@ public class Profile
     {
         this.boosterShot = boosterShot;
     }
-    public void setBoosterDate(Date boosterDate )
+    public void setBoosterDate(String boosterDate )
     {
         this.boosterDate = boosterDate;
     }
@@ -260,19 +261,19 @@ public class Profile
         return vaccinated;
     }
 
-    public Date getVaccinationDate() {
+    public String getVaccinationDate() {
         return vaccinationDate;
     }
 
     public boolean isSecondShot(){return secondShot;}
 
-    public Date getSecondShotDate() { return secondShotDate; }
+    public String getSecondShotDate() { return secondShotDate; }
 
     public boolean isBooster() {
         return boosterShot;
     }
 
-    public Date getBoosterDate() {
+    public String getBoosterDate() {
         return boosterDate;
     }
 
