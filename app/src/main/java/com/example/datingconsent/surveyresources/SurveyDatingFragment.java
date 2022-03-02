@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -252,7 +253,8 @@ public class SurveyDatingFragment extends Fragment {
         datingpreferences.saveToJson(requireActivity().getFilesDir().toString(), MainActivity.DATING_PREFERENCE_SURVEY_FILE_NAME);
         if(Sex.getCheckedRadioButtonId()==R.id.dating_SexYes_radiobtn) {
             fm = getParentFragmentManager();
-            fm.beginTransaction().replace(R.id.survey_content_container, new SurveySexFragment()).commit();
+            int container = requireActivity() instanceof com.example.datingconsent.ui.SurveyModifier ? R.id.surveymodifier_content_container: R.id.survey_content_container;
+            fm.beginTransaction().replace(container, new SurveySexFragment()).commit();
         }
         else if(Sex.getCheckedRadioButtonId()==R.id.dating_SexNo_radiobtn){
             if (requireActivity() instanceof com.example.datingconsent.ui.SurveyLauncher) {

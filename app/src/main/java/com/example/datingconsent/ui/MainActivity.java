@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 result -> {
                     if(result.getResultCode() == Activity.RESULT_OK){
                         Log.d("MainActivity","Result survey callback");
-                        sexpreferenceSurvey.saveToJson(getFilesDir().toString(), SEX_PREFERENCE_SURVEY_FILE_NAME);
                         datingpreferenceSurvey.saveToJson(getFilesDir().toString(), DATING_PREFERENCE_SURVEY_FILE_NAME);
-                        profile.saveToJson(getFilesDir().toString(), PROFILE_FILE_NAME);
+                        if(datingpreferenceSurvey.getResponse(3).equals("0"))
+                            sexpreferenceSurvey.saveToJson(getFilesDir().toString(), SEX_PREFERENCE_SURVEY_FILE_NAME);
                         //TODO: Create MainScreen
                         Intent toMainScreen = new Intent(this, MainScreen.class);
                         startActivity(toMainScreen);
@@ -153,14 +153,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity","Checking for Preference "+datingpreferenceJsonStr);
 
         //If the preference survey file does not exist, have the user fill out the preference survey:
-        if (datingpreferenceJsonStr == null || sexpreferenceJsonStr == null) {
+        if (datingpreferenceJsonStr == null) {
             Intent toSurveyLauncher = new Intent(this, SurveyLauncher.class);
             surveyResultLauncher.launch(toSurveyLauncher);
         }
         //If the preference survey file exists, initialize preferenceSurvey from the JSON and start the MainScreen activity
         else {
             datingpreferenceSurvey = gson.fromJson(datingpreferenceJsonStr, Survey.class);
-            sexpreferenceSurvey = gson.fromJson(sexpreferenceJsonStr, Survey.class);
+            if(datingpreferenceSurvey.getResponse(3).equals("0"))
+                sexpreferenceSurvey = gson.fromJson(sexpreferenceJsonStr, Survey.class);
             Intent toMainScreen = new Intent(this, MainScreen.class);
             startActivity(toMainScreen);
         }

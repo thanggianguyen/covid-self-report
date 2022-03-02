@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,8 +140,8 @@ public class SurveySexFragment extends Fragment {
                 }
             }
         });
-        //If the host activity is SurveyModifier, call initializeComponentsForModifier().
-        if (requireActivity() instanceof com.example.datingconsent.ui.SurveyModifier) {
+        //If the host activity is SurveyModifier and sex preferences is created, call initializeComponentsForModifier().
+        if (requireActivity() instanceof com.example.datingconsent.ui.SurveyModifier && sexpreferences.getResponse(0)!=null) {
             initializeComponentsForModifier(view);
             doneButton.setText("Update");
         }

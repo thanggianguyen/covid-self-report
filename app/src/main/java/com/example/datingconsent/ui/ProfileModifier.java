@@ -29,7 +29,7 @@ public class ProfileModifier extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_creator);
+        setContentView(R.layout.activity_profile_modifier);
 
         fm = getSupportFragmentManager();
         mainFragment = new ProfileCreatorFragment();
