@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     /** The name of the preference survey JSON file stored in the app */
     public static final String DATING_PREFERENCE_SURVEY_FILE_NAME = "dating_preference_survey.json";
     /** Number of questions in the preference survey */
-    public static final int SEX_PREFERENCE_QUESTION_COUNT = 8;
+    public static final int SEX_PREFERENCE_QUESTION_COUNT = 9;
     /** The name of the preference survey JSON file stored in the app */
-    public static final String SEX_PREFERENCE_SURVEY_FILE_NAME = "dating_preference_survey.json";
+    public static final String SEX_PREFERENCE_SURVEY_FILE_NAME = "sex_preference_survey.json";
     /** The name of the profile JSON file stored in the app */
     public static final String PROFILE_FILE_NAME = "profile.json";
     /** Stores the user's preference survey responses */
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         //Initialize local variables gson (JSON file reader), toProfileCreator (takes user to the ProfileCreator activity), and profileJsonStr (String of the user's profile, saved as a JSON file):
         profile = new Profile();
         datingpreferenceSurvey = new Survey(4);
-        sexpreferenceSurvey = new Survey(8);
+        sexpreferenceSurvey = new Survey(9);
         Gson gson = new Gson();
         String profileJsonStr = checkForFile(PROFILE_FILE_NAME);
 

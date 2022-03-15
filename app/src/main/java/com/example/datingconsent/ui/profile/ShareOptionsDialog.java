@@ -27,18 +27,13 @@ public class ShareOptionsDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.share);
-        builder.setItems(R.array.share, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                //profileStr will be null if a PDF is successfully generated. It will contain the report info if a PDF is not successfully generated.
-                String profileStr = ProfileFragment.generatePDF();
-                //If the PDF was generated, share the PDF using sharePDF():
-                if (profileStr == null)
-                    sharePDF();
-                    //If the PDF was not generated, share the PDF using a text-based approach (shareText() ):
-                else
-                    shareText(profileStr);
-            }
-        });
+        String profileStr = ProfileFragment.generatePDF();
+        //If the PDF was generated, share the PDF using sharePDF():
+        if (profileStr == null)
+            sharePDF();
+            //If the PDF was not generated, share the PDF using a text-based approach (shareText() ):
+        else
+            shareText(profileStr);
         return builder.create();
     }
 

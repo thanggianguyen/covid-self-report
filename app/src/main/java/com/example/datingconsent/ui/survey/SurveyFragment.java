@@ -48,8 +48,8 @@ public class SurveyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         SexTitle = view.findViewById(R.id.survey_Sex);
 
-        titles = new TextView[11];
-        response = new TextView[13];
+        titles = new TextView[12];
+        response = new TextView[14];
 
         titles[0] = view.findViewById(R.id.survey_Dating_PhyTou);
         titles[1] = view.findViewById(R.id.survey_Dating_Pay);
@@ -59,9 +59,10 @@ public class SurveyFragment extends Fragment {
         titles[4] = view.findViewById(R.id.survey_Sex_Kiss);
         titles[5] = view.findViewById(R.id.survey_Sex_Tongue);
         titles[6] = view.findViewById(R.id.survey_Sex_BirthControl);
-        titles[7] = view.findViewById(R.id.survey_Sex_Vaginal);
-        titles[8] = view.findViewById(R.id.survey_Sex_Anal);
-        titles[9] = view.findViewById(R.id.survey_Sex_Oral);
+        titles[7] = view.findViewById(R.id.survey_Sex_BirthControl_itemsTitle);
+        titles[8] = view.findViewById(R.id.survey_Sex_Vaginal);
+        titles[9] = view.findViewById(R.id.survey_Sex_Anal);
+        titles[10] = view.findViewById(R.id.survey_Sex_Oral);
 
         response[0] = view.findViewById(R.id.survey_Dating_PhyTou_response);
         response[1] = view.findViewById(R.id.survey_Dating_Pay_response);
@@ -71,17 +72,18 @@ public class SurveyFragment extends Fragment {
         response[4] = view.findViewById(R.id.survey_Sex_Kiss_response);
         response[5] = view.findViewById(R.id.survey_Sex_Tongue_response);
         response[6] = view.findViewById(R.id.survey_Sex_BirthControl_response);
-        response[7] = view.findViewById(R.id.survey_Sex_Vaginal_YesNoresponse);
-        response[8] = view.findViewById(R.id.survey_Sex_Anal_YesNoresponse);
-        response[9] = view.findViewById(R.id.survey_Sex_Oral_YesNoresponse);
-        response[10] = view.findViewById(R.id.survey_Sex_Anal_response);
-        response[11] = view.findViewById(R.id.survey_Sex_Oral_response);
+        response[7] = view.findViewById(R.id.survey_Sex_BirthControl_items);
+        response[8] = view.findViewById(R.id.survey_Sex_Vaginal_YesNoresponse);
+        response[9] = view.findViewById(R.id.survey_Sex_Anal_YesNoresponse);
+        response[10] = view.findViewById(R.id.survey_Sex_Oral_YesNoresponse);
+        response[11] = view.findViewById(R.id.survey_Sex_Anal_response);
+        response[12] = view.findViewById(R.id.survey_Sex_Oral_response);
 
-        titles[10] = view.findViewById(R.id.survey_Dating_PhyTouWhere);
-        response[12] = view.findViewById(R.id.survey_Dating_PhyTouWhere_response);
+        titles[11] = view.findViewById(R.id.survey_Dating_PhyTouWhere);
+        response[13] = view.findViewById(R.id.survey_Dating_PhyTouWhere_response);
 
-        titles[10].setText("Where?:");
-        response[12].setText(datingSurvey.getTextboxResponse(0));
+        titles[11].setText("Where?:");
+        response[13].setText(datingSurvey.getTextboxResponse(0));
 
         for(int i = 0; i <= 3; i++)
         {
@@ -93,10 +95,14 @@ public class SurveyFragment extends Fragment {
                 response[i].setText(datingSurvey.getResponse(i));
             }
         }
-        for(int i = 0; i <= 5; i++)
+        for(int i = 0; i <= 6; i++)
         {
-            titles[i+4].setText(sexSurvey.getQuestion(i));
-            response[i+4].setText(sexSurvey.getResponse(i));
+            if(i!=3) {
+                titles[i + 4].setText(sexSurvey.getQuestion(i));
+                response[i + 4].setText(sexSurvey.getResponse(i));
+            }
+            else
+                continue;
         }
 
         if(datingSurvey.getResponse(3).equals("0")) {
@@ -106,26 +112,37 @@ public class SurveyFragment extends Fragment {
             titles[7].setVisibility(View.VISIBLE);
             titles[8].setVisibility(View.VISIBLE);
             titles[9].setVisibility(View.VISIBLE);
+            titles[10].setVisibility(View.VISIBLE);
             response[4].setVisibility(View.VISIBLE);
             response[5].setVisibility(View.VISIBLE);
             response[6].setVisibility(View.VISIBLE);
-            response[7].setVisibility(View.VISIBLE);
-            response[8].setVisibility(View.VISIBLE);
-            /*if (sexSurvey.getResponse(5).equals("Yes")){
-                response[10].setText(preferenceNumberToText(10, Integer.parseInt(sexSurvey.getResponse(6))));
-                response[10].setVisibility(View.VISIBLE);
+            if (sexSurvey.getResponse(2).equals("Yes")){
+                titles[7].setText(sexSurvey.getQuestion(3));
+                titles[7].setVisibility(View.VISIBLE);
+                response[7].setText(sexSurvey.getResponse(3));
+                response[7].setVisibility(View.VISIBLE);
             }
-            else if(sexSurvey.getResponse(5).equals("No")) {
-                response[10].setVisibility(View.GONE);
-            }*/
+            else if(sexSurvey.getResponse(2).equals("No")) {
+                titles[7].setVisibility(View.GONE);
+                response[7].setVisibility(View.GONE);
+            }
+            response[8].setVisibility(View.VISIBLE);
             response[9].setVisibility(View.VISIBLE);
-            /*if(sexSurvey.getResponse(7).equals("Yes")) {
-                response[11].setText(preferenceNumberToText(11, Integer.parseInt(sexSurvey.getResponse(8))));
+            if (sexSurvey.getResponse(5).equals("Yes")){
+                response[11].setText(preferenceNumberToText(11, Integer.parseInt(sexSurvey.getResponse(7))));
                 response[11].setVisibility(View.VISIBLE);
             }
-            else if(sexSurvey.getResponse(7).equals("No")) {
+            else if(sexSurvey.getResponse(5).equals("No")) {
                 response[11].setVisibility(View.GONE);
-            }*/
+            }
+            response[10].setVisibility(View.VISIBLE);
+            if(sexSurvey.getResponse(6).equals("Yes")) {
+                response[12].setText(preferenceNumberToText(12, Integer.parseInt(sexSurvey.getResponse(8))));
+                response[12].setVisibility(View.VISIBLE);
+            }
+            else if(sexSurvey.getResponse(6).equals("No")) {
+                response[12].setVisibility(View.GONE);
+            }
         }
         else if(datingSurvey.getResponse(3).equals("1")){
             SexTitle.setVisibility(View.GONE);
@@ -135,6 +152,7 @@ public class SurveyFragment extends Fragment {
             titles[7].setVisibility(View.GONE);
             titles[8].setVisibility(View.GONE);
             titles[9].setVisibility(View.GONE);
+            titles[10].setVisibility(View.GONE);
             response[4].setVisibility(View.GONE);
             response[5].setVisibility(View.GONE);
             response[6].setVisibility(View.GONE);
@@ -143,6 +161,7 @@ public class SurveyFragment extends Fragment {
             response[9].setVisibility(View.GONE);
             response[10].setVisibility(View.GONE);
             response[11].setVisibility(View.GONE);
+            response[12].setVisibility(View.GONE);
         }
 
         //Set the OnClickListener for the change preferences button:
@@ -164,7 +183,7 @@ public class SurveyFragment extends Fragment {
                 default: str = Integer.toString(num); break;
             }
         }
-        else if (questionNum == 10 || questionNum == 11) {
+        else if (questionNum == 11 || questionNum == 12) {
             switch (num) {
                 case 0: str = "Giving"; break;
                 case 1: str = "Receiving"; break;

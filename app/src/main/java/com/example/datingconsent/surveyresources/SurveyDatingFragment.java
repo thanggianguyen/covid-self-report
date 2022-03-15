@@ -242,7 +242,7 @@ public class SurveyDatingFragment extends Fragment {
                 datesResponse += current.getText().toString() + ", ";
         }
         datingpreferences.setResponse(2, datesResponse.substring(0, datesResponse.length() - 2));
-        datingpreferences.setTextboxResponse(0, datesOther.getText().toString());
+        datingpreferences.setTextboxResponse(1, datesOther.getText().toString());
 
         //Set the response for Sex (index 3 of the preferenceSurvey questions arrays) to the selected radiobutton index of Sex Response:
         datingpreferences.setQuestion(3, ((TextView)requireActivity().findViewById(R.id.dating_SexTitle_text)).getText().toString());
