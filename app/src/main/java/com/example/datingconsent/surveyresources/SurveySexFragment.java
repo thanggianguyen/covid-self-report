@@ -279,7 +279,7 @@ public class SurveySexFragment extends Fragment {
         sexpreferences.setResponse(2, birthControlResponse);
 
         //Set the response for Birth Control (index 3 of the preferenceSurvey questions arrays) to the selected CheckBoxes' text fields:
-        sexpreferences.setQuestion(3, "Types of Birth Control(s):");
+        sexpreferences.setQuestion(3, "2a) Types of Birth Control(s):");
         String bcResponse = "";
         for (CheckBox current : bc) {
             if (current.isChecked())

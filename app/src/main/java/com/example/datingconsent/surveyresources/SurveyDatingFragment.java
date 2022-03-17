@@ -187,7 +187,14 @@ public class SurveyDatingFragment extends Fragment {
         try { selectedIndexQ1 = Integer.parseInt(datingpreferences.getResponse(0)); }
         catch (NumberFormatException e) { selectedIndexQ1 = 0; }
         switch (selectedIndexQ1) {
-            case 0: PhyTou.check(R.id.dating_PhyTouYes_radiobtn); break;
+            case 0: PhyTou.check(R.id.dating_PhyTouYes_radiobtn);
+                if (PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouYes_radiobtn) {
+                    PhyTouWhere.setVisibility(View.VISIBLE);
+
+                } else if (PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouNo_radiobtn) {
+                    PhyTouWhere.setVisibility(View.GONE);
+                }
+            break;
             case 1: PhyTou.check(R.id.dating_PhyTouNo_radiobtn); break;
         }
 
@@ -234,7 +241,10 @@ public class SurveyDatingFragment extends Fragment {
         datingpreferences.setQuestion(0, ((TextView)requireActivity().findViewById(R.id.dating_PhyTouTitle_text)).getText().toString());
         datingpreferences.setResponse(0, Integer.toString(PhyTou.indexOfChild(requireView().findViewById(
                 PhyTou.getCheckedRadioButtonId()))));
-        datingpreferences.setTextboxResponse(0, PhyTouWhere.getText().toString());
+        if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouNo_radiobtn)
+            datingpreferences.setTextboxResponse(0, " ");
+        else if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouYes_radiobtn)
+            datingpreferences.setTextboxResponse(0, PhyTouWhere.getText().toString());
 
         //Set the response for Paying (index 1 of the preferenceSurvey questions arrays) to the selected radiobutton index of Paying Response:
         datingpreferences.setQuestion(1, ((TextView)requireActivity().findViewById(R.id.dating_PayTitle_text)).getText().toString());

@@ -31,7 +31,6 @@ public class SurveyFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,7 @@ public class SurveyFragment extends Fragment {
         titles = new TextView[12];
         response = new TextView[14];
 
+        //Initialize all the TextViews for Question and Responses in the respective array.
         titles[0] = view.findViewById(R.id.survey_Dating_PhyTou);
         titles[1] = view.findViewById(R.id.survey_Dating_Pay);
         titles[2] = view.findViewById(R.id.survey_Dating_Dates);
@@ -85,6 +85,8 @@ public class SurveyFragment extends Fragment {
         titles[11].setText("Where?:");
         response[13].setText(datingSurvey.getTextboxResponse(0));
 
+        //Substitute the TextView with its respective data
+        //By accessing its respective Survey
         for(int i = 0; i <= 3; i++)
         {
             titles[i].setText(datingSurvey.getQuestion(i));
@@ -105,6 +107,8 @@ public class SurveyFragment extends Fragment {
                 continue;
         }
 
+        //Shows the Sex Survey only if the user selects "Yes" for consent
+        //For sex in the Dating Survey
         if(datingSurvey.getResponse(3).equals("0")) {
             titles[4].setVisibility(View.VISIBLE);
             titles[5].setVisibility(View.VISIBLE);
@@ -144,6 +148,8 @@ public class SurveyFragment extends Fragment {
                 response[12].setVisibility(View.GONE);
             }
         }
+        //Hides the Sex Survey only if the user selects "Yes" for consent
+        //For sex in the Dating Survey
         else if(datingSurvey.getResponse(3).equals("1")){
             SexTitle.setVisibility(View.GONE);
             titles[4].setVisibility(View.GONE);
@@ -164,6 +170,19 @@ public class SurveyFragment extends Fragment {
             response[12].setVisibility(View.GONE);
         }
 
+        //Shows or Hides "PhyTouWhere" depending on
+        //What the user selects for "PhyTou"
+        if(datingSurvey.getResponse(0).equals("1"))
+        {
+            titles[11].setVisibility(View.GONE);
+            response[13].setVisibility(View.GONE);
+        }
+        else
+        {
+            titles[11].setVisibility(View.VISIBLE);
+            response[13].setVisibility(View.VISIBLE);
+        }
+
         //Set the OnClickListener for the change preferences button:
         EditButton = view.findViewById(R.id.survey_Edit_button);
         EditButton.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +193,7 @@ public class SurveyFragment extends Fragment {
             }
         });
     }
+
     private static String preferenceNumberToText(int questionNum, int num) {
         String str = "";
         if (questionNum == 0 || questionNum == 1 || questionNum == 3) {
