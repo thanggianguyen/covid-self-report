@@ -202,13 +202,13 @@ public class SurveySexFragment extends Fragment {
      */
     private void initializeComponentsForModifier(View view) {
         //Set the selected checkbox for Kissing:
-        if (sexpreferences.getResponse(0).contains(kiss.getText().toString()))
+        if (sexpreferences.getResponse(0).contains("Yes"))
             kiss.setChecked(true);
         //Set the selected checkbox for Tongue:
-        if (sexpreferences.getResponse(1).contains(tongue.getText().toString()))
+        if (sexpreferences.getResponse(1).contains("Yes"))
             tongue.setChecked(true);
         //Set the selected checkbox for Birth Control Initiate:
-        if (sexpreferences.getResponse(2).contains(birthControl.getText().toString()))
+        if (sexpreferences.getResponse(2).contains("Yes"))
             birthControl.setChecked(true);
         //Set the selected checkboxes for Birth Control:
         for (int i = 0; i < bc.length; i++) {
@@ -216,13 +216,13 @@ public class SurveySexFragment extends Fragment {
                 bc[i].setChecked(true);
         }
         //Set the selected checkbox for Vaginal:
-        if (sexpreferences.getResponse(4).contains(vaginal.getText().toString()))
+        if (sexpreferences.getResponse(4).contains("Yes"))
             vaginal.setChecked(true);
         //Set the selected checkbox for Anal:
-        if (sexpreferences.getResponse(5).contains(anal.getText().toString()))
+        if (sexpreferences.getResponse(5).contains("Yes"))
             anal.setChecked(true);
         //Set the selected checkbox for Oral:
-        if (sexpreferences.getResponse(6).contains(oral.getText().toString()))
+        if (sexpreferences.getResponse(6).contains("Yes"))
             oral.setChecked(true);
         //Set the selected RadioButton of RadioGroup Anal Responses:
         int selectedIndexAnal;
