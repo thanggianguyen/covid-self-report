@@ -118,13 +118,20 @@ public class SurveyDatingFragment extends Fragment {
         }
         //If user clicks PhyTouYes, PhyTouWhere should appear to answer.
         //If user clicks PhyTouNo, PhyTouWhere should not appear to answer.
-        if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouYes_radiobtn){
-            PhyTouWhere.setVisibility(View.VISIBLE);
+        /*
+        }*/
+        PhyTou.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouYes_radiobtn) {
+                    PhyTouWhere.setVisibility(View.VISIBLE);
 
-        }
-        else if(PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouNo_radiobtn){
-            PhyTouWhere.setVisibility(View.GONE);
-        }
+                } else if (PhyTou.getCheckedRadioButtonId() == R.id.dating_PhyTouNo_radiobtn) {
+                    PhyTouWhere.setVisibility(View.GONE);
+                }
+            }
+        });
+
 
         //Set the onClick action for the update button:
         doneButton = view.findViewById(R.id.dating_DatingSurveyDone_button);
