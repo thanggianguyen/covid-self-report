@@ -1,8 +1,11 @@
 package com.example.datingconsent.ui.survey;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -26,6 +29,7 @@ public class SurveyFragment extends Fragment {
     private TextView[] titles;
     private TextView[] response;
     private Button EditButton;
+    public ActivityResultLauncher<Intent> surveyModifierLauncher;
 
     public SurveyFragment() {
         // Required empty public constructor
@@ -83,6 +87,25 @@ public class SurveyFragment extends Fragment {
         response[13] = view.findViewById(R.id.survey_Dating_PhyTouWhere_response);
 
         titles[11].setText("Where?:");
+        updateSurveyContent();
+        surveyModifierLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result ->{
+                        updateSurveyContent();
+                }
+        );
+        //Set the OnClickListener for the change preferences button:
+        EditButton = view.findViewById(R.id.survey_Edit_button);
+        EditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toSurveyModifier = new Intent(requireActivity(), SurveyModifier.class);
+                surveyModifierLauncher.launch(toSurveyModifier);
+            }
+        });
+    }
+
+    private void updateSurveyContent() {
         response[13].setText(datingSurvey.getTextboxResponse(0));
 
         //Substitute the TextView with its respective data
@@ -182,16 +205,6 @@ public class SurveyFragment extends Fragment {
             titles[11].setVisibility(View.VISIBLE);
             response[13].setVisibility(View.VISIBLE);
         }
-
-        //Set the OnClickListener for the change preferences button:
-        EditButton = view.findViewById(R.id.survey_Edit_button);
-        EditButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toSurveyModifier = new Intent(requireActivity(), SurveyModifier.class);
-                startActivity(toSurveyModifier);
-            }
-        });
     }
 
     private static String preferenceNumberToText(int questionNum, int num) {
