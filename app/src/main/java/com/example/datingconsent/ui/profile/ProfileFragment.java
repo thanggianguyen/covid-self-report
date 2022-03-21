@@ -3,13 +3,17 @@ package com.example.datingconsent.ui.profile;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -35,6 +39,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The "Profile" section in MainScreen (the bottom navigation activity).
@@ -117,8 +122,7 @@ public class ProfileFragment extends Fragment {
         shareProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment message = new ShareOptionsDialog();
-                message.show(requireActivity().getSupportFragmentManager(), "share");
+                Sharing();
             }
         });
     }
@@ -353,5 +357,54 @@ public class ProfileFragment extends Fragment {
             }
         }
         return str;
+    }
+
+    private void Sharing(){
+        String profileStr = generatePDF();
+        //If the PDF was generated, share the PDF using sharePDF():
+        if (profileStr == null)
+            sharePDF();
+            //If the PDF was not generated, share the PDF using a text-based approach (shareText() ):
+        else
+            shareText(profileStr);
+    }
+
+    /**
+     * Generates an app chooser that allows the user to share the PDF report on their profile
+     * Grants other Android apps permission to access the PDF file stored by this app
+     * A PDF will be generated as long as android is up-to-date enough (version is greater than or equal to KitKat)
+     */
+    private void sharePDF() {
+        //The PDF file and the URI for that PDF file:
+        File pdf = new File(requireActivity().getFilesDir().toString(), "profilereport.pdf");
+        Uri uri = FileProvider.getUriForFile(requireContext(), "com.example.datingconsent", pdf);
+
+        //Initialize the sharing intent (used to insert the PDF into the android share screen):
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("application/pdf");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        //The app grants other Android apps permission access the PDF file:
+        PackageManager packageManager = requireActivity().getPackageManager();
+        List<ResolveInfo> list = packageManager.queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        if (list.size() < 1) {
+            return;
+        }
+        String packageName = list.get(0).activityInfo.packageName;
+        requireActivity().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        //Display the Android share screen/chooser:
+        startActivity(Intent.createChooser(shareIntent, "Share using..."));
+    }
+    /**
+     * Generates an app chooser that allows the user to share a text-based profile report
+     */
+    private void shareText(String shareStr) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, shareStr);
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share using..."));
     }
 }
