@@ -136,6 +136,7 @@ public class SurveyFragment extends Fragment {
         //Shows the Sex Survey only if the user selects "Yes" for consent
         //For sex in the Dating Survey
         if(datingSurvey.getResponse(3).equals("0")) {
+            SexTitle.setVisibility(View.VISIBLE);
             titles[4].setVisibility(View.VISIBLE);
             titles[5].setVisibility(View.VISIBLE);
             titles[6].setVisibility(View.VISIBLE);

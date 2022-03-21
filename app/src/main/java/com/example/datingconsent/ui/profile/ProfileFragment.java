@@ -205,7 +205,7 @@ public class ProfileFragment extends Fragment {
             if (datingpreferences.getTextboxResponse(i) != null && !datingpreferences.getTextboxResponse(i).isEmpty())
                 profileText += datingpreferences.getTextboxResponse(i) + "\n";
         }
-        for (int i = 0; i < MainActivity.SEX_PREFERENCE_QUESTION_COUNT; i++) {
+        for (int i = 0; i < MainActivity.SEX_PREFERENCE_QUESTION_COUNT-2; i++) {
             profileText += sexpreferences.getQuestion(i) + "\n";
             if (i >= 3)
                 profileText += sexpreferences.getResponse(i) + "\n";
@@ -248,21 +248,35 @@ public class ProfileFragment extends Fragment {
             yPos += 30;
 
             //Write the Profile Information:
+            title.setTextSize(20);
+            canvas.drawText("Profile:", 32, yPos, title);
+            yPos += 15;
             title.setTextSize(12);
-            canvas.drawText("Name: " + profile.getName() + "\n"
-                    + "Age: " + profile.getAge() + "\n"
-                    + "Pronouns: " + profile.getPronouns() + "\n"
-                    + "Phone No.: " + profile.getPhoneNumber() + "\n"
-                    + "Gender: " + profile.getGender() + "\n"
-                    + "Religion: " + profile.getReligion() + "\n"
-                    + "Political View: " + profile.getPoliticalView() + "\n"
-                    + "Sexual Orientation: " + profile.getSexOrientation() + "\n"
-                    + "Looking For: " + profile.getLooking() + "\n"
-                    + "Vaccinated: " + profile.isVaccinated() + "\t\t"
-                    + "Date: " + profile.getVaccinationDate() + "\n"
-                    + "2nd Shot: " + profile.isSecondShot() + "\t\t"
-                    + "Date: " + profile.getSecondShotDate() + "\n"
-                    + "Vaccinated: " + profile.isBooster() + "\t\t"
+            canvas.drawText("Name: " + profile.getName() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Age: " + profile.getAge() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Pronouns: " + profile.getPronouns() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Phone No.: " + profile.getPhoneNumber() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Gender: " + profile.getGender() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Religion: " + profile.getReligion() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Political View: " + profile.getPoliticalView() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Sexual Orientation: " + profile.getSexOrientation() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Looking For: " + profile.getLooking() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Vaccinated: " + profile.isVaccinated() + "\t\t"
+                    + "Date: " + profile.getVaccinationDate() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("2nd Shot: " + profile.isSecondShot() + "\t\t"
+                    + "Date: " + profile.getSecondShotDate() + "\n", 32, yPos, title);
+            yPos += 15;
+            canvas.drawText("Vaccinated: " + profile.isBooster() + "\t\t"
                     + "Date: " + profile.getBoosterDate() + "\n", 32, yPos, title);
             yPos += 30;
 
@@ -271,47 +285,61 @@ public class ProfileFragment extends Fragment {
             canvas.drawText("Consent Survey Responses:", 32, yPos, title);
             yPos += 30;
 
-            //Go through the preferences Survey object and write each question/response pair to the PDF:
+            //Go through the Dating Survey object and write each question/response pair to the PDF:
+            title.setTextSize(20);
+            canvas.drawText("Dating Survey:", 32, yPos, title);
+            yPos += 15;
             title.setTextSize(12);
             for (int i = 0; i < MainActivity.DATING_PREFERENCE_QUESTION_COUNT; i++) {
                 //Write the question, in bold:
                 title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                canvas.drawText(datingpreferences.getQuestion(i) + "\n", 32, yPos, title);
+                canvas.drawText(datingpreferences.getQuestion(i) + ": ", 32, yPos, title);
                 yPos += 15;
 
                 //Write the answers:
                 title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                if (i >= 3) {
+                if (i != 2) {
+                    canvas.drawText(datingpreferenceNumberToText(i,Integer.parseInt(datingpreferences.getResponse(i))) + "", 32, yPos, title);
+                    yPos += 15;
+                }
+                else{
                     canvas.drawText(datingpreferences.getResponse(i) + "\n", 32, yPos, title);
                     yPos += 15;
                 }
 
                 //If there is a text response, write it to the PDF:
                 if (datingpreferences.getTextboxResponse(i) != null && !datingpreferences.getTextboxResponse(i).isEmpty()) {
-                    canvas.drawText("Condition(s): " + datingpreferences.getTextboxResponse(i) + "\n", 32, yPos, title);
+                    canvas.drawText("Where: " + datingpreferences.getTextboxResponse(i) + "\n", 32, yPos, title);
                     yPos += 15;
                 }
             }
 
-            //Go through the preferences Survey object and write each question/response pair to the PDF:
-            title.setTextSize(12);
-            for (int i = 0; i < MainActivity.SEX_PREFERENCE_QUESTION_COUNT; i++) {
-                //Write the question, in bold:
-                title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                canvas.drawText(sexpreferences.getQuestion(i) + "\n", 32, yPos, title);
+            //Go through the Sex Survey object and write each question/response pair to the PDF:
+            if(datingpreferences.getResponse(3).equals("0")) {
                 yPos += 15;
-
-                //Write the answers:
-                title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
-                if (i >= 3) {
-                    canvas.drawText(sexpreferences.getResponse(i) + "\n", 32, yPos, title);
+                title.setTextSize(20);
+                canvas.drawText("Sex Survey:", 32, yPos, title);
+                yPos += 15;
+                title.setTextSize(12);
+                for (int i = 0; i < MainActivity.SEX_PREFERENCE_QUESTION_COUNT - 2; i++) {
+                    //Write the question, in bold:
+                    title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    canvas.drawText(sexpreferences.getQuestion(i) + "\n", 32, yPos, title);
                     yPos += 15;
-                }
 
-                //If there is a text response, write it to the PDF:
-                if (sexpreferences.getTextboxResponse(i) != null && !sexpreferences.getTextboxResponse(i).isEmpty()) {
-                    canvas.drawText("Condition(s): " + sexpreferences.getTextboxResponse(i) + "\n", 32, yPos, title);
-                    yPos += 15;
+                    //Write the answers:
+                    title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+
+                    if (i == 5) {
+                        canvas.drawText(sexpreferences.getResponse(i) + "; " + sexpreferenceNumberToText(i, Integer.parseInt(sexpreferences.getResponse(7))), 32, yPos, title);
+                        yPos += 15;
+                    } else if (i == 6) {
+                        canvas.drawText(sexpreferences.getResponse(i) + "; " + sexpreferenceNumberToText(i, Integer.parseInt(sexpreferences.getResponse(8))), 32, yPos, title);
+                        yPos += 15;
+                    } else {
+                        canvas.drawText(sexpreferences.getResponse(i) + "\n", 32, yPos, title);
+                        yPos += 15;
+                    }
                 }
             }
 
@@ -348,7 +376,7 @@ public class ProfileFragment extends Fragment {
     }
     private static String sexpreferenceNumberToText(int questionNum, int num) {
         String str = "";
-        if (questionNum == 10 || questionNum == 11) {
+        if (questionNum == 5 || questionNum == 6) {
             switch (num) {
                 case 0: str = "Giving"; break;
                 case 1: str = "Receiving"; break;
