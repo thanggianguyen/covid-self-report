@@ -87,6 +87,8 @@ public class SurveyFragment extends Fragment {
         response[13] = view.findViewById(R.id.survey_Dating_PhyTouWhere_response);
 
         titles[11].setText("Where?:");
+
+        //Updates the Page after the user edits their survey
         updateSurveyContent();
         surveyModifierLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -106,6 +108,7 @@ public class SurveyFragment extends Fragment {
     }
 
     private void updateSurveyContent() {
+        //Set the TextView for PhyTouWhere TextBox
         response[13].setText(datingSurvey.getTextboxResponse(0));
 
         //Substitute the TextView with its respective data
