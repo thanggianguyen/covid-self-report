@@ -14,7 +14,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -180,23 +179,21 @@ public class ProfileFragment extends Fragment {
         Date today = Calendar.getInstance().getTime();
 
         String profileText = profile.getName() + "'s Profile and Consent Survey" +
-                "\nFile generated on " + today + "\n\nPreferences:" + "\n";// + preferences.toString();
+                "\nDate: " + today + "\n\n";
 
-        profileText += "Name: " + profile.getName() + "\n"
-                + "Age: " + profile.getAge() + "\n"
-                + "Pronouns: " + profile.getPronouns() + "\n"
-                + "Phone No.: " + profile.getPhoneNumber() + "\n"
-                + "Gender: " + profile.getGender() + "\n"
-                + "Religion: " + profile.getReligion() + "\n"
-                + "Political View: " + profile.getPoliticalView() + "\n"
+        profileText +="My Info:\n"
+                +"I'm "+profile.getAge()+" years old "+ profile.getGender()+", my pronoun is "+profile.getPronouns() + "\n"
+                + "My phone number is "+profile.getPhoneNumber() + "\n"
+                + "Sexual Orientation: " + profile.getSexOrientation() + "\n"
+                + "Religion: "+profile.getReligion()+"\t Political View:"+ profile.getPoliticalView() + "\n"
                 + "Sexual Orientation: " + profile.getSexOrientation() + "\n"
                 + "Looking For: " + profile.getLooking() + "\n"
-                + "Vaccinated: " + profile.isVaccinated() + "\t\t"
-                + "Date: " + profile.getVaccinationDate() + "\n"
-                + "2nd Shot: " + profile.isSecondShot() + "\t\t"
-                + "Date: " + profile.getSecondShotDate() + "\n"
-                + "Vaccinated: " + profile.isBooster() + "\t\t"
-                + "Date: " + profile.getBoosterDate() + "\n";
+                + "Vaccinated: " + (profile.isVaccinated() ?"Yes\t"
+                + "on " + profile.getVaccinationDate():"No")+"\n"
+                + "2nd Shot: " + (profile.isSecondShot()?"Yes\t"
+                + "on " + profile.getSecondShotDate():"No or not eligible") + "\n"
+                +   "Booster Status: " + (profile.isBooster()?"Boosted\t"
+                + "on " + profile.getBoosterDate():"Not boosted or eligible")+"\n";
 
         for (int i = 0; i < MainActivity.DATING_PREFERENCE_QUESTION_COUNT; i++) {
             profileText += datingpreferences.getQuestion(i) + "\n";
@@ -238,46 +235,38 @@ public class ProfileFragment extends Fragment {
             //Write the report title:
             title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
             title.setTextSize(24);
-            canvas.drawText(profile.getName() + "'s Profile and Consent Survey", 30, yPos, title);
+            canvas.drawText(profile.getName() + "'s Consent Survey", 30, yPos, title);
             yPos += 20;
 
             //Write the date the report was generated on:
             title.setTextSize(12);
             Date today = Calendar.getInstance().getTime();
-            canvas.drawText("File generated on " + today.toString(), 32, yPos, title);
+            canvas.drawText("Date: " + today.toString(), 32, yPos, title);
             yPos += 30;
 
             //Write the Profile Information:
             title.setTextSize(20);
-            canvas.drawText("Profile:", 32, yPos, title);
+            canvas.drawText("My Info:", 32, yPos, title);
             yPos += 15;
             title.setTextSize(12);
-            canvas.drawText("Name: " + profile.getName() + "\n", 32, yPos, title);
+            canvas.drawText("I'm "+profile.getAge()+" years old "+ profile.getGender()+", my pronoun is "+profile.getPronouns(),32,yPos,title);
             yPos += 15;
-            canvas.drawText("Age: " + profile.getAge() + "\n", 32, yPos, title);
-            yPos += 15;
-            canvas.drawText("Pronouns: " + profile.getPronouns() + "\n", 32, yPos, title);
-            yPos += 15;
-            canvas.drawText("Phone No.: " + profile.getPhoneNumber() + "\n", 32, yPos, title);
-            yPos += 15;
-            canvas.drawText("Gender: " + profile.getGender() + "\n", 32, yPos, title);
-            yPos += 15;
-            canvas.drawText("Religion: " + profile.getReligion() + "\n", 32, yPos, title);
-            yPos += 15;
-            canvas.drawText("Political View: " + profile.getPoliticalView() + "\n", 32, yPos, title);
+            canvas.drawText("My phone number is "+profile.getPhoneNumber(),32,yPos,title);
             yPos += 15;
             canvas.drawText("Sexual Orientation: " + profile.getSexOrientation() + "\n", 32, yPos, title);
             yPos += 15;
+            canvas.drawText("Religion: "+profile.getReligion()+"\t Political View:"+ profile.getPoliticalView(),32,yPos,title);
+            yPos += 15;
             canvas.drawText("Looking For: " + profile.getLooking() + "\n", 32, yPos, title);
             yPos += 15;
-            canvas.drawText("Vaccinated: " + profile.isVaccinated() + "\t\t"
-                    + "Date: " + profile.getVaccinationDate() + "\n", 32, yPos, title);
+            canvas.drawText("Vaccinated: " + (profile.isVaccinated() ?"Yes\t"
+                    + "on " + profile.getVaccinationDate():"No")+"\n", 32, yPos, title);
             yPos += 15;
-            canvas.drawText("2nd Shot: " + profile.isSecondShot() + "\t\t"
-                    + "Date: " + profile.getSecondShotDate() + "\n", 32, yPos, title);
+            canvas.drawText("2nd Shot: " + (profile.isSecondShot()?"Yes\t"
+                    + "on " + profile.getSecondShotDate():"No or not eligible") + "\n", 32, yPos, title);
             yPos += 15;
-            canvas.drawText("Vaccinated: " + profile.isBooster() + "\t\t"
-                    + "Date: " + profile.getBoosterDate() + "\n", 32, yPos, title);
+            canvas.drawText("Booster Status: " + (profile.isBooster()?"Boosted\t"
+                    + "on " + profile.getBoosterDate():"Not boosted or eligible")  + "\n", 32, yPos, title);
             yPos += 30;
 
             //Write the "Preference Survey" header:
