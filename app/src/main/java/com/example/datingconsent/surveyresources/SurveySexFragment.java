@@ -25,6 +25,10 @@ import android.widget.TextView;
 import com.example.datingconsent.R;
 import com.example.datingconsent.ui.MainActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class SurveySexFragment extends Fragment {
 
@@ -37,6 +41,7 @@ public class SurveySexFragment extends Fragment {
     private RadioGroup analGroup, oralGroup;
     private Button doneButton,backButton;
     private RadioGroup datingSex;
+    private String timeEdit;
 
     public SurveySexFragment() {
         // Required empty public constructor
@@ -188,8 +193,12 @@ public class SurveySexFragment extends Fragment {
                     });
                     warning.show();
                 }
-                    else
-                        doneButtonHandler(v);
+                else
+                    doneButtonHandler(v);
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd", Locale.getDefault());
+                timeEdit = df.format(cal.getTime());
+                SurveyDatingFragment.setTimeEdit(timeEdit);
             }
         });
 

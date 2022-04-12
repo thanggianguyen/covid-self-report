@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -26,8 +24,13 @@ import android.widget.TextView;
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class SurveyDatingFragment extends Fragment {
 
+    private static String timeEdit;
     private final Survey datingpreferences = MainActivity.getDatingPreferenceSurvey();
     private FragmentManager fm;
     private RadioGroup PhyTou, Pay;
@@ -172,6 +175,10 @@ public class SurveyDatingFragment extends Fragment {
                         warn[3].setVisibility(View.INVISIBLE);
                     }
                 }
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd", Locale.getDefault());
+                timeEdit = df.format(cal.getTime());
+                setTimeEdit(timeEdit);
             }
         });
     }
@@ -288,5 +295,12 @@ public class SurveyDatingFragment extends Fragment {
      */
     private void backButtonHandler(View view) {
         requireActivity().finish();
+    }
+
+    public static void setTimeEdit(String time){
+        timeEdit = time;
+    }
+    public String getTimeEdit(){
+        return timeEdit;
     }
 }

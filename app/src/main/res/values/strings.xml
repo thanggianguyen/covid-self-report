@@ -105,5 +105,8 @@
 
     <string name="done">Done</string>
 
+    <string name="home_ViewSurvey">View Survey</string>
+    <string name="home_ShareProfile">Share Profile</string>
+
 
 </resources>
