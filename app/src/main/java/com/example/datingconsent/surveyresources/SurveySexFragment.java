@@ -285,6 +285,10 @@ public class SurveySexFragment extends Fragment {
             if (current.isChecked())
                 bcResponse += current.getText().toString() + ", ";
         }
+        if(bcResponse.equals("")){
+            sexpreferences.setResponse(3, bcResponse.substring(0, bcResponse.length()));
+        }
+        else
         sexpreferences.setResponse(3, bcResponse.substring(0, bcResponse.length() - 2));
 
         //Set the response for Vaginal (index 4 of the preferenceSurvey questions arrays) to the selected CheckBox's text fields:
