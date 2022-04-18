@@ -300,7 +300,7 @@ public class SurveyDatingFragment extends Fragment {
     public static void setTimeEdit(String time){
         timeEdit = time;
     }
-    public String getTimeEdit(){
+    public static String getTimeEdit(){
         return timeEdit;
     }
 }
