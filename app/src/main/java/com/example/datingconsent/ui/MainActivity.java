@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if(result.getResultCode() == Activity.RESULT_OK){
-                        Log.d("MainActivity","Result survey callback");
+                        Log.d("MainActSexSurvey",sexpreferenceSurvey.toString());
                         datingpreferenceSurvey.saveToJson(getFilesDir().toString(), DATING_PREFERENCE_SURVEY_FILE_NAME);
                         if(datingpreferenceSurvey.getResponse(3).equals("0"))
                             sexpreferenceSurvey.saveToJson(getFilesDir().toString(), SEX_PREFERENCE_SURVEY_FILE_NAME);
