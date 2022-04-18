@@ -30,6 +30,8 @@ import com.example.datingconsent.surveyresources.SurveyDatingFragment;
 import com.example.datingconsent.surveyresources.SurveySexFragment;
 import com.example.datingconsent.ui.MainActivity;
 import com.example.datingconsent.ui.survey.SurveyFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.datingconsent.ui.MainScreen;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 fm = getParentFragmentManager();
+                MainScreen.navView.setSelectedItemId(R.id.navigation_survey);
                 fm.beginTransaction().replace(R.id.nav_host_fragment, new SurveyFragment()).commit();
             }
         });
